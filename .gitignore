@@ -1,0 +1,34 @@
+.venv/
+.tools/
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+apps/web/node_modules/
+apps/web/dist/
+*.tsbuildinfo
+.env
+.secrets/
+data/gold/
+data/generated/
+data/captured/
+data/captured_private/
+reports/
+*.pyc
+
+.env.release
+
+# Local editor and operating-system state
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Browser-test output and local runtime state
+apps/web/playwright-report/
+apps/web/test-results/
+apps/web/.cache/
+tmp/
+*.log

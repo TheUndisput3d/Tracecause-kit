@@ -1,0 +1,13 @@
+[extend]
+useDefault = true
+
+# Public content identities, reviewed individually in phase17. These are not credentials.
+[[allowlists]]
+description = "Exact public tokenizer revisions/content hash and documented service identity"
+regexTarget = "secret"
+regexes = [
+  '''^cdbee75f17c01a7cc42f958dc650907174af0554$''',
+  '''^1110a243fdf4706b3f48f1d95db1a4f5529b4d41$''',
+  '''^be50c3628f2bf5bb5e3a7f17b1f74611b2561a3a27eeab05e5aa30f411572037$''',
+  '''^b05172b8d20a6c8798e9ede21a75a11a7b23f58d97aa6ee2793700664c79d5fe$''',
+]

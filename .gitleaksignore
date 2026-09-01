@@ -1,0 +1,7 @@
+# Reviewed public model/tokenizer revisions and a deterministic service key.
+7b525205145e82959cd54d70bc760f1cfb95f918:src/tracecause/investigation/generation.py:generic-api-key:23
+6e8202098c3ee13abf8884b445126b9e1dc0ee7d:docs/phase-reports/09.md:generic-api-key:20
+fe12ddf2f480d17f9f1dc76dc1e41c3c181183b6:src/tracecause/documents/persistence.py:generic-api-key:162
+6e8202098c3ee13abf8884b445126b9e1dc0ee7d:docs/INVESTIGATION.md:generic-api-key:24
+fe12ddf2f480d17f9f1dc76dc1e41c3c181183b6:src/tracecause/documents/markdown.py:generic-api-key:18
+fe12ddf2f480d17f9f1dc76dc1e41c3c181183b6:src/tracecause/documents/markdown.py:generic-api-key:19
