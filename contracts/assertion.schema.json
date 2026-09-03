@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "assertion_id": {
+      "format": "uuid",
+      "title": "Assertion Id",
+      "type": "string"
+    },
+    "chunk_id": {
+      "format": "uuid",
+      "title": "Chunk Id",
+      "type": "string"
+    },
+    "extractor_version": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Extractor Version",
+      "type": "string"
+    },
+    "object_text": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Object Text",
+      "type": "string"
+    },
+    "predicate": {
+      "enum": [
+        "DESCRIBES_SYMPTOM",
+        "SUGGESTS_CHECK",
+        "REPORTS_HISTORICAL_CAUSE"
+      ],
+      "title": "Predicate",
+      "type": "string"
+    },
+    "quote_end_char": {
+      "exclusiveMinimum": 0,
+      "title": "Quote End Char",
+      "type": "integer"
+    },
+    "quote_start_char": {
+      "minimum": 0,
+      "title": "Quote Start Char",
+      "type": "integer"
+    },
+    "subject_service_id": {
+      "anyOf": [
+        {
+          "maxLength": 200,
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Subject Service Id"
+    },
+    "verified": {
+      "title": "Verified",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "assertion_id",
+    "chunk_id",
+    "subject_service_id",
+    "predicate",
+    "object_text",
+    "quote_start_char",
+    "quote_end_char",
+    "extractor_version",
+    "verified"
+  ],
+  "title": "Assertion",
+  "type": "object"
+}

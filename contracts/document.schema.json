@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "available_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Available At"
+    },
+    "document_id": {
+      "format": "uuid",
+      "title": "Document Id",
+      "type": "string"
+    },
+    "document_type": {
+      "enum": [
+        "runbook",
+        "historical_note",
+        "other"
+      ],
+      "title": "Document Type",
+      "type": "string"
+    },
+    "published_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Published At"
+    },
+    "source_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Source Hash",
+      "type": "string"
+    },
+    "title": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Title",
+      "type": "string"
+    },
+    "version": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Version",
+      "type": "string"
+    },
+    "workspace_id": {
+      "format": "uuid",
+      "title": "Workspace Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "document_id",
+    "workspace_id",
+    "source_hash",
+    "version",
+    "title",
+    "published_at",
+    "available_at",
+    "document_type"
+  ],
+  "title": "Document",
+  "type": "object"
+}

@@ -1,0 +1,11 @@
+# Contract implementation instructions
+
+The nine JSON Schemas are concrete starting contracts, not a full substitute for domain validation. Phase 01 creates matching Pydantic models and adds any remaining internal schemas. Use versioned extensions rather than silently changing field meanings. Reject unknown write fields. Keep generated OpenAPI/frontend types synchronized.
+
+Domain validators must additionally enforce: nonzero valid trace/span IDs; end >= start; baseline end before analysis; ISO UTC normalization; scope membership; unique evidence/claim IDs; linked claim/evidence membership; consecutive ranks; path length/continuity/direction; candidate order; numeric unit/observation/interval equality; schema status versus hypotheses; time eligibility; safe source offsets; source hash/byte verification and whole-request resource limits. JSON Schema alone cannot establish these invariants or semantic truth.
+
+The narrative summary carries evidence IDs; summaries containing factual assertions must be supported just like claims. A no-evidence limitation can have an empty evidence list. The backend, not the LLM, supplies immutable provenance, scores and timings. The successful-result schema excludes failed jobs; failure is represented by the job/error envelope, not a forged successful narrative.
+
+Nanoseconds are decimal strings at external/browser boundaries to avoid JavaScript precision loss; internal Python uses integer arithmetic and PostgreSQL BIGINT. Source offsets refer to the redacted immutable artifact. Example JSON is synthetic contract material, not measured model output or a benchmark result.
+
+Phase 01 exports the public Pydantic models from `src/tracecause/contracts/models.py` with `uv run python scripts/export_contracts.py`, then runs `npm run generate:api` in `apps/web/`. `scripts/export_contracts.py --check` fails when exported schemas drift. `contracts/openapi.phase01.json` contains the foundation liveness route and domain schema components; additional API paths are added in Phase 14. A field change requires updated examples, contract tests, frontend types, a compatibility note, and consideration of a database/artifact migration before the change is accepted. Cross-field rules such as interval ordering and path continuity are enforced by Pydantic validators in addition to JSON Schema structure.

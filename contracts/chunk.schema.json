@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "chunk_id": {
+      "format": "uuid",
+      "title": "Chunk Id",
+      "type": "string"
+    },
+    "chunking_version": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Chunking Version",
+      "type": "string"
+    },
+    "document_id": {
+      "format": "uuid",
+      "title": "Document Id",
+      "type": "string"
+    },
+    "embedding_artifact_hash": {
+      "anyOf": [
+        {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Embedding Artifact Hash"
+    },
+    "end_char": {
+      "exclusiveMinimum": 0,
+      "title": "End Char",
+      "type": "integer"
+    },
+    "normalized_text_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Normalized Text Hash",
+      "type": "string"
+    },
+    "start_char": {
+      "minimum": 0,
+      "title": "Start Char",
+      "type": "integer"
+    },
+    "token_count": {
+      "maximum": 220,
+      "minimum": 1,
+      "title": "Token Count",
+      "type": "integer"
+    },
+    "version": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "chunk_id",
+    "document_id",
+    "version",
+    "start_char",
+    "end_char",
+    "token_count",
+    "normalized_text_hash",
+    "embedding_artifact_hash",
+    "chunking_version"
+  ],
+  "title": "Chunk",
+  "type": "object"
+}

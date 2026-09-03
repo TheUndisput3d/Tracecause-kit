@@ -1,0 +1,100 @@
+{
+  "$defs": {
+    "GenerationMode": {
+      "enum": [
+        "template",
+        "ollama"
+      ],
+      "title": "GenerationMode",
+      "type": "string"
+    },
+    "RankingMode": {
+      "enum": [
+        "heuristic",
+        "learned"
+      ],
+      "title": "RankingMode",
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "config_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Config Hash",
+      "type": "string"
+    },
+    "generation_modes": {
+      "items": {
+        "$ref": "#/$defs/GenerationMode"
+      },
+      "title": "Generation Modes",
+      "type": "array"
+    },
+    "independent_human_review": {
+      "const": false,
+      "default": false,
+      "title": "Independent Human Review",
+      "type": "boolean"
+    },
+    "limitations": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Limitations",
+      "type": "array"
+    },
+    "maximum_graph_hops": {
+      "title": "Maximum Graph Hops",
+      "type": "integer"
+    },
+    "maximum_question_characters": {
+      "title": "Maximum Question Characters",
+      "type": "integer"
+    },
+    "maximum_upload_bundle_bytes": {
+      "title": "Maximum Upload Bundle Bytes",
+      "type": "integer"
+    },
+    "maximum_upload_file_bytes": {
+      "title": "Maximum Upload File Bytes",
+      "type": "integer"
+    },
+    "mutations_enabled": {
+      "title": "Mutations Enabled",
+      "type": "boolean"
+    },
+    "public_read_only": {
+      "title": "Public Read Only",
+      "type": "boolean"
+    },
+    "ranking_modes": {
+      "items": {
+        "$ref": "#/$defs/RankingMode"
+      },
+      "title": "Ranking Modes",
+      "type": "array"
+    },
+    "review_origin": {
+      "const": "ai",
+      "default": "ai",
+      "title": "Review Origin",
+      "type": "string"
+    }
+  },
+  "required": [
+    "config_hash",
+    "ranking_modes",
+    "public_read_only",
+    "mutations_enabled",
+    "generation_modes",
+    "maximum_question_characters",
+    "maximum_graph_hops",
+    "maximum_upload_file_bytes",
+    "maximum_upload_bundle_bytes",
+    "limitations"
+  ],
+  "title": "ApiCapabilities",
+  "type": "object"
+}

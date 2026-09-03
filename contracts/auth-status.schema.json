@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "authorized": {
+      "title": "Authorized",
+      "type": "boolean"
+    },
+    "mutations_enabled": {
+      "title": "Mutations Enabled",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "authorized",
+    "mutations_enabled"
+  ],
+  "title": "AuthStatus",
+  "type": "object"
+}
