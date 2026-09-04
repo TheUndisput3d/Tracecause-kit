@@ -1,0 +1,116 @@
+{
+  "$defs": {
+    "GraphEdge": {
+      "additionalProperties": false,
+      "properties": {
+        "edge_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Edge Id",
+          "type": "string"
+        },
+        "relationship": {
+          "enum": [
+            "CALLS",
+            "MESSAGE_FLOW"
+          ],
+          "title": "Relationship",
+          "type": "string"
+        },
+        "source_service_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Source Service Id",
+          "type": "string"
+        },
+        "supporting_evidence_ids": {
+          "items": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 20,
+          "minItems": 1,
+          "title": "Supporting Evidence Ids",
+          "type": "array"
+        },
+        "target_service_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Target Service Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "edge_id",
+        "source_service_id",
+        "target_service_id",
+        "relationship",
+        "supporting_evidence_ids"
+      ],
+      "title": "GraphEdge",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "as_of": {
+      "format": "date-time",
+      "title": "As Of",
+      "type": "string"
+    },
+    "edges": {
+      "items": {
+        "$ref": "#/$defs/GraphEdge"
+      },
+      "maxItems": 3,
+      "minItems": 1,
+      "title": "Edges",
+      "type": "array"
+    },
+    "episode_id": {
+      "format": "uuid",
+      "title": "Episode Id",
+      "type": "string"
+    },
+    "path_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Path Id",
+      "type": "string"
+    },
+    "service_ids": {
+      "items": {
+        "maxLength": 200,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 4,
+      "minItems": 2,
+      "title": "Service Ids",
+      "type": "array"
+    },
+    "snapshot_id": {
+      "format": "uuid",
+      "title": "Snapshot Id",
+      "type": "string"
+    },
+    "workspace_id": {
+      "format": "uuid",
+      "title": "Workspace Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "path_id",
+    "workspace_id",
+    "episode_id",
+    "snapshot_id",
+    "as_of",
+    "service_ids",
+    "edges"
+  ],
+  "title": "GraphPath",
+  "type": "object"
+}

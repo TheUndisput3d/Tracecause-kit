@@ -1,0 +1,189 @@
+{
+  "$defs": {
+    "DataOrigin": {
+      "enum": [
+        "synthetic",
+        "captured_demo",
+        "external"
+      ],
+      "title": "DataOrigin",
+      "type": "string"
+    },
+    "EpisodeView": {
+      "additionalProperties": false,
+      "properties": {
+        "active_snapshot_id": {
+          "anyOf": [
+            {
+              "format": "uuid",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Active Snapshot Id"
+        },
+        "availability_recorded": {
+          "title": "Availability Recorded",
+          "type": "boolean"
+        },
+        "baseline_interval": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/TimeInterval"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        },
+        "default_as_of": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Default As Of"
+        },
+        "default_symptom_service_id": {
+          "anyOf": [
+            {
+              "pattern": "^[a-f0-9]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Default Symptom Service Id"
+        },
+        "display_name": {
+          "title": "Display Name",
+          "type": "string"
+        },
+        "episode_id": {
+          "format": "uuid",
+          "title": "Episode Id",
+          "type": "string"
+        },
+        "event_interval": {
+          "$ref": "#/$defs/TimeInterval"
+        },
+        "ingestion_status": {
+          "title": "Ingestion Status",
+          "type": "string"
+        },
+        "last_investigation_status": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Last Investigation Status"
+        },
+        "origin": {
+          "$ref": "#/$defs/DataOrigin"
+        },
+        "quality_flags": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Quality Flags",
+          "type": "array"
+        },
+        "service_count": {
+          "minimum": 0,
+          "title": "Service Count",
+          "type": "integer"
+        },
+        "valid_span_count": {
+          "minimum": 0,
+          "title": "Valid Span Count",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "episode_id",
+        "display_name",
+        "origin",
+        "event_interval",
+        "ingestion_status",
+        "active_snapshot_id",
+        "created_at",
+        "availability_recorded",
+        "service_count",
+        "valid_span_count",
+        "baseline_interval",
+        "quality_flags",
+        "last_investigation_status"
+      ],
+      "title": "EpisodeView",
+      "type": "object"
+    },
+    "TimeInterval": {
+      "additionalProperties": false,
+      "properties": {
+        "end": {
+          "format": "date-time",
+          "title": "End",
+          "type": "string"
+        },
+        "start": {
+          "format": "date-time",
+          "title": "Start",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "title": "TimeInterval",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "items": {
+      "items": {
+        "$ref": "#/$defs/EpisodeView"
+      },
+      "maxItems": 100,
+      "title": "Items",
+      "type": "array"
+    },
+    "next_cursor": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Next Cursor"
+    }
+  },
+  "required": [
+    "items",
+    "next_cursor"
+  ],
+  "title": "EpisodePage",
+  "type": "object"
+}
