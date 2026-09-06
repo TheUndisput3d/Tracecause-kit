@@ -1,0 +1,108 @@
+{
+  "$defs": {
+    "GenerationMode": {
+      "enum": [
+        "template",
+        "ollama"
+      ],
+      "title": "GenerationMode",
+      "type": "string"
+    },
+    "RankingMode": {
+      "enum": [
+        "heuristic",
+        "learned"
+      ],
+      "title": "RankingMode",
+      "type": "string"
+    },
+    "RetrievalMode": {
+      "enum": [
+        "DENSE",
+        "LEXICAL",
+        "HYBRID",
+        "GRAPH"
+      ],
+      "title": "RetrievalMode",
+      "type": "string"
+    },
+    "TemporalMode": {
+      "enum": [
+        "event_time_replay",
+        "available_time_replay"
+      ],
+      "title": "TemporalMode",
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "as_of": {
+      "format": "date-time",
+      "title": "As Of",
+      "type": "string"
+    },
+    "episode_id": {
+      "format": "uuid",
+      "title": "Episode Id",
+      "type": "string"
+    },
+    "generation_mode": {
+      "$ref": "#/$defs/GenerationMode"
+    },
+    "question": {
+      "maxLength": 2000,
+      "minLength": 1,
+      "title": "Question",
+      "type": "string"
+    },
+    "ranking_mode": {
+      "$ref": "#/$defs/RankingMode"
+    },
+    "retrieval_mode": {
+      "$ref": "#/$defs/RetrievalMode"
+    },
+    "snapshot_id": {
+      "anyOf": [
+        {
+          "format": "uuid",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Snapshot Id"
+    },
+    "symptom_service_id": {
+      "anyOf": [
+        {
+          "maxLength": 200,
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Symptom Service Id"
+    },
+    "temporal_mode": {
+      "$ref": "#/$defs/TemporalMode"
+    }
+  },
+  "required": [
+    "episode_id",
+    "as_of",
+    "temporal_mode",
+    "question",
+    "retrieval_mode",
+    "ranking_mode",
+    "generation_mode"
+  ],
+  "title": "InvestigationRequest",
+  "type": "object"
+}

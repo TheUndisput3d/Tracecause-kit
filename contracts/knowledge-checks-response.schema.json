@@ -1,0 +1,196 @@
+{
+  "$defs": {
+    "GraphEdge": {
+      "additionalProperties": false,
+      "properties": {
+        "edge_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Edge Id",
+          "type": "string"
+        },
+        "relationship": {
+          "enum": [
+            "CALLS",
+            "MESSAGE_FLOW"
+          ],
+          "title": "Relationship",
+          "type": "string"
+        },
+        "source_service_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Source Service Id",
+          "type": "string"
+        },
+        "supporting_evidence_ids": {
+          "items": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 20,
+          "minItems": 1,
+          "title": "Supporting Evidence Ids",
+          "type": "array"
+        },
+        "target_service_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Target Service Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "edge_id",
+        "source_service_id",
+        "target_service_id",
+        "relationship",
+        "supporting_evidence_ids"
+      ],
+      "title": "GraphEdge",
+      "type": "object"
+    },
+    "KnowledgeCheck": {
+      "additionalProperties": false,
+      "properties": {
+        "assertion_id": {
+          "format": "uuid",
+          "title": "Assertion Id",
+          "type": "string"
+        },
+        "call_edges": {
+          "items": {
+            "$ref": "#/$defs/GraphEdge"
+          },
+          "maxItems": 3,
+          "title": "Call Edges",
+          "type": "array"
+        },
+        "document_title": {
+          "maxLength": 500,
+          "minLength": 1,
+          "title": "Document Title",
+          "type": "string"
+        },
+        "end_char": {
+          "exclusiveMinimum": 0,
+          "title": "End Char",
+          "type": "integer"
+        },
+        "evidence_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Evidence Id",
+          "type": "string"
+        },
+        "quote": {
+          "maxLength": 8000,
+          "minLength": 1,
+          "title": "Quote",
+          "type": "string"
+        },
+        "service_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Service Id",
+          "type": "string"
+        },
+        "service_ids": {
+          "items": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 4,
+          "minItems": 1,
+          "title": "Service Ids",
+          "type": "array"
+        },
+        "start_char": {
+          "minimum": 0,
+          "title": "Start Char",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "assertion_id",
+        "service_id",
+        "quote",
+        "document_title",
+        "evidence_id",
+        "start_char",
+        "end_char",
+        "service_ids",
+        "call_edges"
+      ],
+      "title": "KnowledgeCheck",
+      "type": "object"
+    },
+    "TemporalMode": {
+      "enum": [
+        "event_time_replay",
+        "available_time_replay"
+      ],
+      "title": "TemporalMode",
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "as_of": {
+      "format": "date-time",
+      "title": "As Of",
+      "type": "string"
+    },
+    "checks": {
+      "items": {
+        "$ref": "#/$defs/KnowledgeCheck"
+      },
+      "maxItems": 12,
+      "title": "Checks",
+      "type": "array"
+    },
+    "episode_id": {
+      "format": "uuid",
+      "title": "Episode Id",
+      "type": "string"
+    },
+    "reasoning_version": {
+      "const": "directed-runbook-paths-v1",
+      "default": "directed-runbook-paths-v1",
+      "title": "Reasoning Version",
+      "type": "string"
+    },
+    "snapshot_id": {
+      "format": "uuid",
+      "title": "Snapshot Id",
+      "type": "string"
+    },
+    "symptom_service_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Symptom Service Id",
+      "type": "string"
+    },
+    "temporal_mode": {
+      "$ref": "#/$defs/TemporalMode"
+    },
+    "truncated": {
+      "title": "Truncated",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "episode_id",
+    "snapshot_id",
+    "as_of",
+    "temporal_mode",
+    "symptom_service_id",
+    "checks",
+    "truncated"
+  ],
+  "title": "KnowledgeChecksResponse",
+  "type": "object"
+}

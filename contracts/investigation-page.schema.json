@@ -1,0 +1,1102 @@
+{
+  "$defs": {
+    "Claim": {
+      "additionalProperties": false,
+      "properties": {
+        "claim_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Claim Id",
+          "type": "string"
+        },
+        "claim_type": {
+          "enum": [
+            "observation",
+            "numeric",
+            "relationship",
+            "hypothesis",
+            "limitation"
+          ],
+          "title": "Claim Type",
+          "type": "string"
+        },
+        "evidence_ids": {
+          "items": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 12,
+          "title": "Evidence Ids",
+          "type": "array"
+        },
+        "metric": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Metric"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "path_id": {
+          "anyOf": [
+            {
+              "maxLength": 200,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Path Id"
+        },
+        "text": {
+          "maxLength": 600,
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "claim_id",
+        "claim_type",
+        "text",
+        "evidence_ids",
+        "metric",
+        "path_id"
+      ],
+      "title": "Claim",
+      "type": "object"
+    },
+    "Evidence": {
+      "additionalProperties": false,
+      "properties": {
+        "available_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Available At"
+        },
+        "episode_id": {
+          "format": "uuid",
+          "title": "Episode Id",
+          "type": "string"
+        },
+        "evidence_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Evidence Id",
+          "type": "string"
+        },
+        "interval": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/TimeInterval"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "kind": {
+          "enum": [
+            "observation",
+            "document_chunk",
+            "assertion"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "locator": {
+          "$ref": "#/$defs/EvidenceLocator"
+        },
+        "metrics": {
+          "items": {
+            "$ref": "#/$defs/Metric"
+          },
+          "maxItems": 10,
+          "title": "Metrics",
+          "type": "array"
+        },
+        "published_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Published At"
+        },
+        "quality_flags": {
+          "items": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 20,
+          "title": "Quality Flags",
+          "type": "array"
+        },
+        "snapshot_id": {
+          "format": "uuid",
+          "title": "Snapshot Id",
+          "type": "string"
+        },
+        "text": {
+          "maxLength": 4000,
+          "title": "Text",
+          "type": "string"
+        },
+        "workspace_id": {
+          "format": "uuid",
+          "title": "Workspace Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "evidence_id",
+        "workspace_id",
+        "episode_id",
+        "snapshot_id",
+        "kind",
+        "text",
+        "interval",
+        "published_at",
+        "available_at",
+        "locator",
+        "metrics",
+        "quality_flags"
+      ],
+      "title": "Evidence",
+      "type": "object"
+    },
+    "EvidenceLocator": {
+      "additionalProperties": false,
+      "properties": {
+        "end_char": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "End Char"
+        },
+        "record_offset": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Record Offset"
+        },
+        "source_hash": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Source Hash",
+          "type": "string"
+        },
+        "span_ids": {
+          "items": {
+            "pattern": "^[a-f0-9]{16}$",
+            "type": "string"
+          },
+          "maxItems": 20,
+          "title": "Span Ids",
+          "type": "array"
+        },
+        "start_char": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Start Char"
+        },
+        "trace_id": {
+          "anyOf": [
+            {
+              "pattern": "^[a-f0-9]{32}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Trace Id"
+        }
+      },
+      "required": [
+        "source_hash",
+        "record_offset",
+        "start_char",
+        "end_char",
+        "trace_id",
+        "span_ids"
+      ],
+      "title": "EvidenceLocator",
+      "type": "object"
+    },
+    "FeatureContribution": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_ids": {
+          "items": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 40,
+          "title": "Evidence Ids",
+          "type": "array"
+        },
+        "feature": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Feature",
+          "type": "string"
+        },
+        "standardized_contribution": {
+          "title": "Standardized Contribution",
+          "type": "number"
+        }
+      },
+      "required": [
+        "feature",
+        "standardized_contribution",
+        "evidence_ids"
+      ],
+      "title": "FeatureContribution",
+      "type": "object"
+    },
+    "GenerationOrigin": {
+      "enum": [
+        "template",
+        "ollama"
+      ],
+      "title": "GenerationOrigin",
+      "type": "string"
+    },
+    "GraphEdge": {
+      "additionalProperties": false,
+      "properties": {
+        "edge_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Edge Id",
+          "type": "string"
+        },
+        "relationship": {
+          "enum": [
+            "CALLS",
+            "MESSAGE_FLOW"
+          ],
+          "title": "Relationship",
+          "type": "string"
+        },
+        "source_service_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Source Service Id",
+          "type": "string"
+        },
+        "supporting_evidence_ids": {
+          "items": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 20,
+          "minItems": 1,
+          "title": "Supporting Evidence Ids",
+          "type": "array"
+        },
+        "target_service_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Target Service Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "edge_id",
+        "source_service_id",
+        "target_service_id",
+        "relationship",
+        "supporting_evidence_ids"
+      ],
+      "title": "GraphEdge",
+      "type": "object"
+    },
+    "GraphPath": {
+      "additionalProperties": false,
+      "properties": {
+        "as_of": {
+          "format": "date-time",
+          "title": "As Of",
+          "type": "string"
+        },
+        "edges": {
+          "items": {
+            "$ref": "#/$defs/GraphEdge"
+          },
+          "maxItems": 3,
+          "minItems": 1,
+          "title": "Edges",
+          "type": "array"
+        },
+        "episode_id": {
+          "format": "uuid",
+          "title": "Episode Id",
+          "type": "string"
+        },
+        "path_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Path Id",
+          "type": "string"
+        },
+        "service_ids": {
+          "items": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 4,
+          "minItems": 2,
+          "title": "Service Ids",
+          "type": "array"
+        },
+        "snapshot_id": {
+          "format": "uuid",
+          "title": "Snapshot Id",
+          "type": "string"
+        },
+        "workspace_id": {
+          "format": "uuid",
+          "title": "Workspace Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path_id",
+        "workspace_id",
+        "episode_id",
+        "snapshot_id",
+        "as_of",
+        "service_ids",
+        "edges"
+      ],
+      "title": "GraphPath",
+      "type": "object"
+    },
+    "Hypothesis": {
+      "additionalProperties": false,
+      "properties": {
+        "claim_ids": {
+          "items": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 6,
+          "minItems": 1,
+          "title": "Claim Ids",
+          "type": "array"
+        },
+        "conflicting_evidence_ids": {
+          "items": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 12,
+          "title": "Conflicting Evidence Ids",
+          "type": "array"
+        },
+        "diagnostic_check_ids": {
+          "items": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 5,
+          "title": "Diagnostic Check Ids",
+          "type": "array"
+        },
+        "rank": {
+          "maximum": 3,
+          "minimum": 1,
+          "title": "Rank",
+          "type": "integer"
+        },
+        "service_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Service Id",
+          "type": "string"
+        },
+        "supporting_evidence_ids": {
+          "items": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 12,
+          "minItems": 1,
+          "title": "Supporting Evidence Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "service_id",
+        "rank",
+        "claim_ids",
+        "supporting_evidence_ids",
+        "conflicting_evidence_ids",
+        "diagnostic_check_ids"
+      ],
+      "title": "Hypothesis",
+      "type": "object"
+    },
+    "InvestigationResult": {
+      "additionalProperties": false,
+      "properties": {
+        "as_of": {
+          "format": "date-time",
+          "title": "As Of",
+          "type": "string"
+        },
+        "episode_id": {
+          "format": "uuid",
+          "title": "Episode Id",
+          "type": "string"
+        },
+        "evidence": {
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "maxItems": 12,
+          "title": "Evidence",
+          "type": "array"
+        },
+        "fallback_reason": {
+          "anyOf": [
+            {
+              "maxLength": 200,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Fallback Reason"
+        },
+        "generation_origin": {
+          "$ref": "#/$defs/GenerationOrigin"
+        },
+        "investigation_id": {
+          "format": "uuid",
+          "title": "Investigation Id",
+          "type": "string"
+        },
+        "is_replayed": {
+          "title": "Is Replayed",
+          "type": "boolean"
+        },
+        "narrative": {
+          "$ref": "#/$defs/Narrative"
+        },
+        "paths": {
+          "items": {
+            "$ref": "#/$defs/GraphPath"
+          },
+          "maxItems": 3,
+          "title": "Paths",
+          "type": "array"
+        },
+        "provenance": {
+          "$ref": "#/$defs/ResultProvenance"
+        },
+        "ranked_scores": {
+          "items": {
+            "$ref": "#/$defs/RankedScore"
+          },
+          "maxItems": 3,
+          "title": "Ranked Scores",
+          "type": "array"
+        },
+        "ranking_mode": {
+          "$ref": "#/$defs/RankingMode"
+        },
+        "retrieval_mode": {
+          "$ref": "#/$defs/RetrievalMode"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "snapshot_id": {
+          "format": "uuid",
+          "title": "Snapshot Id",
+          "type": "string"
+        },
+        "temporal_mode": {
+          "$ref": "#/$defs/TemporalMode"
+        },
+        "timings_ms": {
+          "additionalProperties": {
+            "minimum": 0,
+            "type": "number"
+          },
+          "title": "Timings Ms",
+          "type": "object"
+        },
+        "usage": {
+          "$ref": "#/$defs/Usage"
+        },
+        "warnings": {
+          "items": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 20,
+          "title": "Warnings",
+          "type": "array"
+        },
+        "workspace_id": {
+          "format": "uuid",
+          "title": "Workspace Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "investigation_id",
+        "workspace_id",
+        "episode_id",
+        "snapshot_id",
+        "as_of",
+        "temporal_mode",
+        "retrieval_mode",
+        "ranking_mode",
+        "generation_origin",
+        "is_replayed",
+        "fallback_reason",
+        "narrative",
+        "evidence",
+        "paths",
+        "ranked_scores",
+        "provenance",
+        "timings_ms",
+        "usage",
+        "warnings"
+      ],
+      "title": "InvestigationResult",
+      "type": "object"
+    },
+    "InvestigationView": {
+      "additionalProperties": false,
+      "properties": {
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        },
+        "episode_id": {
+          "format": "uuid",
+          "title": "Episode Id",
+          "type": "string"
+        },
+        "error": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/PublicError"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "investigation_id": {
+          "format": "uuid",
+          "title": "Investigation Id",
+          "type": "string"
+        },
+        "job_id": {
+          "anyOf": [
+            {
+              "format": "uuid",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Job Id"
+        },
+        "result": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/InvestigationResult"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "snapshot_id": {
+          "anyOf": [
+            {
+              "format": "uuid",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Snapshot Id"
+        },
+        "status": {
+          "$ref": "#/$defs/JobStatus"
+        }
+      },
+      "required": [
+        "investigation_id",
+        "episode_id",
+        "snapshot_id",
+        "job_id",
+        "status",
+        "result",
+        "error",
+        "created_at"
+      ],
+      "title": "InvestigationView",
+      "type": "object"
+    },
+    "JobStatus": {
+      "enum": [
+        "QUEUED",
+        "RUNNING",
+        "RETRY_WAIT",
+        "SUCCEEDED",
+        "FAILED",
+        "CANCELLED"
+      ],
+      "title": "JobStatus",
+      "type": "string"
+    },
+    "Metric": {
+      "additionalProperties": false,
+      "properties": {
+        "interval": {
+          "$ref": "#/$defs/TimeInterval"
+        },
+        "metric_name": {
+          "enum": [
+            "request_count",
+            "error_count",
+            "error_fraction",
+            "p50_ms",
+            "p95_ms",
+            "latency_anomaly",
+            "completeness"
+          ],
+          "title": "Metric Name",
+          "type": "string"
+        },
+        "observation_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Observation Id",
+          "type": "string"
+        },
+        "unit": {
+          "enum": [
+            "count",
+            "fraction",
+            "ms",
+            "score"
+          ],
+          "title": "Unit",
+          "type": "string"
+        },
+        "value": {
+          "title": "Value",
+          "type": "number"
+        }
+      },
+      "required": [
+        "observation_id",
+        "metric_name",
+        "value",
+        "unit",
+        "interval"
+      ],
+      "title": "Metric",
+      "type": "object"
+    },
+    "Narrative": {
+      "additionalProperties": false,
+      "properties": {
+        "claims": {
+          "items": {
+            "$ref": "#/$defs/Claim"
+          },
+          "maxItems": 15,
+          "title": "Claims",
+          "type": "array"
+        },
+        "hypotheses": {
+          "items": {
+            "$ref": "#/$defs/Hypothesis"
+          },
+          "maxItems": 3,
+          "title": "Hypotheses",
+          "type": "array"
+        },
+        "limitations": {
+          "items": {
+            "maxLength": 500,
+            "type": "string"
+          },
+          "maxItems": 15,
+          "title": "Limitations",
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "supported_hypotheses",
+            "insufficient_evidence",
+            "no_anomaly_detected"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "summary": {
+          "$ref": "#/$defs/Summary"
+        }
+      },
+      "required": [
+        "status",
+        "summary",
+        "hypotheses",
+        "claims",
+        "limitations"
+      ],
+      "title": "Narrative",
+      "type": "object"
+    },
+    "PublicError": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Code",
+          "type": "string"
+        },
+        "message": {
+          "maxLength": 500,
+          "title": "Message",
+          "type": "string"
+        },
+        "retryable": {
+          "title": "Retryable",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "code",
+        "message",
+        "retryable"
+      ],
+      "title": "PublicError",
+      "type": "object"
+    },
+    "RankedScore": {
+      "additionalProperties": false,
+      "properties": {
+        "feature_contributions": {
+          "items": {
+            "$ref": "#/$defs/FeatureContribution"
+          },
+          "maxItems": 24,
+          "title": "Feature Contributions",
+          "type": "array"
+        },
+        "rank": {
+          "maximum": 3,
+          "minimum": 1,
+          "title": "Rank",
+          "type": "integer"
+        },
+        "score": {
+          "title": "Score",
+          "type": "number"
+        },
+        "score_type": {
+          "enum": [
+            "heuristic_score",
+            "linear_decision_score"
+          ],
+          "title": "Score Type",
+          "type": "string"
+        },
+        "service_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Service Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "service_id",
+        "rank",
+        "score",
+        "score_type"
+      ],
+      "title": "RankedScore",
+      "type": "object"
+    },
+    "RankingMode": {
+      "enum": [
+        "heuristic",
+        "learned"
+      ],
+      "title": "RankingMode",
+      "type": "string"
+    },
+    "ResultProvenance": {
+      "additionalProperties": false,
+      "properties": {
+        "config_hash": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Config Hash",
+          "type": "string"
+        },
+        "embedding_revision": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Embedding Revision",
+          "type": "string"
+        },
+        "feature_schema_version": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Feature Schema Version",
+          "type": "string"
+        },
+        "input_manifest_hash": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Input Manifest Hash",
+          "type": "string"
+        },
+        "model_digest": {
+          "anyOf": [
+            {
+              "maxLength": 200,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Model Digest"
+        },
+        "prompt_hash": {
+          "anyOf": [
+            {
+              "pattern": "^[a-f0-9]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Prompt Hash"
+        },
+        "template_version": {
+          "anyOf": [
+            {
+              "maxLength": 200,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Template Version"
+        }
+      },
+      "required": [
+        "input_manifest_hash",
+        "config_hash",
+        "prompt_hash",
+        "model_digest",
+        "embedding_revision",
+        "feature_schema_version"
+      ],
+      "title": "ResultProvenance",
+      "type": "object"
+    },
+    "RetrievalMode": {
+      "enum": [
+        "DENSE",
+        "LEXICAL",
+        "HYBRID",
+        "GRAPH"
+      ],
+      "title": "RetrievalMode",
+      "type": "string"
+    },
+    "Summary": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_ids": {
+          "items": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 12,
+          "title": "Evidence Ids",
+          "type": "array"
+        },
+        "text": {
+          "maxLength": 600,
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "text",
+        "evidence_ids"
+      ],
+      "title": "Summary",
+      "type": "object"
+    },
+    "TemporalMode": {
+      "enum": [
+        "event_time_replay",
+        "available_time_replay"
+      ],
+      "title": "TemporalMode",
+      "type": "string"
+    },
+    "TimeInterval": {
+      "additionalProperties": false,
+      "properties": {
+        "end": {
+          "format": "date-time",
+          "title": "End",
+          "type": "string"
+        },
+        "start": {
+          "format": "date-time",
+          "title": "Start",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "title": "TimeInterval",
+      "type": "object"
+    },
+    "Usage": {
+      "additionalProperties": false,
+      "properties": {
+        "output_tokens": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Output Tokens"
+        },
+        "prompt_tokens": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Prompt Tokens"
+        }
+      },
+      "required": [
+        "prompt_tokens",
+        "output_tokens"
+      ],
+      "title": "Usage",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "items": {
+      "items": {
+        "$ref": "#/$defs/InvestigationView"
+      },
+      "maxItems": 100,
+      "title": "Items",
+      "type": "array"
+    },
+    "next_cursor": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Next Cursor"
+    }
+  },
+  "required": [
+    "items",
+    "next_cursor"
+  ],
+  "title": "InvestigationPage",
+  "type": "object"
+}
