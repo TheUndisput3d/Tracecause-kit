@@ -1,0 +1,152 @@
+{
+  "$defs": {
+    "OperationalEvent": {
+      "additionalProperties": false,
+      "properties": {
+        "available_at": {
+          "format": "date-time",
+          "title": "Available At",
+          "type": "string"
+        },
+        "details": {
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "maxLength": 1000,
+                "type": "string"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "maxProperties": 16,
+          "minProperties": 1,
+          "title": "Details",
+          "type": "object"
+        },
+        "id": {
+          "format": "uuid",
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "deployment",
+            "configuration",
+            "runtime",
+            "ownership",
+            "incident_note"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "occurred_at": {
+          "format": "date-time",
+          "title": "Occurred At",
+          "type": "string"
+        },
+        "service": {
+          "$ref": "#/$defs/ServiceRef"
+        },
+        "source": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Source",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "occurred_at",
+        "available_at",
+        "service",
+        "source",
+        "details"
+      ],
+      "title": "OperationalEvent",
+      "type": "object"
+    },
+    "ServiceRef": {
+      "additionalProperties": false,
+      "properties": {
+        "environment": {
+          "pattern": "^[A-Za-z0-9_.-]{1,100}$",
+          "title": "Environment",
+          "type": "string"
+        },
+        "name": {
+          "pattern": "^[A-Za-z0-9_.-]{1,100}$",
+          "title": "Name",
+          "type": "string"
+        },
+        "namespace": {
+          "pattern": "^[A-Za-z0-9_.-]{1,100}$",
+          "title": "Namespace",
+          "type": "string"
+        }
+      },
+      "required": [
+        "namespace",
+        "environment",
+        "name"
+      ],
+      "title": "ServiceRef",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "application_id": {
+      "pattern": "^[A-Za-z0-9_.-]{1,100}$",
+      "title": "Application Id",
+      "type": "string"
+    },
+    "application_name": {
+      "maxLength": 120,
+      "minLength": 1,
+      "title": "Application Name",
+      "type": "string"
+    },
+    "events": {
+      "items": {
+        "$ref": "#/$defs/OperationalEvent"
+      },
+      "maxItems": 500,
+      "minItems": 1,
+      "title": "Events",
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "topology": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Topology",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "application_id",
+    "application_name",
+    "topology",
+    "events"
+  ],
+  "title": "OperationalBundle",
+  "type": "object"
+}

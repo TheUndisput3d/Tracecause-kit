@@ -1,0 +1,178 @@
+{
+  "$defs": {
+    "KnowledgeEdge": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_ids": {
+          "items": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 20,
+          "minItems": 1,
+          "title": "Evidence Ids",
+          "type": "array"
+        },
+        "relationship": {
+          "enum": [
+            "CALLS",
+            "ABOUT_SERVICE",
+            "FROM_SERVICE",
+            "TO_SERVICE",
+            "HAS_CHUNK",
+            "MENTIONS",
+            "SUPPORTED_BY"
+          ],
+          "title": "Relationship",
+          "type": "string"
+        },
+        "source": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Source",
+          "type": "string"
+        },
+        "target": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Target",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source",
+        "target",
+        "relationship",
+        "evidence_ids"
+      ],
+      "title": "KnowledgeEdge",
+      "type": "object"
+    },
+    "KnowledgeNode": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_ids": {
+          "items": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 20,
+          "title": "Evidence Ids",
+          "type": "array"
+        },
+        "kind": {
+          "enum": [
+            "service",
+            "observation",
+            "document",
+            "chunk",
+            "assertion"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "label": {
+          "maxLength": 500,
+          "minLength": 1,
+          "title": "Label",
+          "type": "string"
+        },
+        "node_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Node Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "node_id",
+        "kind",
+        "label",
+        "evidence_ids"
+      ],
+      "title": "KnowledgeNode",
+      "type": "object"
+    },
+    "TemporalMode": {
+      "enum": [
+        "event_time_replay",
+        "available_time_replay"
+      ],
+      "title": "TemporalMode",
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "as_of": {
+      "format": "date-time",
+      "title": "As Of",
+      "type": "string"
+    },
+    "edges": {
+      "items": {
+        "$ref": "#/$defs/KnowledgeEdge"
+      },
+      "maxItems": 256,
+      "title": "Edges",
+      "type": "array"
+    },
+    "episode_id": {
+      "format": "uuid",
+      "title": "Episode Id",
+      "type": "string"
+    },
+    "nodes": {
+      "items": {
+        "$ref": "#/$defs/KnowledgeNode"
+      },
+      "maxItems": 160,
+      "title": "Nodes",
+      "type": "array"
+    },
+    "omitted_assertions": {
+      "minimum": 0,
+      "title": "Omitted Assertions",
+      "type": "integer"
+    },
+    "omitted_chunks": {
+      "minimum": 0,
+      "title": "Omitted Chunks",
+      "type": "integer"
+    },
+    "omitted_observations": {
+      "minimum": 0,
+      "title": "Omitted Observations",
+      "type": "integer"
+    },
+    "snapshot_id": {
+      "format": "uuid",
+      "title": "Snapshot Id",
+      "type": "string"
+    },
+    "temporal_mode": {
+      "$ref": "#/$defs/TemporalMode"
+    },
+    "truncated": {
+      "title": "Truncated",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "episode_id",
+    "snapshot_id",
+    "as_of",
+    "temporal_mode",
+    "nodes",
+    "edges",
+    "omitted_observations",
+    "omitted_chunks",
+    "omitted_assertions",
+    "truncated"
+  ],
+  "title": "KnowledgeResponse",
+  "type": "object"
+}

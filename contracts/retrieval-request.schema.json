@@ -1,0 +1,90 @@
+{
+  "$defs": {
+    "RetrievalMode": {
+      "enum": [
+        "DENSE",
+        "LEXICAL",
+        "HYBRID",
+        "GRAPH"
+      ],
+      "title": "RetrievalMode",
+      "type": "string"
+    },
+    "TemporalMode": {
+      "enum": [
+        "event_time_replay",
+        "available_time_replay"
+      ],
+      "title": "TemporalMode",
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "as_of": {
+      "format": "date-time",
+      "title": "As Of",
+      "type": "string"
+    },
+    "episode_id": {
+      "format": "uuid",
+      "title": "Episode Id",
+      "type": "string"
+    },
+    "max_results": {
+      "maximum": 40,
+      "minimum": 1,
+      "title": "Max Results",
+      "type": "integer"
+    },
+    "mode": {
+      "$ref": "#/$defs/RetrievalMode"
+    },
+    "question": {
+      "maxLength": 2000,
+      "minLength": 1,
+      "title": "Question",
+      "type": "string"
+    },
+    "snapshot_id": {
+      "format": "uuid",
+      "title": "Snapshot Id",
+      "type": "string"
+    },
+    "symptom_service_id": {
+      "anyOf": [
+        {
+          "maxLength": 200,
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Symptom Service Id"
+    },
+    "temporal_mode": {
+      "$ref": "#/$defs/TemporalMode"
+    },
+    "workspace_id": {
+      "format": "uuid",
+      "title": "Workspace Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "workspace_id",
+    "episode_id",
+    "snapshot_id",
+    "as_of",
+    "temporal_mode",
+    "question",
+    "symptom_service_id",
+    "mode",
+    "max_results"
+  ],
+  "title": "RetrievalRequest",
+  "type": "object"
+}

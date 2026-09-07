@@ -1,0 +1,419 @@
+{
+  "$defs": {
+    "Evidence": {
+      "additionalProperties": false,
+      "properties": {
+        "available_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Available At"
+        },
+        "episode_id": {
+          "format": "uuid",
+          "title": "Episode Id",
+          "type": "string"
+        },
+        "evidence_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Evidence Id",
+          "type": "string"
+        },
+        "interval": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/TimeInterval"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "kind": {
+          "enum": [
+            "observation",
+            "document_chunk",
+            "assertion"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "locator": {
+          "$ref": "#/$defs/EvidenceLocator"
+        },
+        "metrics": {
+          "items": {
+            "$ref": "#/$defs/Metric"
+          },
+          "maxItems": 10,
+          "title": "Metrics",
+          "type": "array"
+        },
+        "published_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Published At"
+        },
+        "quality_flags": {
+          "items": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 20,
+          "title": "Quality Flags",
+          "type": "array"
+        },
+        "snapshot_id": {
+          "format": "uuid",
+          "title": "Snapshot Id",
+          "type": "string"
+        },
+        "text": {
+          "maxLength": 4000,
+          "title": "Text",
+          "type": "string"
+        },
+        "workspace_id": {
+          "format": "uuid",
+          "title": "Workspace Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "evidence_id",
+        "workspace_id",
+        "episode_id",
+        "snapshot_id",
+        "kind",
+        "text",
+        "interval",
+        "published_at",
+        "available_at",
+        "locator",
+        "metrics",
+        "quality_flags"
+      ],
+      "title": "Evidence",
+      "type": "object"
+    },
+    "EvidenceLocator": {
+      "additionalProperties": false,
+      "properties": {
+        "end_char": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "End Char"
+        },
+        "record_offset": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Record Offset"
+        },
+        "source_hash": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Source Hash",
+          "type": "string"
+        },
+        "span_ids": {
+          "items": {
+            "pattern": "^[a-f0-9]{16}$",
+            "type": "string"
+          },
+          "maxItems": 20,
+          "title": "Span Ids",
+          "type": "array"
+        },
+        "start_char": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Start Char"
+        },
+        "trace_id": {
+          "anyOf": [
+            {
+              "pattern": "^[a-f0-9]{32}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Trace Id"
+        }
+      },
+      "required": [
+        "source_hash",
+        "record_offset",
+        "start_char",
+        "end_char",
+        "trace_id",
+        "span_ids"
+      ],
+      "title": "EvidenceLocator",
+      "type": "object"
+    },
+    "Metric": {
+      "additionalProperties": false,
+      "properties": {
+        "interval": {
+          "$ref": "#/$defs/TimeInterval"
+        },
+        "metric_name": {
+          "enum": [
+            "request_count",
+            "error_count",
+            "error_fraction",
+            "p50_ms",
+            "p95_ms",
+            "latency_anomaly",
+            "completeness"
+          ],
+          "title": "Metric Name",
+          "type": "string"
+        },
+        "observation_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Observation Id",
+          "type": "string"
+        },
+        "unit": {
+          "enum": [
+            "count",
+            "fraction",
+            "ms",
+            "score"
+          ],
+          "title": "Unit",
+          "type": "string"
+        },
+        "value": {
+          "title": "Value",
+          "type": "number"
+        }
+      },
+      "required": [
+        "observation_id",
+        "metric_name",
+        "value",
+        "unit",
+        "interval"
+      ],
+      "title": "Metric",
+      "type": "object"
+    },
+    "RetrievalHit": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence": {
+          "$ref": "#/$defs/Evidence"
+        },
+        "rank": {
+          "minimum": 1,
+          "title": "Rank",
+          "type": "integer"
+        },
+        "score": {
+          "title": "Score",
+          "type": "number"
+        },
+        "score_components": {
+          "additionalProperties": {
+            "type": "number"
+          },
+          "title": "Score Components",
+          "type": "object"
+        }
+      },
+      "required": [
+        "evidence",
+        "rank",
+        "score",
+        "score_components"
+      ],
+      "title": "RetrievalHit",
+      "type": "object"
+    },
+    "RetrievalMode": {
+      "enum": [
+        "DENSE",
+        "LEXICAL",
+        "HYBRID",
+        "GRAPH"
+      ],
+      "title": "RetrievalMode",
+      "type": "string"
+    },
+    "RetrievalRequest": {
+      "additionalProperties": false,
+      "properties": {
+        "as_of": {
+          "format": "date-time",
+          "title": "As Of",
+          "type": "string"
+        },
+        "episode_id": {
+          "format": "uuid",
+          "title": "Episode Id",
+          "type": "string"
+        },
+        "max_results": {
+          "maximum": 40,
+          "minimum": 1,
+          "title": "Max Results",
+          "type": "integer"
+        },
+        "mode": {
+          "$ref": "#/$defs/RetrievalMode"
+        },
+        "question": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Question",
+          "type": "string"
+        },
+        "snapshot_id": {
+          "format": "uuid",
+          "title": "Snapshot Id",
+          "type": "string"
+        },
+        "symptom_service_id": {
+          "anyOf": [
+            {
+              "maxLength": 200,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Symptom Service Id"
+        },
+        "temporal_mode": {
+          "$ref": "#/$defs/TemporalMode"
+        },
+        "workspace_id": {
+          "format": "uuid",
+          "title": "Workspace Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "workspace_id",
+        "episode_id",
+        "snapshot_id",
+        "as_of",
+        "temporal_mode",
+        "question",
+        "symptom_service_id",
+        "mode",
+        "max_results"
+      ],
+      "title": "RetrievalRequest",
+      "type": "object"
+    },
+    "TemporalMode": {
+      "enum": [
+        "event_time_replay",
+        "available_time_replay"
+      ],
+      "title": "TemporalMode",
+      "type": "string"
+    },
+    "TimeInterval": {
+      "additionalProperties": false,
+      "properties": {
+        "end": {
+          "format": "date-time",
+          "title": "End",
+          "type": "string"
+        },
+        "start": {
+          "format": "date-time",
+          "title": "Start",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "title": "TimeInterval",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "hits": {
+      "items": {
+        "$ref": "#/$defs/RetrievalHit"
+      },
+      "maxItems": 60,
+      "title": "Hits",
+      "type": "array"
+    },
+    "request": {
+      "$ref": "#/$defs/RetrievalRequest"
+    },
+    "truncated": {
+      "title": "Truncated",
+      "type": "boolean"
+    },
+    "warnings": {
+      "items": {
+        "maxLength": 200,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 20,
+      "title": "Warnings",
+      "type": "array"
+    }
+  },
+  "required": [
+    "request",
+    "hits",
+    "truncated",
+    "warnings"
+  ],
+  "title": "RetrievalResult",
+  "type": "object"
+}

@@ -1,0 +1,164 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "available_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Available At"
+    },
+    "callee_service_key": {
+      "anyOf": [
+        {
+          "maxLength": 200,
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Callee Service Key"
+    },
+    "caller_service_key": {
+      "anyOf": [
+        {
+          "maxLength": 200,
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Caller Service Key"
+    },
+    "end_ns": {
+      "pattern": "^[0-9]{1,20}$",
+      "title": "End Ns",
+      "type": "string"
+    },
+    "episode_id": {
+      "format": "uuid",
+      "title": "Episode Id",
+      "type": "string"
+    },
+    "error_count": {
+      "minimum": 0,
+      "title": "Error Count",
+      "type": "integer"
+    },
+    "observation_id": {
+      "format": "uuid",
+      "title": "Observation Id",
+      "type": "string"
+    },
+    "observation_type": {
+      "enum": [
+        "service",
+        "dependency"
+      ],
+      "title": "Observation Type",
+      "type": "string"
+    },
+    "p50_ms": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "P50 Ms"
+    },
+    "p95_ms": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "P95 Ms"
+    },
+    "provenance_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Provenance Hash",
+      "type": "string"
+    },
+    "quality_flags": {
+      "items": {
+        "maxLength": 200,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 30,
+      "title": "Quality Flags",
+      "type": "array"
+    },
+    "rule_version": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Rule Version",
+      "type": "string"
+    },
+    "sample_count": {
+      "minimum": 0,
+      "title": "Sample Count",
+      "type": "integer"
+    },
+    "service_key": {
+      "anyOf": [
+        {
+          "maxLength": 200,
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Service Key"
+    },
+    "start_ns": {
+      "pattern": "^[0-9]{1,20}$",
+      "title": "Start Ns",
+      "type": "string"
+    },
+    "workspace_id": {
+      "format": "uuid",
+      "title": "Workspace Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "observation_id",
+    "workspace_id",
+    "episode_id",
+    "rule_version",
+    "service_key",
+    "caller_service_key",
+    "callee_service_key",
+    "observation_type",
+    "start_ns",
+    "end_ns",
+    "sample_count",
+    "error_count",
+    "p50_ms",
+    "p95_ms",
+    "provenance_hash",
+    "available_at",
+    "quality_flags"
+  ],
+  "title": "AggregateObservation",
+  "type": "object"
+}

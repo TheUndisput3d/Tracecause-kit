@@ -1,0 +1,1204 @@
+{
+  "$defs": {
+    "ChangeExplanation": {
+      "additionalProperties": false,
+      "properties": {
+        "association": {
+          "enum": [
+            "precedes_observed_degradation",
+            "overlaps_onset_bucket",
+            "after_observed_degradation",
+            "reachable_without_detected_degradation",
+            "outside_dependency_path",
+            "unknown_onset"
+          ],
+          "title": "Association",
+          "type": "string"
+        },
+        "call_edges": {
+          "items": {
+            "$ref": "#/$defs/GraphEdge"
+          },
+          "maxItems": 3,
+          "title": "Call Edges",
+          "type": "array"
+        },
+        "downstream_degradation_count": {
+          "maximum": 79,
+          "minimum": 0,
+          "title": "Downstream Degradation Count",
+          "type": "integer"
+        },
+        "downstream_degradations": {
+          "items": {
+            "$ref": "#/$defs/DownstreamDegradation"
+          },
+          "maxItems": 8,
+          "title": "Downstream Degradations",
+          "type": "array"
+        },
+        "event_id": {
+          "format": "uuid",
+          "title": "Event Id",
+          "type": "string"
+        },
+        "evidence_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Evidence Id",
+          "type": "string"
+        },
+        "explanation": {
+          "maxLength": 1000,
+          "minLength": 1,
+          "title": "Explanation",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "deployment",
+            "configuration"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "occurred_at": {
+          "format": "date-time",
+          "title": "Occurred At",
+          "type": "string"
+        },
+        "priority": {
+          "enum": [
+            "review_first",
+            "timing_ambiguous",
+            "context_only"
+          ],
+          "title": "Priority",
+          "type": "string"
+        },
+        "service_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Service Id",
+          "type": "string"
+        },
+        "service_ids": {
+          "items": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 4,
+          "title": "Service Ids",
+          "type": "array"
+        },
+        "signal": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ObservedSignal"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "event_id",
+        "kind",
+        "service_id",
+        "occurred_at",
+        "evidence_id",
+        "association",
+        "priority",
+        "explanation",
+        "service_ids",
+        "call_edges",
+        "signal",
+        "downstream_degradation_count",
+        "downstream_degradations"
+      ],
+      "title": "ChangeExplanation",
+      "type": "object"
+    },
+    "ChangeReasoningResponse": {
+      "additionalProperties": false,
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/$defs/ChangeExplanation"
+          },
+          "maxItems": 24,
+          "title": "Changes",
+          "type": "array"
+        },
+        "graph_truncated": {
+          "title": "Graph Truncated",
+          "type": "boolean"
+        },
+        "limitations": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 8,
+          "title": "Limitations",
+          "type": "array"
+        },
+        "lookback_seconds": {
+          "exclusiveMinimum": 0,
+          "maximum": 86400,
+          "title": "Lookback Seconds",
+          "type": "integer"
+        },
+        "omitted_changes": {
+          "minimum": 0,
+          "title": "Omitted Changes",
+          "type": "integer"
+        },
+        "reasoning_version": {
+          "const": "operational-temporal-join-v1",
+          "default": "operational-temporal-join-v1",
+          "title": "Reasoning Version",
+          "type": "string"
+        },
+        "symptom_service_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Symptom Service Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "symptom_service_id",
+        "lookback_seconds",
+        "changes",
+        "omitted_changes",
+        "graph_truncated",
+        "limitations"
+      ],
+      "title": "ChangeReasoningResponse",
+      "type": "object"
+    },
+    "DownstreamDegradation": {
+      "additionalProperties": false,
+      "properties": {
+        "edges": {
+          "items": {
+            "$ref": "#/$defs/GraphEdge"
+          },
+          "maxItems": 3,
+          "minItems": 1,
+          "title": "Edges",
+          "type": "array"
+        },
+        "service_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Service Id",
+          "type": "string"
+        },
+        "service_ids": {
+          "items": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 4,
+          "minItems": 2,
+          "title": "Service Ids",
+          "type": "array"
+        },
+        "signal": {
+          "$ref": "#/$defs/ObservedSignal"
+        }
+      },
+      "required": [
+        "service_id",
+        "service_ids",
+        "edges",
+        "signal"
+      ],
+      "title": "DownstreamDegradation",
+      "type": "object"
+    },
+    "GraphEdge": {
+      "additionalProperties": false,
+      "properties": {
+        "edge_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Edge Id",
+          "type": "string"
+        },
+        "relationship": {
+          "enum": [
+            "CALLS",
+            "MESSAGE_FLOW"
+          ],
+          "title": "Relationship",
+          "type": "string"
+        },
+        "source_service_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Source Service Id",
+          "type": "string"
+        },
+        "supporting_evidence_ids": {
+          "items": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 20,
+          "minItems": 1,
+          "title": "Supporting Evidence Ids",
+          "type": "array"
+        },
+        "target_service_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Target Service Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "edge_id",
+        "source_service_id",
+        "target_service_id",
+        "relationship",
+        "supporting_evidence_ids"
+      ],
+      "title": "GraphEdge",
+      "type": "object"
+    },
+    "GraphNode": {
+      "additionalProperties": false,
+      "properties": {
+        "display_name": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Display Name",
+          "type": "string"
+        },
+        "quality_flags": {
+          "items": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 20,
+          "title": "Quality Flags",
+          "type": "array"
+        },
+        "service_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Service Id",
+          "type": "string"
+        },
+        "service_key": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Service Key",
+          "type": "string"
+        }
+      },
+      "required": [
+        "service_id",
+        "service_key",
+        "display_name",
+        "quality_flags"
+      ],
+      "title": "GraphNode",
+      "type": "object"
+    },
+    "GraphResponse": {
+      "additionalProperties": false,
+      "properties": {
+        "as_of": {
+          "format": "date-time",
+          "title": "As Of",
+          "type": "string"
+        },
+        "edges": {
+          "items": {
+            "$ref": "#/$defs/GraphEdge"
+          },
+          "maxItems": 120,
+          "title": "Edges",
+          "type": "array"
+        },
+        "episode_id": {
+          "format": "uuid",
+          "title": "Episode Id",
+          "type": "string"
+        },
+        "nodes": {
+          "items": {
+            "$ref": "#/$defs/GraphNode"
+          },
+          "maxItems": 80,
+          "title": "Nodes",
+          "type": "array"
+        },
+        "snapshot_id": {
+          "format": "uuid",
+          "title": "Snapshot Id",
+          "type": "string"
+        },
+        "temporal_mode": {
+          "$ref": "#/$defs/TemporalMode"
+        },
+        "truncated": {
+          "title": "Truncated",
+          "type": "boolean"
+        },
+        "warnings": {
+          "items": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 20,
+          "title": "Warnings",
+          "type": "array"
+        }
+      },
+      "required": [
+        "episode_id",
+        "snapshot_id",
+        "as_of",
+        "temporal_mode",
+        "nodes",
+        "edges",
+        "truncated",
+        "warnings"
+      ],
+      "title": "GraphResponse",
+      "type": "object"
+    },
+    "HistoricalEvidence": {
+      "additionalProperties": false,
+      "properties": {
+        "as_of": {
+          "format": "date-time",
+          "title": "As Of",
+          "type": "string"
+        },
+        "episode_id": {
+          "format": "uuid",
+          "title": "Episode Id",
+          "type": "string"
+        },
+        "evidence_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Evidence Id",
+          "type": "string"
+        },
+        "knowledge_as_of": {
+          "format": "date-time",
+          "title": "Knowledge As Of",
+          "type": "string"
+        },
+        "snapshot_id": {
+          "format": "uuid",
+          "title": "Snapshot Id",
+          "type": "string"
+        },
+        "temporal_mode": {
+          "$ref": "#/$defs/TemporalMode"
+        }
+      },
+      "required": [
+        "episode_id",
+        "snapshot_id",
+        "as_of",
+        "temporal_mode",
+        "knowledge_as_of",
+        "evidence_id"
+      ],
+      "title": "HistoricalEvidence",
+      "type": "object"
+    },
+    "HistoricalMatch": {
+      "additionalProperties": false,
+      "properties": {
+        "as_of": {
+          "format": "date-time",
+          "title": "As Of",
+          "type": "string"
+        },
+        "current_signal_evidence": {
+          "items": {
+            "$ref": "#/$defs/HistoricalEvidence"
+          },
+          "maxItems": 160,
+          "title": "Current Signal Evidence",
+          "type": "array"
+        },
+        "dependency_similarity": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Dependency Similarity"
+        },
+        "display_name": {
+          "maxLength": 120,
+          "minLength": 1,
+          "title": "Display Name",
+          "type": "string"
+        },
+        "ended_at": {
+          "format": "date-time",
+          "title": "Ended At",
+          "type": "string"
+        },
+        "episode_id": {
+          "format": "uuid",
+          "title": "Episode Id",
+          "type": "string"
+        },
+        "knowledge_as_of": {
+          "format": "date-time",
+          "title": "Knowledge As Of",
+          "type": "string"
+        },
+        "matching_signal_evidence": {
+          "items": {
+            "$ref": "#/$defs/HistoricalEvidence"
+          },
+          "maxItems": 160,
+          "title": "Matching Signal Evidence",
+          "type": "array"
+        },
+        "new_dependencies": {
+          "items": {
+            "$ref": "#/$defs/GraphEdge"
+          },
+          "maxItems": 120,
+          "title": "New Dependencies",
+          "type": "array"
+        },
+        "previous_only_dependencies": {
+          "items": {
+            "$ref": "#/$defs/GraphEdge"
+          },
+          "maxItems": 120,
+          "title": "Previous Only Dependencies",
+          "type": "array"
+        },
+        "service_similarity": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Service Similarity",
+          "type": "number"
+        },
+        "shared_service_ids": {
+          "items": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 80,
+          "title": "Shared Service Ids",
+          "type": "array"
+        },
+        "signal_similarity": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Signal Similarity"
+        },
+        "similarity": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Similarity",
+          "type": "number"
+        },
+        "snapshot_id": {
+          "format": "uuid",
+          "title": "Snapshot Id",
+          "type": "string"
+        },
+        "state_differences": {
+          "items": {
+            "$ref": "#/$defs/StateDifference"
+          },
+          "maxItems": 80,
+          "title": "State Differences",
+          "type": "array"
+        },
+        "temporal_mode": {
+          "$ref": "#/$defs/TemporalMode"
+        },
+        "truncated": {
+          "title": "Truncated",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "episode_id",
+        "snapshot_id",
+        "display_name",
+        "ended_at",
+        "as_of",
+        "temporal_mode",
+        "knowledge_as_of",
+        "similarity",
+        "service_similarity",
+        "dependency_similarity",
+        "signal_similarity",
+        "shared_service_ids",
+        "new_dependencies",
+        "previous_only_dependencies",
+        "state_differences",
+        "matching_signal_evidence",
+        "current_signal_evidence",
+        "truncated"
+      ],
+      "title": "HistoricalMatch",
+      "type": "object"
+    },
+    "HistoricalReasoningResponse": {
+      "additionalProperties": false,
+      "properties": {
+        "eligible_episodes": {
+          "maximum": 32,
+          "minimum": 0,
+          "title": "Eligible Episodes",
+          "type": "integer"
+        },
+        "limitations": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 8,
+          "title": "Limitations",
+          "type": "array"
+        },
+        "matches": {
+          "items": {
+            "$ref": "#/$defs/HistoricalMatch"
+          },
+          "maxItems": 6,
+          "title": "Matches",
+          "type": "array"
+        },
+        "omitted_matches": {
+          "minimum": 0,
+          "title": "Omitted Matches",
+          "type": "integer"
+        },
+        "reasoning_version": {
+          "const": "operational-history-signature-v1",
+          "default": "operational-history-signature-v1",
+          "title": "Reasoning Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "matches",
+        "eligible_episodes",
+        "omitted_matches",
+        "limitations"
+      ],
+      "title": "HistoricalReasoningResponse",
+      "type": "object"
+    },
+    "ObservedSignal": {
+      "additionalProperties": false,
+      "properties": {
+        "anomalous": {
+          "title": "Anomalous",
+          "type": "boolean"
+        },
+        "baseline_bucket_count": {
+          "minimum": 0,
+          "title": "Baseline Bucket Count",
+          "type": "integer"
+        },
+        "baseline_evidence_ids": {
+          "items": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 120,
+          "title": "Baseline Evidence Ids",
+          "type": "array"
+        },
+        "baseline_sample_count": {
+          "minimum": 0,
+          "title": "Baseline Sample Count",
+          "type": "integer"
+        },
+        "degradation_detected": {
+          "title": "Degradation Detected",
+          "type": "boolean"
+        },
+        "error_excess_z": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Error Excess Z"
+        },
+        "first_anomalous_bucket_ns": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9]{1,20}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "First Anomalous Bucket Ns"
+        },
+        "first_degradation_bucket_ns": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9]{1,20}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "First Degradation Bucket Ns"
+        },
+        "latency_deviation_z": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Latency Deviation Z"
+        },
+        "observation_evidence_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Observation Evidence Id",
+          "type": "string"
+        },
+        "volume_deviation_z": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Volume Deviation Z"
+        }
+      },
+      "required": [
+        "observation_evidence_id",
+        "baseline_evidence_ids",
+        "first_anomalous_bucket_ns",
+        "first_degradation_bucket_ns",
+        "latency_deviation_z",
+        "error_excess_z",
+        "volume_deviation_z",
+        "anomalous",
+        "degradation_detected",
+        "baseline_bucket_count",
+        "baseline_sample_count"
+      ],
+      "title": "ObservedSignal",
+      "type": "object"
+    },
+    "OperationalEdge": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_ids": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 100,
+          "minItems": 1,
+          "title": "Evidence Ids",
+          "type": "array"
+        },
+        "relationship": {
+          "enum": [
+            "HAS_SERVICE",
+            "INSTANCE_OF",
+            "DEPLOYS",
+            "VERSION_OF",
+            "RUNS_ON",
+            "HOSTED_ON",
+            "CONFIGURES",
+            "OWNED_BY",
+            "RECORDED_ON",
+            "PREVIOUS_INCIDENT"
+          ],
+          "title": "Relationship",
+          "type": "string"
+        },
+        "source": {
+          "title": "Source",
+          "type": "string"
+        },
+        "target": {
+          "title": "Target",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source",
+        "target",
+        "relationship",
+        "evidence_ids"
+      ],
+      "title": "OperationalEdge",
+      "type": "object"
+    },
+    "OperationalEvent": {
+      "additionalProperties": false,
+      "properties": {
+        "available_at": {
+          "format": "date-time",
+          "title": "Available At",
+          "type": "string"
+        },
+        "details": {
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "maxLength": 1000,
+                "type": "string"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "maxProperties": 16,
+          "minProperties": 1,
+          "title": "Details",
+          "type": "object"
+        },
+        "id": {
+          "format": "uuid",
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "deployment",
+            "configuration",
+            "runtime",
+            "ownership",
+            "incident_note"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "occurred_at": {
+          "format": "date-time",
+          "title": "Occurred At",
+          "type": "string"
+        },
+        "service": {
+          "$ref": "#/$defs/ServiceRef"
+        },
+        "source": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Source",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "occurred_at",
+        "available_at",
+        "service",
+        "source",
+        "details"
+      ],
+      "title": "OperationalEvent",
+      "type": "object"
+    },
+    "OperationalFact": {
+      "additionalProperties": false,
+      "properties": {
+        "application_id": {
+          "title": "Application Id",
+          "type": "string"
+        },
+        "artifact_hash": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Artifact Hash",
+          "type": "string"
+        },
+        "episode_id": {
+          "format": "uuid",
+          "title": "Episode Id",
+          "type": "string"
+        },
+        "event": {
+          "$ref": "#/$defs/OperationalEvent"
+        },
+        "evidence_id": {
+          "pattern": "^operation:[0-9a-f-]{36}$",
+          "title": "Evidence Id",
+          "type": "string"
+        },
+        "service_key": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Service Key",
+          "type": "string"
+        },
+        "snapshot_id": {
+          "format": "uuid",
+          "title": "Snapshot Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "event",
+        "service_key",
+        "evidence_id",
+        "artifact_hash",
+        "application_id",
+        "episode_id",
+        "snapshot_id"
+      ],
+      "title": "OperationalFact",
+      "type": "object"
+    },
+    "OperationalNode": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_ids": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 100,
+          "title": "Evidence Ids",
+          "type": "array"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "application",
+            "service",
+            "deployment",
+            "version",
+            "configuration",
+            "runtime",
+            "host",
+            "team",
+            "incident"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "label": {
+          "title": "Label",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "label",
+        "evidence_ids"
+      ],
+      "title": "OperationalNode",
+      "type": "object"
+    },
+    "ServiceRef": {
+      "additionalProperties": false,
+      "properties": {
+        "environment": {
+          "pattern": "^[A-Za-z0-9_.-]{1,100}$",
+          "title": "Environment",
+          "type": "string"
+        },
+        "name": {
+          "pattern": "^[A-Za-z0-9_.-]{1,100}$",
+          "title": "Name",
+          "type": "string"
+        },
+        "namespace": {
+          "pattern": "^[A-Za-z0-9_.-]{1,100}$",
+          "title": "Namespace",
+          "type": "string"
+        }
+      },
+      "required": [
+        "namespace",
+        "environment",
+        "name"
+      ],
+      "title": "ServiceRef",
+      "type": "object"
+    },
+    "StateDifference": {
+      "additionalProperties": false,
+      "properties": {
+        "current_evidence": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/HistoricalEvidence"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "current_value": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Current Value"
+        },
+        "field": {
+          "maxLength": 240,
+          "minLength": 1,
+          "title": "Field",
+          "type": "string"
+        },
+        "previous_evidence": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/HistoricalEvidence"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "previous_value": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Previous Value"
+        },
+        "service_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Service Id",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "changed",
+            "current_unknown",
+            "previous_unknown"
+          ],
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "service_id",
+        "field",
+        "status",
+        "previous_value",
+        "current_value",
+        "previous_evidence",
+        "current_evidence"
+      ],
+      "title": "StateDifference",
+      "type": "object"
+    },
+    "TemporalMode": {
+      "enum": [
+        "event_time_replay",
+        "available_time_replay"
+      ],
+      "title": "TemporalMode",
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "application_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Application Id"
+    },
+    "application_name": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Application Name"
+    },
+    "as_of": {
+      "format": "date-time",
+      "title": "As Of",
+      "type": "string"
+    },
+    "change_reasoning": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ChangeReasoningResponse"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "edges": {
+      "items": {
+        "$ref": "#/$defs/OperationalEdge"
+      },
+      "maxItems": 5000,
+      "title": "Edges",
+      "type": "array"
+    },
+    "episode_id": {
+      "format": "uuid",
+      "title": "Episode Id",
+      "type": "string"
+    },
+    "facts": {
+      "items": {
+        "$ref": "#/$defs/OperationalFact"
+      },
+      "maxItems": 500,
+      "title": "Facts",
+      "type": "array"
+    },
+    "graph": {
+      "$ref": "#/$defs/GraphResponse"
+    },
+    "history": {
+      "$ref": "#/$defs/HistoricalReasoningResponse"
+    },
+    "limitations": {
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 8,
+      "title": "Limitations",
+      "type": "array"
+    },
+    "nodes": {
+      "items": {
+        "$ref": "#/$defs/OperationalNode"
+      },
+      "maxItems": 2500,
+      "title": "Nodes",
+      "type": "array"
+    },
+    "snapshot_id": {
+      "format": "uuid",
+      "title": "Snapshot Id",
+      "type": "string"
+    },
+    "temporal_mode": {
+      "$ref": "#/$defs/TemporalMode"
+    },
+    "topology": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Topology"
+    }
+  },
+  "required": [
+    "episode_id",
+    "snapshot_id",
+    "as_of",
+    "temporal_mode",
+    "application_id",
+    "application_name",
+    "topology",
+    "graph",
+    "nodes",
+    "edges",
+    "facts",
+    "change_reasoning",
+    "history",
+    "limitations"
+  ],
+  "title": "OperationsResponse",
+  "type": "object"
+}

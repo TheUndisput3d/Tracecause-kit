@@ -1,0 +1,153 @@
+{
+  "$defs": {
+    "SourceMetadata": {
+      "additionalProperties": false,
+      "properties": {
+        "bytes": {
+          "minimum": 0,
+          "title": "Bytes",
+          "type": "integer"
+        },
+        "kind": {
+          "enum": [
+            "otlp_json",
+            "otlp_jsonl",
+            "markdown",
+            "operational_json"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "logical_name": {
+          "pattern": "^[A-Za-z0-9_.-]+$",
+          "title": "Logical Name",
+          "type": "string"
+        },
+        "published_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Published At"
+        },
+        "sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        }
+      },
+      "required": [
+        "logical_name",
+        "kind",
+        "sha256",
+        "bytes",
+        "published_at"
+      ],
+      "title": "SourceMetadata",
+      "type": "object"
+    },
+    "TimeInterval": {
+      "additionalProperties": false,
+      "properties": {
+        "end": {
+          "format": "date-time",
+          "title": "End",
+          "type": "string"
+        },
+        "start": {
+          "format": "date-time",
+          "title": "Start",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "title": "TimeInterval",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "availability_recorded": {
+      "title": "Availability Recorded",
+      "type": "boolean"
+    },
+    "baseline_interval": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/TimeInterval"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "display_name": {
+      "maxLength": 120,
+      "title": "Display Name",
+      "type": "string"
+    },
+    "episode_id": {
+      "format": "uuid",
+      "title": "Episode Id",
+      "type": "string"
+    },
+    "event_interval": {
+      "$ref": "#/$defs/TimeInterval"
+    },
+    "origin": {
+      "enum": [
+        "synthetic",
+        "captured_demo"
+      ],
+      "title": "Origin",
+      "type": "string"
+    },
+    "public_notes": {
+      "maxLength": 1000,
+      "title": "Public Notes",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "sources": {
+      "items": {
+        "$ref": "#/$defs/SourceMetadata"
+      },
+      "maxItems": 100,
+      "minItems": 1,
+      "title": "Sources",
+      "type": "array"
+    },
+    "workspace_id": {
+      "format": "uuid",
+      "title": "Workspace Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "episode_id",
+    "workspace_id",
+    "display_name",
+    "origin",
+    "event_interval",
+    "baseline_interval",
+    "availability_recorded",
+    "sources",
+    "public_notes"
+  ],
+  "title": "EpisodeManifest",
+  "type": "object"
+}

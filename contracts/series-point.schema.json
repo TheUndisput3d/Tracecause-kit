@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "end_ns": {
+      "pattern": "^[0-9]+$",
+      "title": "End Ns",
+      "type": "string"
+    },
+    "error_count": {
+      "minimum": 0,
+      "title": "Error Count",
+      "type": "integer"
+    },
+    "observation_id": {
+      "format": "uuid",
+      "title": "Observation Id",
+      "type": "string"
+    },
+    "p50_ms": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "P50 Ms"
+    },
+    "p95_ms": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "P95 Ms"
+    },
+    "sample_count": {
+      "minimum": 0,
+      "title": "Sample Count",
+      "type": "integer"
+    },
+    "service_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Service Id",
+      "type": "string"
+    },
+    "start_ns": {
+      "pattern": "^[0-9]+$",
+      "title": "Start Ns",
+      "type": "string"
+    }
+  },
+  "required": [
+    "service_id",
+    "observation_id",
+    "start_ns",
+    "end_ns",
+    "sample_count",
+    "error_count",
+    "p50_ms",
+    "p95_ms"
+  ],
+  "title": "SeriesPoint",
+  "type": "object"
+}
