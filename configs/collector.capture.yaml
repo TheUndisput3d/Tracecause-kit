@@ -1,0 +1,25 @@
+receivers:
+  otlp:
+    protocols:
+      http:
+        endpoint: 0.0.0.0:4318
+processors:
+  batch:
+    timeout: 200ms
+    send_batch_size: 256
+    send_batch_max_size: 256
+exporters:
+  file/traces:
+    path: ${env:CAPTURE_FILE}
+    format: json
+    append: false
+    flush_interval: 1s
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [file/traces]
+  telemetry:
+    logs:
+      level: warn

@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "reference": "phase17 measured developer host; tolerances are not cross-hardware promises",
+  "warm_investigation_p95_ms": 3000,
+  "metadata_p95_ms": 500,
+  "graph_p95_ms": 1000,
+  "import_100k_seconds": 180,
+  "import_peak_rss_kib": 1258291,
+  "import_sql_statements": 1000,
+  "engineering_import_target_seconds": 600
+}

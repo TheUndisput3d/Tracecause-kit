@@ -1,0 +1,65 @@
+schema_version: "1.0"
+application:
+  workspace_id: 00000000-0000-4000-8000-000000000001
+  public_read_only: true
+  generation_provider: template
+telemetry:
+  bucket_seconds: 10
+  minimum_baseline_buckets: 6
+  minimum_latency_samples: 10
+  baseline_seconds: 300
+  topology_max_hops: 3
+  latency_mad_floor_ms: 5.0
+  error_mad_floor: 0.01
+  count_mad_floor: 1.0
+  anomaly_z_threshold: 3.0
+  anomaly_z_clip: 10.0
+retrieval:
+  embedding_model: sentence-transformers/all-MiniLM-L6-v2
+  embedding_revision: 1110a243fdf4706b3f48f1d95db1a4f5529b4d41
+  dimensions: 384
+  chunk_tokens: 180
+  chunk_overlap_tokens: 30
+  chunk_max_tokens: 220
+  exact_corpus_limit: 20000
+  per_modality_k: 40
+  rrf_constant: 60
+  max_candidates: 20
+  max_nodes: 80
+  max_edges: 120
+  max_intermediate_evidence: 60
+  max_final_evidence: 12
+  max_paths: 3
+  mode: GRAPH
+generation:
+  ollama_url: http://ollama:11434
+  model: qwen3:4b-instruct-2507-q4_K_M
+  context_tokens: 8192
+  max_input_tokens: 6000
+  max_output_tokens: 1000
+  temperature: 0.0
+  max_concurrency: 1
+  deadline_seconds: 180
+  max_repairs: 1
+ranking:
+  default: heuristic
+  feature_schema_version: "1.0"
+  heuristic_weights:
+    latency: 0.30
+    error: 0.30
+    onset: 0.15
+    proximity: 0.15
+    anomalous_callers: 0.10
+    missingness_penalty: -0.20
+jobs:
+  lease_seconds: 30
+  heartbeat_seconds: 5
+  poll_seconds: 0.5
+  max_attempts: 3
+  max_queued_per_operator: 10
+limits:
+  question_characters: 2000
+  upload_file_mib: 25
+  upload_bundle_mib: 100
+  upload_file_count: 100
+  graph_query_timeout_seconds: 3
