@@ -1,0 +1,422 @@
+{
+  "application_id": "news-fanout",
+  "application_name": "Newsroom",
+  "events": [
+    {
+      "available_at": "2026-10-19T05:05:26.495412Z",
+      "details": {
+        "host": "local-host-37e773946797",
+        "platform": "CPython 3.12.3",
+        "process_id": 167816,
+        "runtime_id": "process-f9ad73ca-8d47-468c-a476-e06e79d1141f",
+        "runtime_type": "process",
+        "version": "1.0.0"
+      },
+      "id": "3a83163a-695f-4377-a234-213b7016657e",
+      "kind": "runtime",
+      "occurred_at": "2026-10-19T05:05:26.404762Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "portal",
+        "namespace": "news-fanout"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:05:26.495436Z",
+      "details": {
+        "artifact_sha256": "6e70b8c5742fae4df72dc9a9b05a8df212e25a8dc4c6f94b3d6dbe5023811f10",
+        "revision": "6e70b8c5742f",
+        "runtime_id": "process-f9ad73ca-8d47-468c-a476-e06e79d1141f",
+        "version": "1.0.0"
+      },
+      "id": "8f3f6799-2995-4ea1-ae46-ee308d5c20b7",
+      "kind": "deployment",
+      "occurred_at": "2026-10-19T05:05:26.404762Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "portal",
+        "namespace": "news-fanout"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:05:26.495459Z",
+      "details": {
+        "team": "discovery-platform"
+      },
+      "id": "9fc662e8-9ead-4861-82ad-ab271ee2fc01",
+      "kind": "ownership",
+      "occurred_at": "2026-10-19T05:05:26.495455Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "portal",
+        "namespace": "news-fanout"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:05:26.496136Z",
+      "details": {
+        "key": "max_batch_items",
+        "previous_value": 64,
+        "runtime_id": "process-f9ad73ca-8d47-468c-a476-e06e79d1141f",
+        "value": 64
+      },
+      "id": "d7e2ba9d-2d2b-42c3-ac08-cb3e0ef5478b",
+      "kind": "configuration",
+      "occurred_at": "2026-10-19T05:05:26.496128Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "portal",
+        "namespace": "news-fanout"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:05:26.599717Z",
+      "details": {
+        "host": "local-host-37e773946797",
+        "platform": "CPython 3.12.3",
+        "process_id": 167820,
+        "runtime_id": "process-e320f71c-eebe-4ec7-b254-ac1118e6e20a",
+        "runtime_type": "process",
+        "version": "1.0.0"
+      },
+      "id": "7ed3c4f7-6f08-4767-973a-f5d63a50b9ed",
+      "kind": "runtime",
+      "occurred_at": "2026-10-19T05:05:26.496142Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "search",
+        "namespace": "news-fanout"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:05:26.599744Z",
+      "details": {
+        "artifact_sha256": "6e70b8c5742fae4df72dc9a9b05a8df212e25a8dc4c6f94b3d6dbe5023811f10",
+        "revision": "6e70b8c5742f",
+        "runtime_id": "process-e320f71c-eebe-4ec7-b254-ac1118e6e20a",
+        "version": "1.0.0"
+      },
+      "id": "5feb77dd-5a61-4cef-ae3e-a0297ff62b5a",
+      "kind": "deployment",
+      "occurred_at": "2026-10-19T05:05:26.496142Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "search",
+        "namespace": "news-fanout"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:05:26.599770Z",
+      "details": {
+        "team": "discovery-platform"
+      },
+      "id": "318ae53d-84b6-4b33-a302-8227f3a56c80",
+      "kind": "ownership",
+      "occurred_at": "2026-10-19T05:05:26.599766Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "search",
+        "namespace": "news-fanout"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:05:26.600982Z",
+      "details": {
+        "key": "max_batch_items",
+        "previous_value": 64,
+        "runtime_id": "process-e320f71c-eebe-4ec7-b254-ac1118e6e20a",
+        "value": 64
+      },
+      "id": "7127dcc2-4e42-4e4a-86db-ab587e979cfd",
+      "kind": "configuration",
+      "occurred_at": "2026-10-19T05:05:26.600971Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "search",
+        "namespace": "news-fanout"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:05:26.655368Z",
+      "details": {
+        "host": "local-host-37e773946797",
+        "platform": "CPython 3.12.3",
+        "process_id": 167831,
+        "runtime_id": "process-0cdc13dd-f845-4ccd-8d5e-23d51b3c79a5",
+        "runtime_type": "process",
+        "version": "1.0.0"
+      },
+      "id": "4d5ede52-815b-4a1f-a7dc-64464b986253",
+      "kind": "runtime",
+      "occurred_at": "2026-10-19T05:05:26.600990Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "pricing",
+        "namespace": "news-fanout"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:05:26.655381Z",
+      "details": {
+        "artifact_sha256": "6e70b8c5742fae4df72dc9a9b05a8df212e25a8dc4c6f94b3d6dbe5023811f10",
+        "revision": "6e70b8c5742f",
+        "runtime_id": "process-0cdc13dd-f845-4ccd-8d5e-23d51b3c79a5",
+        "version": "1.0.0"
+      },
+      "id": "6baf6340-fc43-47ed-91f9-9a09a0f7bfe6",
+      "kind": "deployment",
+      "occurred_at": "2026-10-19T05:05:26.600990Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "pricing",
+        "namespace": "news-fanout"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:05:26.655392Z",
+      "details": {
+        "team": "discovery-platform"
+      },
+      "id": "730a0d2f-eaca-4cc9-a303-7aaeaa1acf24",
+      "kind": "ownership",
+      "occurred_at": "2026-10-19T05:05:26.655390Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "pricing",
+        "namespace": "news-fanout"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:05:26.655788Z",
+      "details": {
+        "key": "max_batch_items",
+        "previous_value": 64,
+        "runtime_id": "process-0cdc13dd-f845-4ccd-8d5e-23d51b3c79a5",
+        "value": 64
+      },
+      "id": "dca4f069-243d-4d80-aa7a-97951c7b4cb3",
+      "kind": "configuration",
+      "occurred_at": "2026-10-19T05:05:26.655783Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "pricing",
+        "namespace": "news-fanout"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:05:26.758056Z",
+      "details": {
+        "host": "local-host-37e773946797",
+        "platform": "CPython 3.12.3",
+        "process_id": 167835,
+        "runtime_id": "process-ad34529d-6e02-4234-b9d3-74348ea00700",
+        "runtime_type": "process",
+        "version": "1.0.0"
+      },
+      "id": "0faeae97-5a43-45b4-9138-9c456858cc3d",
+      "kind": "runtime",
+      "occurred_at": "2026-10-19T05:05:26.655791Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "recommendations",
+        "namespace": "news-fanout"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:05:26.758083Z",
+      "details": {
+        "artifact_sha256": "6e70b8c5742fae4df72dc9a9b05a8df212e25a8dc4c6f94b3d6dbe5023811f10",
+        "revision": "6e70b8c5742f",
+        "runtime_id": "process-ad34529d-6e02-4234-b9d3-74348ea00700",
+        "version": "1.0.0"
+      },
+      "id": "1912861a-02c2-48b1-b180-0c2c1debb297",
+      "kind": "deployment",
+      "occurred_at": "2026-10-19T05:05:26.655791Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "recommendations",
+        "namespace": "news-fanout"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:05:26.758108Z",
+      "details": {
+        "team": "discovery-platform"
+      },
+      "id": "53d5b64e-a76d-474a-b5f3-b6dfc595e1a9",
+      "kind": "ownership",
+      "occurred_at": "2026-10-19T05:05:26.758104Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "recommendations",
+        "namespace": "news-fanout"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:05:26.758525Z",
+      "details": {
+        "key": "max_batch_items",
+        "previous_value": 64,
+        "runtime_id": "process-ad34529d-6e02-4234-b9d3-74348ea00700",
+        "value": 64
+      },
+      "id": "48c9f856-73d0-485b-8239-92db70a9059f",
+      "kind": "configuration",
+      "occurred_at": "2026-10-19T05:05:26.758517Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "recommendations",
+        "namespace": "news-fanout"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:06:38.167936Z",
+      "details": {
+        "host": "local-host-37e773946797",
+        "platform": "CPython 3.12.3",
+        "process_id": 176483,
+        "runtime_id": "process-db542eee-27cf-4879-800a-4a7360495b6b",
+        "runtime_type": "process",
+        "version": "1.1.0"
+      },
+      "id": "36ba4d5e-1977-4e26-b429-d02e8c790c0a",
+      "kind": "runtime",
+      "occurred_at": "2026-10-19T05:06:38.063812Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "search",
+        "namespace": "news-fanout"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:06:38.167959Z",
+      "details": {
+        "artifact_sha256": "1abb6c4ff1f6534deeec581ce6255e42171623f00143bb2244696ad8c6497bf3",
+        "revision": "1abb6c4ff1f6",
+        "runtime_id": "process-db542eee-27cf-4879-800a-4a7360495b6b",
+        "version": "1.1.0"
+      },
+      "id": "19c22532-1897-4709-9c30-b5b4fa9d1314",
+      "kind": "deployment",
+      "occurred_at": "2026-10-19T05:06:38.063812Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "search",
+        "namespace": "news-fanout"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:06:38.251878Z",
+      "details": {
+        "host": "local-host-37e773946797",
+        "platform": "CPython 3.12.3",
+        "process_id": 176501,
+        "runtime_id": "process-137f5fb7-0f99-4942-8d99-825f510bced4",
+        "runtime_type": "process",
+        "version": "1.0.1"
+      },
+      "id": "96939383-5631-49af-9a50-7eb70ed836ce",
+      "kind": "runtime",
+      "occurred_at": "2026-10-19T05:06:38.199486Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "portal",
+        "namespace": "news-fanout"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:06:38.251895Z",
+      "details": {
+        "artifact_sha256": "42b1af71bfb17bb28b37b424ea34a0b78fef3649c9b35395f63dd5b95057da3f",
+        "revision": "42b1af71bfb1",
+        "runtime_id": "process-137f5fb7-0f99-4942-8d99-825f510bced4",
+        "version": "1.0.1"
+      },
+      "id": "f42d741e-a6b7-4e63-b52f-b72aac86f8b2",
+      "kind": "deployment",
+      "occurred_at": "2026-10-19T05:06:38.199486Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "portal",
+        "namespace": "news-fanout"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:07:40.145265Z",
+      "details": {
+        "host": "local-host-37e773946797",
+        "platform": "CPython 3.12.3",
+        "process_id": 184099,
+        "runtime_id": "process-4ed1b1db-24db-4691-b56f-9f10e57df69b",
+        "runtime_type": "process",
+        "version": "1.0.0"
+      },
+      "id": "c6cb7c9e-c500-4fea-92ad-2555b2b148f9",
+      "kind": "runtime",
+      "occurred_at": "2026-10-19T05:07:40.041893Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "search",
+        "namespace": "news-fanout"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:07:40.145287Z",
+      "details": {
+        "artifact_sha256": "6e70b8c5742fae4df72dc9a9b05a8df212e25a8dc4c6f94b3d6dbe5023811f10",
+        "revision": "6e70b8c5742f",
+        "runtime_id": "process-4ed1b1db-24db-4691-b56f-9f10e57df69b",
+        "version": "1.0.0"
+      },
+      "id": "683ff9dd-8af5-4f3f-8003-239ec33bc0e8",
+      "kind": "deployment",
+      "occurred_at": "2026-10-19T05:07:40.041893Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "search",
+        "namespace": "news-fanout"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:08:00.145462Z",
+      "details": {
+        "summary": "Observed 90 failed business operations among 180 completed operations in the change window. Recovery observed 0 failures among 60 operations. These are local controlled measurements, not a causal attribution or production incident.",
+        "title": "Newsroom capture 1 observed outcomes"
+      },
+      "id": "7f2b8944-124a-4f36-ab7a-c57b68432b54",
+      "kind": "incident_note",
+      "occurred_at": "2026-10-19T05:08:00.145460Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "portal",
+        "namespace": "news-fanout"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    }
+  ],
+  "schema_version": "1.0",
+  "topology": "parallel-fanout"
+}

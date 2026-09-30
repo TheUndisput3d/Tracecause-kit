@@ -1,0 +1,33 @@
+{
+  "availability_recorded": false,
+  "baseline_interval": {
+    "end": "2026-10-19T05:09:12.070452Z",
+    "start": "2026-10-19T05:08:02.070342Z"
+  },
+  "display_name": "Parcel Shop \u2014 captured incident 2",
+  "episode_id": "95812eb4-28b8-481a-a3de-a6f92a194b8d",
+  "event_interval": {
+    "end": "2026-10-19T05:10:40.170851Z",
+    "start": "2026-10-19T05:08:01.368683Z"
+  },
+  "origin": "captured_demo",
+  "public_notes": "Actual localhost HTTP subprocess execution with manually instrumented OTLP export and process-supervisor operational receipts. Controlled lab data; operator-assigned ownership. No production or causal claims.",
+  "schema_version": "1.0",
+  "sources": [
+    {
+      "bytes": 1832850,
+      "kind": "otlp_jsonl",
+      "logical_name": "traces.jsonl",
+      "published_at": null,
+      "sha256": "2d73ebda6bf49566c0136ec764dfbaf23922cce0d1e55de14a21d4772cf5835a"
+    },
+    {
+      "bytes": 9829,
+      "kind": "operational_json",
+      "logical_name": "operational.json",
+      "published_at": null,
+      "sha256": "f8b330ef2fdc06f6b9b7607ade88e3d0477ad83d700db62a0735e3d9a55a4ffb"
+    }
+  ],
+  "workspace_id": "00000000-0000-4000-8000-000000000001"
+}

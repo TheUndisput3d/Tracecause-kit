@@ -1,0 +1,291 @@
+{
+  "application_id": "shop-chain",
+  "application_name": "Parcel Shop",
+  "events": [
+    {
+      "available_at": "2026-10-19T05:08:01.612177Z",
+      "details": {
+        "host": "local-host-37e773946797",
+        "platform": "CPython 3.12.3",
+        "process_id": 186894,
+        "runtime_id": "process-6c8e22b2-8dd1-4a46-ad4c-6946548e3e6f",
+        "runtime_type": "process",
+        "version": "1.0.0"
+      },
+      "id": "0cd8e3a3-b506-49e0-b0a2-8a7f7fe07daf",
+      "kind": "runtime",
+      "occurred_at": "2026-10-19T05:08:01.368703Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "checkout",
+        "namespace": "shop-chain"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:08:01.612198Z",
+      "details": {
+        "artifact_sha256": "6e70b8c5742fae4df72dc9a9b05a8df212e25a8dc4c6f94b3d6dbe5023811f10",
+        "revision": "6e70b8c5742f",
+        "runtime_id": "process-6c8e22b2-8dd1-4a46-ad4c-6946548e3e6f",
+        "version": "1.0.0"
+      },
+      "id": "30bf5ae1-1cc3-470c-9f15-e2f8e4fcea2d",
+      "kind": "deployment",
+      "occurred_at": "2026-10-19T05:08:01.368703Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "checkout",
+        "namespace": "shop-chain"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:08:01.612215Z",
+      "details": {
+        "team": "commerce-platform"
+      },
+      "id": "0b86e022-5b95-4f2d-a4cd-c723786c816b",
+      "kind": "ownership",
+      "occurred_at": "2026-10-19T05:08:01.612212Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "checkout",
+        "namespace": "shop-chain"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:08:01.612523Z",
+      "details": {
+        "key": "max_batch_items",
+        "previous_value": 64,
+        "runtime_id": "process-6c8e22b2-8dd1-4a46-ad4c-6946548e3e6f",
+        "value": 64
+      },
+      "id": "b91cf4dd-8a3a-400a-87eb-e22b50b58929",
+      "kind": "configuration",
+      "occurred_at": "2026-10-19T05:08:01.612519Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "checkout",
+        "namespace": "shop-chain"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:08:01.771096Z",
+      "details": {
+        "host": "local-host-37e773946797",
+        "platform": "CPython 3.12.3",
+        "process_id": 186941,
+        "runtime_id": "process-e4d3ea1f-673d-4ce5-aff8-70f6076298dd",
+        "runtime_type": "process",
+        "version": "1.0.0"
+      },
+      "id": "47aeccbd-992d-44a7-a4dc-688364f372c7",
+      "kind": "runtime",
+      "occurred_at": "2026-10-19T05:08:01.612529Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "orders",
+        "namespace": "shop-chain"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:08:01.771124Z",
+      "details": {
+        "artifact_sha256": "6e70b8c5742fae4df72dc9a9b05a8df212e25a8dc4c6f94b3d6dbe5023811f10",
+        "revision": "6e70b8c5742f",
+        "runtime_id": "process-e4d3ea1f-673d-4ce5-aff8-70f6076298dd",
+        "version": "1.0.0"
+      },
+      "id": "5800c220-9dae-452e-8d69-ad1aa85470b2",
+      "kind": "deployment",
+      "occurred_at": "2026-10-19T05:08:01.612529Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "orders",
+        "namespace": "shop-chain"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:08:01.771150Z",
+      "details": {
+        "team": "commerce-platform"
+      },
+      "id": "57d8fad2-6ec3-4b4c-9fe5-fb66a49bae2c",
+      "kind": "ownership",
+      "occurred_at": "2026-10-19T05:08:01.771146Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "orders",
+        "namespace": "shop-chain"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:08:01.848547Z",
+      "details": {
+        "key": "max_batch_items",
+        "previous_value": 64,
+        "runtime_id": "process-e4d3ea1f-673d-4ce5-aff8-70f6076298dd",
+        "value": 64
+      },
+      "id": "374298a6-9862-400e-98c5-3fd08aa4178c",
+      "kind": "configuration",
+      "occurred_at": "2026-10-19T05:08:01.848533Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "orders",
+        "namespace": "shop-chain"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:08:02.018135Z",
+      "details": {
+        "host": "local-host-37e773946797",
+        "platform": "CPython 3.12.3",
+        "process_id": 186947,
+        "runtime_id": "process-132b9f0d-78e5-460f-a362-6fbeba315702",
+        "runtime_type": "process",
+        "version": "1.0.0"
+      },
+      "id": "2be662da-8261-4a27-ad78-9adb9a10224c",
+      "kind": "runtime",
+      "occurred_at": "2026-10-19T05:08:01.848556Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "ledger",
+        "namespace": "shop-chain"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:08:02.018187Z",
+      "details": {
+        "artifact_sha256": "6e70b8c5742fae4df72dc9a9b05a8df212e25a8dc4c6f94b3d6dbe5023811f10",
+        "revision": "6e70b8c5742f",
+        "runtime_id": "process-132b9f0d-78e5-460f-a362-6fbeba315702",
+        "version": "1.0.0"
+      },
+      "id": "54cd4be3-3418-4ddc-9397-368dd6fd418c",
+      "kind": "deployment",
+      "occurred_at": "2026-10-19T05:08:01.848556Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "ledger",
+        "namespace": "shop-chain"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:08:02.018223Z",
+      "details": {
+        "team": "commerce-platform"
+      },
+      "id": "007f65df-e634-4eb9-9131-a20efca4b267",
+      "kind": "ownership",
+      "occurred_at": "2026-10-19T05:08:02.018222Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "ledger",
+        "namespace": "shop-chain"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:08:02.070333Z",
+      "details": {
+        "key": "max_batch_items",
+        "previous_value": 64,
+        "runtime_id": "process-132b9f0d-78e5-460f-a362-6fbeba315702",
+        "value": 64
+      },
+      "id": "8cbc25bf-607d-460b-9c4e-df405ace6498",
+      "kind": "configuration",
+      "occurred_at": "2026-10-19T05:08:02.070316Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "ledger",
+        "namespace": "shop-chain"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:09:18.001874Z",
+      "details": {
+        "key": "max_batch_items",
+        "previous_value": 64,
+        "runtime_id": "process-132b9f0d-78e5-460f-a362-6fbeba315702",
+        "value": 1
+      },
+      "id": "2f412a1b-4b81-4cf1-82a4-5c235c88257e",
+      "kind": "configuration",
+      "occurred_at": "2026-10-19T05:09:18.001865Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "ledger",
+        "namespace": "shop-chain"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:09:18.002569Z",
+      "details": {
+        "key": "max_batch_items",
+        "previous_value": 64,
+        "runtime_id": "process-6c8e22b2-8dd1-4a46-ad4c-6946548e3e6f",
+        "value": 128
+      },
+      "id": "1dd9c7b6-dcb9-432e-850d-9617e0b4f925",
+      "kind": "configuration",
+      "occurred_at": "2026-10-19T05:09:18.002559Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "checkout",
+        "namespace": "shop-chain"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:10:20.012577Z",
+      "details": {
+        "key": "max_batch_items",
+        "previous_value": 1,
+        "runtime_id": "process-132b9f0d-78e5-460f-a362-6fbeba315702",
+        "value": 64
+      },
+      "id": "85d932a3-46b1-4e1d-bd4a-e6eaabbef18f",
+      "kind": "configuration",
+      "occurred_at": "2026-10-19T05:10:20.012572Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "ledger",
+        "namespace": "shop-chain"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:10:40.012708Z",
+      "details": {
+        "summary": "Observed 180 failed business operations among 180 completed operations in the change window. Recovery observed 0 failures among 60 operations. These are local controlled measurements, not a causal attribution or production incident.",
+        "title": "Parcel Shop capture 2 observed outcomes"
+      },
+      "id": "5a457664-9466-4d3e-98d1-e9186af5b038",
+      "kind": "incident_note",
+      "occurred_at": "2026-10-19T05:10:40.012702Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "checkout",
+        "namespace": "shop-chain"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    }
+  ],
+  "schema_version": "1.0",
+  "topology": "synchronous-chain"
+}

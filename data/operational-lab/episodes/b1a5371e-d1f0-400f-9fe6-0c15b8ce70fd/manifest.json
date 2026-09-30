@@ -1,0 +1,33 @@
+{
+  "availability_recorded": false,
+  "baseline_interval": {
+    "end": "2026-10-19T05:09:12.236783Z",
+    "start": "2026-10-19T05:08:02.236650Z"
+  },
+  "display_name": "Newsroom \u2014 captured incident 2",
+  "episode_id": "b1a5371e-d1f0-400f-9fe6-0c15b8ce70fd",
+  "event_interval": {
+    "end": "2026-10-19T05:10:40.203128Z",
+    "start": "2026-10-19T05:08:01.594547Z"
+  },
+  "origin": "captured_demo",
+  "public_notes": "Actual localhost HTTP subprocess execution with manually instrumented OTLP export and process-supervisor operational receipts. Controlled lab data; operator-assigned ownership. No production or causal claims.",
+  "schema_version": "1.0",
+  "sources": [
+    {
+      "bytes": 2574000,
+      "kind": "otlp_jsonl",
+      "logical_name": "traces.jsonl",
+      "published_at": null,
+      "sha256": "7ddd83d96d559ed933e756374b211845039fea27c63ef191c6e8fa9a00cee6e2"
+    },
+    {
+      "bytes": 12258,
+      "kind": "operational_json",
+      "logical_name": "operational.json",
+      "published_at": null,
+      "sha256": "bb71b924b4286cf43ea7d818b7022b24a422709057ddff8ecd8d0865b57d2dcf"
+    }
+  ],
+  "workspace_id": "00000000-0000-4000-8000-000000000001"
+}

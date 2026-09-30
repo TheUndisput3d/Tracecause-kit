@@ -1,0 +1,433 @@
+{
+  "application_id": "media-pipeline",
+  "application_name": "Media Works",
+  "events": [
+    {
+      "available_at": "2026-10-19T05:08:02.256451Z",
+      "details": {
+        "host": "local-host-37e773946797",
+        "platform": "CPython 3.12.3",
+        "process_id": 186956,
+        "runtime_id": "process-15782251-5a80-4d8e-b97f-b76b1ef72d5b",
+        "runtime_type": "process",
+        "version": "1.0.0"
+      },
+      "id": "2860a412-a93f-407b-a597-764af031ded6",
+      "kind": "runtime",
+      "occurred_at": "2026-10-19T05:08:02.154176Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "uploader",
+        "namespace": "media-pipeline"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:08:02.256475Z",
+      "details": {
+        "artifact_sha256": "6e70b8c5742fae4df72dc9a9b05a8df212e25a8dc4c6f94b3d6dbe5023811f10",
+        "revision": "6e70b8c5742f",
+        "runtime_id": "process-15782251-5a80-4d8e-b97f-b76b1ef72d5b",
+        "version": "1.0.0"
+      },
+      "id": "d00ee0f3-1179-43dc-9e18-5095f8f0018f",
+      "kind": "deployment",
+      "occurred_at": "2026-10-19T05:08:02.154176Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "uploader",
+        "namespace": "media-pipeline"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:08:02.256497Z",
+      "details": {
+        "team": "media-platform"
+      },
+      "id": "01a0ca16-ed76-4050-b6af-f79b5a481b83",
+      "kind": "ownership",
+      "occurred_at": "2026-10-19T05:08:02.256494Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "uploader",
+        "namespace": "media-pipeline"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:08:02.256881Z",
+      "details": {
+        "key": "max_batch_items",
+        "previous_value": 64,
+        "runtime_id": "process-15782251-5a80-4d8e-b97f-b76b1ef72d5b",
+        "value": 64
+      },
+      "id": "973280eb-1d19-4dbb-aebb-e7271790c7aa",
+      "kind": "configuration",
+      "occurred_at": "2026-10-19T05:08:02.256874Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "uploader",
+        "namespace": "media-pipeline"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:08:02.359618Z",
+      "details": {
+        "host": "local-host-37e773946797",
+        "platform": "CPython 3.12.3",
+        "process_id": 186965,
+        "runtime_id": "process-be01c602-793c-48a7-9544-3bc79b808b0f",
+        "runtime_type": "process",
+        "version": "1.0.0"
+      },
+      "id": "99d557c6-f78d-4fa2-ac2a-61570fc799b7",
+      "kind": "runtime",
+      "occurred_at": "2026-10-19T05:08:02.256887Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "broker",
+        "namespace": "media-pipeline"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:08:02.359644Z",
+      "details": {
+        "artifact_sha256": "6e70b8c5742fae4df72dc9a9b05a8df212e25a8dc4c6f94b3d6dbe5023811f10",
+        "revision": "6e70b8c5742f",
+        "runtime_id": "process-be01c602-793c-48a7-9544-3bc79b808b0f",
+        "version": "1.0.0"
+      },
+      "id": "21a15244-975d-49fd-b014-65f71d9e61e3",
+      "kind": "deployment",
+      "occurred_at": "2026-10-19T05:08:02.256887Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "broker",
+        "namespace": "media-pipeline"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:08:02.359667Z",
+      "details": {
+        "team": "media-platform"
+      },
+      "id": "01fd55e9-db45-4a00-84b0-d6046197a7db",
+      "kind": "ownership",
+      "occurred_at": "2026-10-19T05:08:02.359664Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "broker",
+        "namespace": "media-pipeline"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:08:02.360097Z",
+      "details": {
+        "key": "max_batch_items",
+        "previous_value": 64,
+        "runtime_id": "process-be01c602-793c-48a7-9544-3bc79b808b0f",
+        "value": 64
+      },
+      "id": "5010815b-c2b5-4958-a5ca-9c73eb0b4ce6",
+      "kind": "configuration",
+      "occurred_at": "2026-10-19T05:08:02.360090Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "broker",
+        "namespace": "media-pipeline"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:08:02.462836Z",
+      "details": {
+        "host": "local-host-37e773946797",
+        "platform": "CPython 3.12.3",
+        "process_id": 186973,
+        "runtime_id": "process-ac6ed5b4-dc97-4ddb-80ff-8a6df867fd57",
+        "runtime_type": "process",
+        "version": "1.0.0"
+      },
+      "id": "fce1ee58-87b9-487b-8990-6463bb3766ae",
+      "kind": "runtime",
+      "occurred_at": "2026-10-19T05:08:02.360104Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "transcoder",
+        "namespace": "media-pipeline"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:08:02.462859Z",
+      "details": {
+        "artifact_sha256": "6e70b8c5742fae4df72dc9a9b05a8df212e25a8dc4c6f94b3d6dbe5023811f10",
+        "revision": "6e70b8c5742f",
+        "runtime_id": "process-ac6ed5b4-dc97-4ddb-80ff-8a6df867fd57",
+        "version": "1.0.0"
+      },
+      "id": "9ff96240-a71e-4aed-8777-8464bc3bfbab",
+      "kind": "deployment",
+      "occurred_at": "2026-10-19T05:08:02.360104Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "transcoder",
+        "namespace": "media-pipeline"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:08:02.462881Z",
+      "details": {
+        "team": "media-platform"
+      },
+      "id": "8c4056ca-8e02-4f60-8844-b491b006ebac",
+      "kind": "ownership",
+      "occurred_at": "2026-10-19T05:08:02.462878Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "transcoder",
+        "namespace": "media-pipeline"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:08:02.463297Z",
+      "details": {
+        "key": "max_batch_items",
+        "previous_value": 64,
+        "runtime_id": "process-ac6ed5b4-dc97-4ddb-80ff-8a6df867fd57",
+        "value": 64
+      },
+      "id": "bdb544ca-0ac3-44b1-b558-f97586f3fd58",
+      "kind": "configuration",
+      "occurred_at": "2026-10-19T05:08:02.463289Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "transcoder",
+        "namespace": "media-pipeline"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:08:02.565781Z",
+      "details": {
+        "host": "local-host-37e773946797",
+        "platform": "CPython 3.12.3",
+        "process_id": 186981,
+        "runtime_id": "process-3c39c366-aaf1-4bc2-b9f4-54dfb0b3b8ca",
+        "runtime_type": "process",
+        "version": "1.0.0"
+      },
+      "id": "764d0d2e-9dab-4ed6-a6dc-e05845c0217b",
+      "kind": "runtime",
+      "occurred_at": "2026-10-19T05:08:02.463302Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "object-store",
+        "namespace": "media-pipeline"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:08:02.565796Z",
+      "details": {
+        "artifact_sha256": "6e70b8c5742fae4df72dc9a9b05a8df212e25a8dc4c6f94b3d6dbe5023811f10",
+        "revision": "6e70b8c5742f",
+        "runtime_id": "process-3c39c366-aaf1-4bc2-b9f4-54dfb0b3b8ca",
+        "version": "1.0.0"
+      },
+      "id": "7a1fb139-6559-4cf8-986b-a5c0267557b8",
+      "kind": "deployment",
+      "occurred_at": "2026-10-19T05:08:02.463302Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "object-store",
+        "namespace": "media-pipeline"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:08:02.565807Z",
+      "details": {
+        "team": "media-platform"
+      },
+      "id": "7e6608e5-d050-42d0-9aab-4a9f6183cd84",
+      "kind": "ownership",
+      "occurred_at": "2026-10-19T05:08:02.565805Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "object-store",
+        "namespace": "media-pipeline"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:08:02.566067Z",
+      "details": {
+        "key": "max_batch_items",
+        "previous_value": 64,
+        "runtime_id": "process-3c39c366-aaf1-4bc2-b9f4-54dfb0b3b8ca",
+        "value": 64
+      },
+      "id": "bf6ea193-ff7d-430f-b101-f22093460f6d",
+      "kind": "configuration",
+      "occurred_at": "2026-10-19T05:08:02.566063Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "object-store",
+        "namespace": "media-pipeline"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:08:02.668303Z",
+      "details": {
+        "host": "local-host-37e773946797",
+        "platform": "CPython 3.12.3",
+        "process_id": 187009,
+        "runtime_id": "process-6fcba7e1-2374-46a5-8bc3-349d8d86e642",
+        "runtime_type": "process",
+        "version": "1.0.0"
+      },
+      "id": "ca3ae428-cd78-4467-85de-bd6a1c2f5dc7",
+      "kind": "runtime",
+      "occurred_at": "2026-10-19T05:08:02.566071Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "worker",
+        "namespace": "media-pipeline"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:08:02.668325Z",
+      "details": {
+        "artifact_sha256": "6e70b8c5742fae4df72dc9a9b05a8df212e25a8dc4c6f94b3d6dbe5023811f10",
+        "revision": "6e70b8c5742f",
+        "runtime_id": "process-6fcba7e1-2374-46a5-8bc3-349d8d86e642",
+        "version": "1.0.0"
+      },
+      "id": "3058a64c-0e63-4a3e-893b-f442fa4188fe",
+      "kind": "deployment",
+      "occurred_at": "2026-10-19T05:08:02.566071Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "worker",
+        "namespace": "media-pipeline"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:08:02.668346Z",
+      "details": {
+        "team": "media-platform"
+      },
+      "id": "117bdd4b-dee5-499b-ae91-520ae506c0a7",
+      "kind": "ownership",
+      "occurred_at": "2026-10-19T05:08:02.668343Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "worker",
+        "namespace": "media-pipeline"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:08:02.668713Z",
+      "details": {
+        "key": "max_batch_items",
+        "previous_value": 64,
+        "runtime_id": "process-6fcba7e1-2374-46a5-8bc3-349d8d86e642",
+        "value": 64
+      },
+      "id": "00c4db56-1221-4e8a-93f4-513694101139",
+      "kind": "configuration",
+      "occurred_at": "2026-10-19T05:08:02.668706Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "worker",
+        "namespace": "media-pipeline"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:09:18.001492Z",
+      "details": {
+        "key": "max_batch_items",
+        "previous_value": 64,
+        "runtime_id": "process-ac6ed5b4-dc97-4ddb-80ff-8a6df867fd57",
+        "value": 1
+      },
+      "id": "90830187-b1ca-4ead-a2aa-c790f2652c93",
+      "kind": "configuration",
+      "occurred_at": "2026-10-19T05:09:18.001475Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "transcoder",
+        "namespace": "media-pipeline"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:09:18.002528Z",
+      "details": {
+        "key": "max_batch_items",
+        "previous_value": 64,
+        "runtime_id": "process-15782251-5a80-4d8e-b97f-b76b1ef72d5b",
+        "value": 128
+      },
+      "id": "dc519917-1c06-4a1e-9cbd-fdb93791cd4a",
+      "kind": "configuration",
+      "occurred_at": "2026-10-19T05:09:18.002519Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "uploader",
+        "namespace": "media-pipeline"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:10:20.011688Z",
+      "details": {
+        "key": "max_batch_items",
+        "previous_value": 1,
+        "runtime_id": "process-ac6ed5b4-dc97-4ddb-80ff-8a6df867fd57",
+        "value": 64
+      },
+      "id": "98a424a6-fde3-4d7c-a8c7-2f8e615f0db7",
+      "kind": "configuration",
+      "occurred_at": "2026-10-19T05:10:20.011680Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "transcoder",
+        "namespace": "media-pipeline"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    },
+    {
+      "available_at": "2026-10-19T05:10:40.011863Z",
+      "details": {
+        "summary": "Observed 180 failed business operations among 180 completed operations in the change window. Recovery observed 0 failures among 60 operations. These are local controlled measurements, not a causal attribution or production incident.",
+        "title": "Media Works capture 2 observed outcomes"
+      },
+      "id": "293f9674-4ea8-41bf-b154-7c749aa438c8",
+      "kind": "incident_note",
+      "occurred_at": "2026-10-19T05:10:40.011856Z",
+      "service": {
+        "environment": "operational-lab",
+        "name": "uploader",
+        "namespace": "media-pipeline"
+      },
+      "source": "tracecause operational-lab process supervisor receipt v1"
+    }
+  ],
+  "schema_version": "1.0",
+  "topology": "asynchronous-queue"
+}
