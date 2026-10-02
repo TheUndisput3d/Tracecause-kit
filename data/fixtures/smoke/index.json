@@ -1,0 +1,11 @@
+{
+  "episodes": [
+    {
+      "episode_id": "0eeb41fb-4596-588e-8a2d-e6ba464fbf29",
+      "manifest_hash": "505f8d4259ad3434b43961833c1bd47f108c646a81088f91a5ac28f6bd8cee6f",
+      "source_hash": "4d231d7e8d3f01c8640da09615d821a0845b73ecaca518a218ca789bf0d037e9"
+    }
+  ],
+  "origin": "synthetic",
+  "schema_version": "1.0"
+}

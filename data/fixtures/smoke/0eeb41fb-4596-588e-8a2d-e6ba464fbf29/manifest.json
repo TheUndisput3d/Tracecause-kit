@@ -1,0 +1,26 @@
+{
+  "availability_recorded": false,
+  "baseline_interval": {
+    "end": "2026-01-01T00:00:40Z",
+    "start": "2026-01-01T00:00:00Z"
+  },
+  "display_name": "Episode 0eeb41fb",
+  "episode_id": "0eeb41fb-4596-588e-8a2d-e6ba464fbf29",
+  "event_interval": {
+    "end": "2026-01-01T00:01:20Z",
+    "start": "2026-01-01T00:00:00Z"
+  },
+  "origin": "synthetic",
+  "public_notes": "Synthetic trace fixture for parser and evaluation protocol development.",
+  "schema_version": "1.0",
+  "sources": [
+    {
+      "bytes": 34784,
+      "kind": "otlp_jsonl",
+      "logical_name": "traces.jsonl",
+      "published_at": null,
+      "sha256": "4d231d7e8d3f01c8640da09615d821a0845b73ecaca518a218ca789bf0d037e9"
+    }
+  ],
+  "workspace_id": "00000000-0000-4000-8000-000000000001"
+}

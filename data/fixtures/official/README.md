@@ -1,0 +1,3 @@
+# OTLP/JSON conformance fixture
+
+`trace.json` is the unmodified OpenTelemetry Protocol [official trace JSON example](https://github.com/open-telemetry/opentelemetry-proto/blob/4af62f3bdd60ebc5751ee0a571b7503b769479cf/examples/trace.json), pinned to upstream commit `4af62f3bdd60ebc5751ee0a571b7503b769479cf` and retrieved on 2026-10-10. SHA-256: `f8f2870852b247f734a53ca7f022d4d942bd29732df54440494948af181bd373`. The upstream repository provides its [Apache-2.0 license](https://github.com/open-telemetry/opentelemetry-proto/blob/4af62f3bdd60ebc5751ee0a571b7503b769479cf/LICENSE). It is used for parser conformance tests and is not a captured incident.

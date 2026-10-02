@@ -1,0 +1,27 @@
+{
+  "status": "developer-authored draft; independent review pending",
+  "labels": {
+    "0": "irrelevant",
+    "1": "useful context",
+    "2": "directly supports diagnostic question"
+  },
+  "cases": [
+    {
+      "query": "How should checkout distinguish a payment error from an upstream timeout?",
+      "judgments": [
+        {"evidence_id": "chunk:6548f707-f7e6-5a12-8538-80416bd7e56b", "label": 2, "reason": "asks to compare payment SERVER and checkout CLIENT status on matched traces"},
+        {"evidence_id": "chunk:5cead604-f905-51d0-a2b7-884c754e30e5", "label": 1, "reason": "describes the two observed symptom forms"},
+        {"evidence_id": "chunk:6eac1489-bd49-54ba-8845-9fcb3319ac67", "label": 1, "reason": "offers a general checkout duration and status check"},
+        {"evidence_id": "chunk:acec829e-a921-5bb7-aecd-577240726121", "label": 0, "reason": "catalog request counts do not answer this payment distinction"}
+      ]
+    },
+    {
+      "query": "Which evidence should be compared for inventory latency?",
+      "judgments": [
+        {"evidence_id": "chunk:69d0c77c-7f63-5725-a290-ebdd601c12cd", "label": 2, "reason": "directly names inventory SERVER p50, p95, baseline and call support"},
+        {"evidence_id": "chunk:65a43831-82f4-58f6-b9ea-a473f2ba7c19", "label": 1, "reason": "describes a delayed inventory response symptom"},
+        {"evidence_id": "chunk:6548f707-f7e6-5a12-8538-80416bd7e56b", "label": 0, "reason": "payment status comparison is unrelated to inventory latency"}
+      ]
+    }
+  ]
+}
