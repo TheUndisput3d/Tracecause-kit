@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "review_status": "author-reviewed demo annotations; independent human review pending",
+  "services": [
+    {"service_key": "demo-payment", "namespace": "minishop", "environment": "demo", "name": "payment"},
+    {"service_key": "stage-payment", "namespace": "minishop", "environment": "staging", "name": "payment"},
+    {"service_key": "demo-checkout", "namespace": "minishop", "environment": "demo", "name": "checkout"},
+    {"service_key": "demo-storefront", "namespace": "minishop", "environment": "demo", "name": "storefront"},
+    {"service_key": "demo-inventory", "namespace": "minishop", "environment": "demo", "name": "inventory"}
+  ],
+  "cases": [
+    {"text": "payment returned an error", "mention": "payment", "expected_status": "ambiguous", "expected_service_key": null},
+    {"text": "pay-gateway returned an error", "mention": "pay-gateway", "curated_alias": {"alias": "pay-gateway", "namespace": "minishop", "environment": "demo", "name": "payment"}, "expected_status": "accepted", "expected_service_key": "demo-payment"},
+    {"text": "checkout called payment", "mention": "checkout", "expected_status": "accepted", "expected_service_key": "demo-checkout"},
+    {"text": "checkout called payment", "mention": "payment", "expected_status": "ambiguous", "expected_service_key": null},
+    {"text": "storefront completed", "mention": "storefront", "expected_status": "accepted", "expected_service_key": "demo-storefront"},
+    {"text": "inventory completed", "mention": "inventory", "expected_status": "accepted", "expected_service_key": "demo-inventory"},
+    {"text": "the paymentgateway adapter was slow", "mention": "paymentgateway", "expected_status": "no_link", "expected_service_key": null},
+    {"text": "the payments system was slow", "mention": "payments", "expected_status": "unresolved", "expected_service_key": null},
+    {"text": "an order was placed", "mention": "order", "expected_status": "no_link", "expected_service_key": null},
+    {"text": "inventory-checkout is a combined label", "mention": "inventory-checkout", "expected_status": "no_link", "expected_service_key": null},
+    {"text": "payment and checkout were healthy", "mention": "checkout", "expected_status": "accepted", "expected_service_key": "demo-checkout"},
+    {"text": "payment and checkout were healthy", "mention": "payment", "expected_status": "ambiguous", "expected_service_key": null}
+  ]
+}
