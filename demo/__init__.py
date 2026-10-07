@@ -1,0 +1,1 @@
+"""Separate local demo applications."""
