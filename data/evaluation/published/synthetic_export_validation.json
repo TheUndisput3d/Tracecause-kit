@@ -1,0 +1,8 @@
+{
+  "idempotent_bytes": true,
+  "publication_status": "local_unpublished",
+  "report_id": "8574b985-f4d2-5e45-b901-93b66bf30fa0",
+  "report_sha256": "9dac352c745730913caa4fe71a63ab4fb26aa81d4a5a8ec093b30d98748fd257",
+  "sample_size": 120,
+  "schema_valid": true
+}

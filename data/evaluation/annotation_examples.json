@@ -1,0 +1,45 @@
+{
+  "status": "draft_requires_independent_human_review",
+  "authorship": "implementation-authored examples; not human-verified gold",
+  "episode_id": "0eeb41fb-4596-588e-8a2d-e6ba464fbf29",
+  "split": "train",
+  "cutoff": "2026-01-01T00:01:20Z",
+  "source_hash": "4d231d7e8d3f01c8640da09615d821a0845b73ecaca518a218ca789bf0d037e9",
+  "reviewer": null,
+  "examples": [
+    {
+      "question_id": "draft-smoke-direct-001",
+      "category": "direct_fault_location",
+      "question": "Which service shows new server errors after the baseline?",
+      "answerability": "answerable",
+      "accepted_targets": ["payment"],
+      "identifiable": true,
+      "evidence_judgments": [
+        {
+          "trace_id": "b723c3e90b89dc200575d7d215b7b60f",
+          "span_id": "f38144c26808f1f0",
+          "relevance_grade": 2,
+          "rationale": "Payment SERVER span has error status after the baseline; compare with baseline and another post-baseline trace before accepting the conclusion."
+        },
+        {
+          "trace_id": "7aa0e273cc63fc959e0e64136d8e3fc1",
+          "span_id": "5be7cdb92c7beb24",
+          "relevance_grade": 2,
+          "rationale": "A second payment SERVER error supports a repeated post-baseline symptom."
+        }
+      ],
+      "review_status": "draft_requires_independent_human_review"
+    },
+    {
+      "question_id": "draft-smoke-unanswerable-001",
+      "category": "unanswerable",
+      "question": "Did an external payment processor have an outage?",
+      "answerability": "unanswerable_from_available_telemetry",
+      "accepted_targets": [],
+      "identifiable": false,
+      "evidence_judgments": [],
+      "rationale": "The fixture contains no external processor telemetry; a local payment error cannot establish an external outage.",
+      "review_status": "draft_requires_independent_human_review"
+    }
+  ]
+}

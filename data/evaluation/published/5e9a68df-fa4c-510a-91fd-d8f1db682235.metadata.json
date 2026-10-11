@@ -1,0 +1,18 @@
+{
+  "completion_sha256": "e09e6572ee8aa620d4d218f6980dee73c027988cce68ea0f63bcfc39723fb9c1",
+  "generation_origin": "template",
+  "independent_human_review": false,
+  "limitations": [
+    "Controlled demonstration data, not production validation.",
+    "AI review by the implementation assistant, not independent human review.",
+    "Candidate ranking, exposed hypotheses and answer coverage are distinct.",
+    "Null metrics have no eligible denominator; zero is not substituted.",
+    "Five canonical systems only; full offline reports contain other diagnostics.",
+    "Template generation; no local language-model quality is measured."
+  ],
+  "metrics_sha256": "72b282cb552e075c0f1f65d0a9feb58439d89ef5183c1fd4fb4fe4aa65b3a17b",
+  "origin": "captured_demo",
+  "publication_status": "local_unpublished",
+  "report_id": "5e9a68df-fa4c-510a-91fd-d8f1db682235",
+  "review_origin": "ai"
+}
