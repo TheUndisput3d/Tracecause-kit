@@ -1,0 +1,22 @@
+ARG NODE_IMAGE
+ARG CADDY_IMAGE
+FROM ${NODE_IMAGE} AS build
+WORKDIR /app/apps/web
+COPY apps/web/package.json apps/web/package-lock.json ./
+RUN npm ci
+COPY apps/web ./
+COPY docs /app/docs
+RUN npm run build
+
+FROM ${CADDY_IMAGE} AS runtime
+RUN setcap -r /usr/bin/caddy \
+    && addgroup -g 10001 app && adduser -D -u 10001 -G app app \
+    && mkdir -p /srv /data /config && chown -R 10001:10001 /srv /data /config
+COPY --from=build --chown=10001:10001 /app/apps/web/dist /srv
+COPY Caddyfile /etc/caddy/Caddyfile
+ARG VCS_REF=unversioned
+ARG RELEASE_VERSION=local
+LABEL org.opencontainers.image.revision=$VCS_REF org.opencontainers.image.version=$RELEASE_VERSION
+USER 10001:10001
+EXPOSE 8080
+CMD ["caddy", "run", "--config", "/etc/caddy/Caddyfile", "--adapter", "caddyfile"]

@@ -1,0 +1,38 @@
+ARG PYTHON_IMAGE
+ARG UV_IMAGE
+FROM ${UV_IMAGE} AS uvbin
+FROM ${PYTHON_IMAGE} AS build
+COPY --from=uvbin /uv /uvx /bin/
+WORKDIR /app
+ENV UV_LINK_MODE=copy UV_COMPILE_BYTECODE=1
+COPY pyproject.toml uv.lock ./
+RUN uv sync --frozen --no-dev --group ml --no-install-project
+COPY README.md ./
+COPY src ./src
+RUN uv sync --frozen --no-dev --group ml --no-editable
+
+FROM ${PYTHON_IMAGE} AS runtime
+WORKDIR /app
+RUN groupadd --gid 10001 app && useradd --uid 10001 --gid 10001 --create-home app \
+    && mkdir -p /var/lib/tracecause/artifacts /var/lib/tracecause/staging \
+    && chown -R 10001:10001 /var/lib/tracecause
+COPY --from=build --chown=10001:10001 /app/.venv /app/.venv
+ARG VCS_REF=unversioned
+ARG RELEASE_VERSION=local
+LABEL org.opencontainers.image.revision=$VCS_REF org.opencontainers.image.version=$RELEASE_VERSION
+COPY --chown=10001:10001 configs ./configs
+COPY --chown=10001:10001 prompts/runtime ./prompts/runtime
+COPY --chown=10001:10001 models/candidate-logistic-v3 ./models/candidate-logistic-v3
+COPY --chown=10001:10001 models/candidate-logistic-v4 ./models/candidate-logistic-v4
+COPY --chown=10001:10001 alembic.ini ./alembic.ini
+COPY --chown=10001:10001 migrations/postgres ./migrations/postgres
+COPY --chown=10001:10001 data/demo ./data/demo
+COPY --chown=10001:10001 data/runbooks/demo ./data/runbooks/demo
+COPY --chown=10001:10001 data/evaluation/published ./data/evaluation/published
+COPY --chown=10001:10001 data/operational-lab/episodes ./data/operational-lab/episodes
+COPY --chown=10001:10001 data/operational-lab/index.json ./data/operational-lab/index.json
+ENV PATH=/app/.venv/bin:$PATH PYTHONUNBUFFERED=1 PYTHONDONTWRITEBYTECODE=1 HF_HOME=/var/cache/huggingface HF_HUB_OFFLINE=1
+USER 10001:10001
+HEALTHCHECK --interval=15s --timeout=5s --start-period=30s CMD ["python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health/ready', timeout=3)"]
+EXPOSE 8000
+CMD ["uvicorn", "tracecause.api.main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "1"]
