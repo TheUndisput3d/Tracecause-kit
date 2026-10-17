@@ -1,0 +1,16 @@
+ARG NODE_IMAGE
+ARG CADDY_IMAGE
+FROM ${NODE_IMAGE} AS build
+WORKDIR /web
+COPY apps/web/package.json apps/web/package-lock.json ./
+RUN npm ci
+COPY apps/web ./
+RUN npm run build
+FROM ${CADDY_IMAGE} AS runtime
+# Select the Alpine Caddy variant; verify these commands in phase 00.
+RUN addgroup -g 10001 app && adduser -D -u 10001 -G app app     && mkdir -p /srv /data /config     && chown -R 10001:10001 /srv /data /config
+COPY --from=build --chown=10001:10001 /web/dist /srv
+COPY Caddyfile /etc/caddy/Caddyfile
+USER 10001:10001
+EXPOSE 8080
+CMD ["caddy", "run", "--config", "/etc/caddy/Caddyfile", "--adapter", "caddyfile"]

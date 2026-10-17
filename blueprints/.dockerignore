@@ -1,0 +1,15 @@
+.git
+.env
+.env.*
+.secrets
+.venv
+**/node_modules
+**/__pycache__
+data/gold
+data/captured
+data/raw
+reports
+artifacts
+models
+*.zip
+*.docx

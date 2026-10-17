@@ -1,0 +1,8 @@
+# Container-only database access. Use with compose.yaml; never as a host dev override.
+services:
+  postgres:
+    ports: !reset []
+    networks: !override [data_net]
+  neo4j:
+    ports: !reset []
+    networks: !override [data_net]

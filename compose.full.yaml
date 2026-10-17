@@ -1,0 +1,400 @@
+# Complete local operator stack: docker compose -f compose.full.yaml up --build -d
+# Startup jobs must succeed before web/API/worker become available.
+name: tracecause-full
+
+x-app-env: &app-env
+  TRACECAUSE_PG_HOST: postgres
+  TRACECAUSE_PG_PORT: '5432'
+  TRACECAUSE_PG_DATABASE: tracecause
+  TRACECAUSE_PG_USER: tracecause_app
+  TRACECAUSE_PG_PASSWORD_FILE: /run/secrets/postgres_password
+  TRACECAUSE_NEO4J_URI: bolt://neo4j:7687
+  TRACECAUSE_NEO4J_AUTH_FILE: /run/secrets/neo4j_auth
+  TRACECAUSE_OPERATOR_TOKEN_FILE: /run/secrets/operator_token
+  TRACECAUSE_ARTIFACT_ROOT: /var/lib/tracecause/artifacts
+  TRACECAUSE_STAGING_ROOT: /var/lib/tracecause/staging
+  TRACECAUSE_GENERATION_PROVIDER: ollama
+  TRACECAUSE_PUBLIC_READ_ONLY: 'false'
+  TRACECAUSE_ENABLE_LOCAL_MODEL: 'true'
+  TRACECAUSE_OLLAMA_MODEL_DIGEST: sha256:0edcdef34593eac1aa2be9c7d06c432dcf81945adca5eca2f27662c18f168ba0
+  TRACECAUSE_OLLAMA_URL: http://ollama:11434
+  TRACECAUSE_OLLAMA_MODEL: ${OLLAMA_MODEL:-qwen3:4b-instruct-2507-q4_K_M}
+  TRACECAUSE_EMBEDDING_MODEL: ${EMBEDDING_MODEL:-sentence-transformers/all-MiniLM-L6-v2}
+  TRACECAUSE_EMBEDDING_REVISION: 1110a243fdf4706b3f48f1d95db1a4f5529b4d41
+  HF_HOME: /var/cache/huggingface
+  HF_HUB_OFFLINE: '1'
+  TRANSFORMERS_OFFLINE: '1'
+  OMP_NUM_THREADS: '1'
+  OPENBLAS_NUM_THREADS: '1'
+  TOKENIZERS_PARALLELISM: 'false'
+
+x-app: &app
+  image: tracecause-full-backend:${FULL_IMAGE_TAG:-local}
+  build:
+    context: .
+    dockerfile: Dockerfile.backend
+    args:
+      PYTHON_IMAGE: python:3.12.15-slim-bookworm@sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258
+      UV_IMAGE: ghcr.io/astral-sh/uv:0.11.19@sha256:b46b03ddfcfbf8f547af7e9eaefdf8a39c8cebcba7c98858d3162bd28cf536f6
+      VCS_REF: ${FULL_VCS_REF:-local-worktree}
+      RELEASE_VERSION: ${FULL_IMAGE_TAG:-local}
+  environment: *app-env
+  user: 10001:10001
+  init: true
+  read_only: true
+  tmpfs:
+  - /tmp
+  cap_drop:
+  - ALL
+  security_opt:
+  - no-new-privileges:true
+  networks:
+  - app_net
+  - data_net
+  logging:
+    driver: json-file
+    options:
+      max-size: 10m
+      max-file: '3'
+
+services:
+
+  postgres:
+    image: postgres:17.11-bookworm@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826
+    environment:
+      POSTGRES_DB: tracecause
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD_FILE: /run/admin-secrets/postgres_admin_password
+    volumes:
+    - pg_data:/var/lib/postgresql/data
+    - ./docker/postgres/001-app-user.sh:/docker-entrypoint-initdb.d/001-app-user.sh:ro
+    - app_secrets:/run/secrets:ro
+    - admin_secrets:/run/admin-secrets:ro
+    networks:
+    - data_net
+    healthcheck:
+      test:
+      - CMD-SHELL
+      - pg_isready -U postgres -d tracecause
+      interval: 5s
+      timeout: 3s
+      retries: 20
+      start_period: 20s
+    mem_limit: 768m
+    cpus: 1.0
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: '3'
+    restart: unless-stopped
+    depends_on:
+      bootstrap:
+        condition: service_completed_successfully
+
+  neo4j:
+    image: neo4j:2026.09.0-community-trixie@sha256:6f3f17e72d69bb6f26b03f6186f5afb15a201f8b460bb69b0cd8030717f9f01a
+    environment:
+      NEO4J_AUTH_FILE: /run/secrets/neo4j_auth
+      NEO4J_server_memory_heap_initial__size: 768m
+      NEO4J_server_memory_heap_max__size: 768m
+      NEO4J_server_memory_pagecache_size: 512m
+    volumes:
+    - neo4j_data:/data
+    - neo4j_logs:/logs
+    - app_secrets:/run/secrets:ro
+    networks:
+    - data_net
+    healthcheck:
+      test:
+      - CMD-SHELL
+      - auth=$$(cat /run/secrets/neo4j_auth); cypher-shell -u "$${auth%%/*}" -p "$${auth#*/}" "RETURN 1" >/dev/null
+      interval: 10s
+      timeout: 8s
+      retries: 20
+      start_period: 45s
+    mem_limit: 2g
+    cpus: 1.5
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: '3'
+    restart: unless-stopped
+    depends_on:
+      bootstrap:
+        condition: service_completed_successfully
+
+  api:
+    <<: *app
+    command:
+    - uvicorn
+    - tracecause.api.main:app
+    - --host
+    - 0.0.0.0
+    - --port
+    - '8000'
+    - --workers
+    - '1'
+    volumes:
+    - artifacts:/var/lib/tracecause/artifacts:ro
+    - staging:/var/lib/tracecause/staging
+    - hf_cache:/var/cache/huggingface:ro
+    - app_secrets:/run/secrets:ro
+    depends_on:
+      postgres:
+        condition: service_healthy
+      neo4j:
+        condition: service_healthy
+      seed:
+        condition: service_completed_successfully
+      ollama:
+        condition: service_healthy
+    healthcheck:
+      test:
+      - CMD
+      - python
+      - -c
+      - import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health/ready', timeout=2)
+      interval: 10s
+      timeout: 4s
+      retries: 10
+      start_period: 20s
+    mem_limit: 768m
+    cpus: 1.0
+    restart: unless-stopped
+
+  worker:
+    <<: *app
+    command:
+    - python
+    - -m
+    - tracecause.jobs.api_worker
+    volumes:
+    - artifacts:/var/lib/tracecause/artifacts
+    - staging:/var/lib/tracecause/staging
+    - hf_cache:/var/cache/huggingface:ro
+    - app_secrets:/run/secrets:ro
+    depends_on:
+      postgres:
+        condition: service_healthy
+      neo4j:
+        condition: service_healthy
+      seed:
+        condition: service_completed_successfully
+      ollama:
+        condition: service_healthy
+    healthcheck:
+      test:
+      - CMD
+      - python
+      - -m
+      - tracecause.operations
+      - worker-health
+      interval: 10s
+      timeout: 4s
+      retries: 6
+      start_period: 30s
+    stop_grace_period: 210s
+    mem_limit: 2g
+    cpus: 2.0
+    restart: unless-stopped
+
+  web:
+    environment:
+      SITE_ADDRESS: ${SITE_ADDRESS:-:8080}
+      TLS_CONFIG: ${TLS_CONFIG:-}
+      WEB_HEALTH_URL: ${WEB_HEALTH_URL:-http://127.0.0.1:8080/health/live}
+    healthcheck:
+      test:
+      - CMD-SHELL
+      - wget --spider --no-check-certificate -q "$${WEB_HEALTH_URL}"
+      interval: 10s
+      timeout: 4s
+      retries: 10
+      start_period: 20s
+    image: tracecause-full-web:${FULL_IMAGE_TAG:-local}
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+      args:
+        NODE_IMAGE: node:24.21.0-bookworm-slim@sha256:d6aa754f16b3197301076f047b5def2f02ea1dbbc2ca920407d46d7ec7f87b20
+        CADDY_IMAGE: caddy:2.11.7-alpine@sha256:d8542f48d34a9cf4e4c11a478865229840e87e4c96ea3f439101f31a5d35f75f
+        VCS_REF: ${FULL_VCS_REF:-local-worktree}
+        RELEASE_VERSION: ${FULL_IMAGE_TAG:-local}
+    user: 10001:10001
+    read_only: true
+    tmpfs:
+    - /tmp
+    cap_drop:
+    - ALL
+    security_opt:
+    - no-new-privileges:true
+    ports:
+    - 127.0.0.1:${FULL_WEB_PORT:-14000}:8080
+    networks:
+    - app_net
+    volumes:
+    - caddy_data:/data
+    - caddy_config:/config
+    depends_on:
+      api:
+        condition: service_healthy
+      worker:
+        condition: service_healthy
+    mem_limit: 128m
+    cpus: 0.5
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: '3'
+    restart: unless-stopped
+
+  ollama:
+    image: ollama/ollama:0.40.2@sha256:b86366bb528bbf7f1424435d165028497a5b69bf6ddb4fa5a87102e2b79f44fb
+    environment:
+      OLLAMA_HOST: 0.0.0.0:11434
+      OLLAMA_NO_CLOUD: '1'
+      OLLAMA_NUM_PARALLEL: '1'
+      OLLAMA_MAX_LOADED_MODELS: '1'
+      OLLAMA_MAX_QUEUE: '1'
+      OLLAMA_CONTEXT_LENGTH: '8192'
+    networks:
+    - app_net
+    volumes:
+    - ollama_models:/root/.ollama
+    healthcheck:
+      test:
+      - CMD
+      - ollama
+      - list
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    mem_limit: 6g
+    cpus: ${FULL_OLLAMA_CPUS:-8.0}
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: '3'
+    restart: unless-stopped
+
+  migrate:
+    <<: *app
+    environment:
+      <<: *app-env
+      TRACECAUSE_PG_USER: postgres
+      TRACECAUSE_PG_PASSWORD_FILE: /run/admin-secrets/postgres_admin_password
+    command:
+    - python
+    - -m
+    - tracecause.operations
+    - migrate
+    depends_on:
+      postgres:
+        condition: service_healthy
+      neo4j:
+        condition: service_healthy
+    restart: 'no'
+    volumes:
+    - app_secrets:/run/secrets:ro
+    - admin_secrets:/run/admin-secrets:ro
+    - artifacts:/var/lib/tracecause/artifacts
+    - staging:/var/lib/tracecause/staging
+    healthcheck:
+      disable: true
+
+  seed:
+    <<: *app
+    command:
+    - python
+    - -m
+    - tracecause.full_stack
+    - seed
+    volumes:
+    - artifacts:/var/lib/tracecause/artifacts
+    - staging:/var/lib/tracecause/staging
+    - hf_cache:/var/cache/huggingface:ro
+    - app_secrets:/run/secrets:ro
+    restart: 'no'
+    healthcheck:
+      disable: true
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      models:
+        condition: service_completed_successfully
+    mem_limit: 2g
+    cpus: 2.0
+
+  models:
+    <<: *app
+    environment:
+      <<: *app-env
+      HF_HUB_OFFLINE: '0'
+      TRANSFORMERS_OFFLINE: '0'
+    command:
+    - python
+    - -m
+    - tracecause.full_stack
+    - models
+    volumes:
+    - hf_cache:/var/cache/huggingface
+    - app_secrets:/run/secrets:ro
+    - artifacts:/var/lib/tracecause/artifacts
+    restart: 'no'
+    healthcheck:
+      disable: true
+    depends_on:
+      bootstrap:
+        condition: service_completed_successfully
+      ollama:
+        condition: service_healthy
+    mem_limit: 2g
+    cpus: 2.0
+
+  bootstrap:
+    image: python:3.12.15-slim-bookworm@sha256:34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258
+    user: 0:0
+    network_mode: none
+    read_only: true
+    cap_drop:
+    - ALL
+    cap_add:
+    - CHOWN
+    - FOWNER
+    - DAC_OVERRIDE
+    security_opt:
+    - no-new-privileges:true
+    command:
+    - python
+    - /bootstrap/init.py
+    volumes:
+    - ./docker/full/init.py:/bootstrap/init.py:ro
+    - app_secrets:/run/secrets
+    - admin_secrets:/run/admin-secrets
+    - artifacts:/var/lib/tracecause/artifacts
+    - staging:/var/lib/tracecause/staging
+    - hf_cache:/var/cache/huggingface
+    restart: 'no'
+    mem_limit: 128m
+    cpus: 0.5
+
+networks:
+  app_net: {}
+  data_net:
+    internal: true
+volumes:
+  pg_data: {}
+  neo4j_data: {}
+  neo4j_logs: {}
+  artifacts: {}
+  staging: {}
+  hf_cache: {}
+  ollama_models: {}
+  caddy_data: {}
+  caddy_config: {}
+  app_secrets: {}
+  admin_secrets: {}

@@ -1,0 +1,100 @@
+name: tracecause
+services:
+  postgres:
+    image: ${POSTGRES_IMAGE:?Set POSTGRES_IMAGE from .env.example}
+    environment:
+      POSTGRES_DB: tracecause
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD_FILE: /run/secrets/postgres_admin_password
+    secrets: [postgres_admin_password, postgres_password]
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+      - ./docker/postgres/001-app-user.sh:/docker-entrypoint-initdb.d/001-app-user.sh:ro
+    networks: [data_net, dev_net]
+    ports: ["127.0.0.1:${LOCAL_PG_PORT:-15432}:5432"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d tracecause"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+      start_period: 20s
+    restart: unless-stopped
+  neo4j:
+    image: ${NEO4J_IMAGE:?Set NEO4J_IMAGE from .env.example}
+    environment:
+      NEO4J_AUTH_FILE: /run/secrets/neo4j_auth
+      NEO4J_server_memory_heap_initial__size: 512m
+      NEO4J_server_memory_heap_max__size: 512m
+      NEO4J_server_memory_pagecache_size: 256m
+    secrets: [neo4j_auth]
+    volumes:
+      - neo4j_data:/data
+      - neo4j_logs:/logs
+    networks: [data_net, dev_net]
+    ports: ["127.0.0.1:${LOCAL_NEO4J_BOLT_PORT:-17687}:7687"]
+    healthcheck:
+      test: ["CMD-SHELL", "auth=$$(cat /run/secrets/neo4j_auth); cypher-shell -u \"$${auth%%/*}\" -p \"$${auth#*/}\" 'RETURN 1' >/dev/null"]
+      interval: 10s
+      timeout: 8s
+      retries: 20
+      start_period: 45s
+    restart: unless-stopped
+  worker:
+    image: tracecause-backend:phase00
+    command:
+      - tracecause
+      - worker
+      - run
+      - --db-host
+      - postgres
+      - --db-port
+      - "5432"
+      - --db-name
+      - tracecause
+      - --db-user
+      - tracecause_app
+      - --password-file
+      - /run/secrets/postgres_password
+      - --artifact-root
+      - /var/lib/tracecause/artifacts
+    depends_on:
+      postgres: {condition: service_healthy}
+    secrets: [postgres_password]
+    volumes:
+      - artifact_data:/var/lib/tracecause/artifacts
+      - staging_data:/var/lib/tracecause/staging
+    networks: [data_net, dev_net]
+    restart: unless-stopped
+  ollama:
+    image: ${OLLAMA_IMAGE:?Set OLLAMA_IMAGE from .env.example}
+    profiles: [llm]
+    environment:
+      OLLAMA_HOST: 0.0.0.0:11434
+      OLLAMA_NO_CLOUD: "1"
+      OLLAMA_NUM_PARALLEL: "1"
+      OLLAMA_CONTEXT_LENGTH: "8192"
+    volumes:
+      - ollama_models:/root/.ollama
+    networks: [dev_net]
+    mem_limit: 6g
+    cpus: 4.0
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+networks:
+  data_net: {internal: true}
+  dev_net: {}
+volumes:
+  pg_data: {}
+  neo4j_data: {}
+  neo4j_logs: {}
+  artifact_data: {}
+  staging_data: {}
+  ollama_models: {}
+secrets:
+  postgres_admin_password: {file: ./.secrets/postgres_admin_password}
+  postgres_password: {file: ./.secrets/postgres_password}
+  neo4j_auth: {file: ./.secrets/neo4j_auth}

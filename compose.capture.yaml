@@ -1,0 +1,69 @@
+name: tracecause-capture
+services:
+  collector:
+    image: otel/opentelemetry-collector-contrib:0.162.0@sha256:39923a8e431bd1f57be82411999d389fcfe40857492e4365456d97a4c1f74be6
+    command: ["--config=/etc/otelcol-contrib/config.yaml"]
+    environment:
+      CAPTURE_FILE: /captures/${CAPTURE_EPISODE_FILE:-startup.jsonl}
+    volumes:
+      - ./configs/collector.capture.yaml:/etc/otelcol-contrib/config.yaml:ro
+      - ${CAPTURE_OUTPUT_ROOT:-./reports/capture/raw}:/captures:rw
+    networks: [capture_net]
+    restart: "no"
+  storefront:
+    image: tracecause-minishop:phase12
+    build:
+      context: .
+      dockerfile: Dockerfile.capture
+      args:
+        PYTHON_IMAGE: ${PYTHON_IMAGE:?Set PYTHON_IMAGE from .env}
+        UV_IMAGE: ${UV_IMAGE:?Set UV_IMAGE from .env}
+    environment:
+      SERVICE_ROLE: storefront
+      OTEL_EXPORTER_OTLP_TRACES_ENDPOINT: http://collector:4318/v1/traces
+    depends_on: [collector]
+    secrets: [capture_control_token]
+    networks: [capture_net, host_net]
+    ports: ["127.0.0.1:${CAPTURE_STOREFRONT_PORT:-18080}:8000"]
+    restart: "no"
+  checkout:
+    image: tracecause-minishop:phase12
+    environment:
+      SERVICE_ROLE: checkout
+      OTEL_EXPORTER_OTLP_TRACES_ENDPOINT: http://collector:4318/v1/traces
+    depends_on: [collector]
+    secrets: [capture_control_token]
+    networks: [capture_net]
+    restart: "no"
+  payment:
+    image: tracecause-minishop:phase12
+    environment:
+      SERVICE_ROLE: payment
+      OTEL_EXPORTER_OTLP_TRACES_ENDPOINT: http://collector:4318/v1/traces
+    depends_on: [collector]
+    secrets: [capture_control_token]
+    networks: [capture_net]
+    restart: "no"
+  catalog:
+    image: tracecause-minishop:phase12
+    environment:
+      SERVICE_ROLE: catalog
+      OTEL_EXPORTER_OTLP_TRACES_ENDPOINT: http://collector:4318/v1/traces
+    depends_on: [collector]
+    secrets: [capture_control_token]
+    networks: [capture_net]
+    restart: "no"
+  inventory:
+    image: tracecause-minishop:phase12
+    environment:
+      SERVICE_ROLE: inventory
+      OTEL_EXPORTER_OTLP_TRACES_ENDPOINT: http://collector:4318/v1/traces
+    depends_on: [collector]
+    secrets: [capture_control_token]
+    networks: [capture_net]
+    restart: "no"
+networks:
+  capture_net: {internal: true}
+  host_net: {}
+secrets:
+  capture_control_token: {file: ./.secrets/capture_control_token}

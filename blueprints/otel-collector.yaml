@@ -1,0 +1,25 @@
+# Capture-only reference. Validate with the pinned Collector distribution.
+receivers:
+  otlp:
+    protocols:
+      http:
+        endpoint: 0.0.0.0:4318
+processors:
+  memory_limiter:
+    check_interval: 1s
+    limit_mib: 256
+    spike_limit_mib: 64
+  batch:
+    timeout: 1s
+    send_batch_size: 256
+exporters:
+  file:
+    path: /captures/traces.jsonl
+    format: json
+    flush_interval: 1s
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [memory_limiter, batch]
+      exporters: [file]

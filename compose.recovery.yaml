@@ -1,0 +1,27 @@
+# Isolated graph for a restore drill. It does not join development networks.
+name: tracecause-recovery-v1
+services:
+  neo4j:
+    image: ${NEO4J_IMAGE:?Pinned image required}
+    environment:
+      NEO4J_AUTH_FILE: /run/secrets/neo4j_auth
+      NEO4J_server_memory_heap_initial__size: 256m
+      NEO4J_server_memory_heap_max__size: 512m
+      NEO4J_server_memory_pagecache_size: 128m
+    secrets: [neo4j_auth]
+    volumes: [recovery_graph:/data, recovery_logs:/logs]
+    ports: ["127.0.0.1:27687:7687"]
+    mem_limit: 1500m
+    cpus: 1.5
+    healthcheck:
+      test: ["CMD-SHELL", "auth=$$(cat /run/secrets/neo4j_auth); cypher-shell -u \"$${auth%%/*}\" -p \"$${auth#*/}\" 'RETURN 1' >/dev/null"]
+      interval: 5s
+      timeout: 8s
+      retries: 30
+      start_period: 30s
+secrets:
+  neo4j_auth:
+    file: ./.secrets/neo4j_auth
+volumes:
+  recovery_graph:
+  recovery_logs:

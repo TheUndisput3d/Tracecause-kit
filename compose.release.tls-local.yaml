@@ -1,0 +1,8 @@
+# Local TLS rehearsal only; no public bind or system trust-store changes.
+services:
+  web:
+    environment:
+      SITE_ADDRESS: https://localhost:8443
+      TLS_CONFIG: tls internal
+      WEB_HEALTH_URL: https://localhost:8443/health/live
+    ports: !override ["127.0.0.1:18443:8443"]
