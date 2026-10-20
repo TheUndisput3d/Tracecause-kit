@@ -1,0 +1,33 @@
+import { test, expect } from '@playwright/test'
+import { readFileSync, writeFileSync } from 'node:fs'
+import { resolve } from 'node:path'
+const root = resolve(import.meta.dirname,'../../..')
+const fixture = JSON.parse(readFileSync(resolve(root,'reports/phase15-dashboard/fixture.json'),'utf8'))
+const token = readFileSync(resolve(root,'reports/phase15-dashboard/operator_token'),'utf8').trim()
+test('actual pinned local Ollama browser investigation @local-llm',async ({ page, request }) => {
+  test.setTimeout(240000)
+  const capabilities = await (await request.get('/api/v1/config')).json()
+  expect(capabilities.generation_modes).toContain('ollama')
+  await page.goto('/episodes/' + fixture.episodes[0].episode_id)
+  await page.getByRole('button',{ name:'Connect operator' }).click()
+  await page.getByLabel('Operator token',{ exact:true }).fill(token)
+  await page.getByRole('button',{ name:'Connect',exact:true }).click()
+  await page.getByText('Investigation settings', { exact: true }).click()
+  await page.getByLabel('Retrieval method').selectOption('LEXICAL')
+  await page.getByLabel('Generation',{ exact:true }).selectOption('ollama')
+  await page.getByLabel('Investigation question').fill('Describe the recorded evidence and its limits. Browser verification ' + crypto.randomUUID())
+  const submission = page.waitForResponse((response) => response.url().endsWith('/api/v1/investigations') && response.request().method()==='POST')
+  await page.getByRole('button',{ name:'Run investigation',exact:true }).click()
+  const submitted = await (await submission).json()
+  await expect(page.getByRole('heading',{ name:'Investigation findings' })).toBeVisible({ timeout:210000 })
+  const view = await (await request.get('/api/v1/investigations/' + submitted.investigation_id)).json()
+  writeFileSync(resolve(root,process.env.TRACECAUSE_BROWSER_ARTIFACTS ?? 'reports/phase15-browser','local-llm-result.json'),JSON.stringify(view,null,2))
+  expect(view.result.generation_origin).toBe('ollama')
+  // The GET replays the newly persisted result; the unique question forced fresh generation.
+  expect(view.result.is_replayed).toBe(true)
+  expect(view.result.timings_ms.generation).toBeGreaterThan(0)
+  expect(view.result.usage.prompt_tokens).toBeGreaterThan(0)
+  expect(view.result.usage.output_tokens).toBeGreaterThan(0)
+  await page.getByRole('button',{ name:'Summary source 1',exact:true }).click()
+  await expect(page.getByRole('heading',{ name:'Source excerpt' })).toBeVisible()
+})
