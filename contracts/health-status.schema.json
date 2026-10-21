@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "generation_degraded": {
+      "default": false,
+      "title": "Generation Degraded",
+      "type": "boolean"
+    },
+    "status": {
+      "enum": [
+        "alive",
+        "ready",
+        "unavailable"
+      ],
+      "title": "Status",
+      "type": "string"
+    }
+  },
+  "required": [
+    "status"
+  ],
+  "title": "HealthStatus",
+  "type": "object"
+}

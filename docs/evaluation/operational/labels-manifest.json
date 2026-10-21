@@ -1,0 +1,44 @@
+{
+  "episodes": [
+    {
+      "episode_id": "5ff7a513-f40a-4275-b3d0-dae846cbbd99",
+      "original_private_truth_sha256": "d4b2ac500219d76bffbcc80e0755fe133695a15015aed3635d9df020e27710f4",
+      "published_truth_sha256": "e6da59df9cf29d9cb1545cf755b21441607299835667ef386cddbbbf05c95020",
+      "source_sha256": "d8f6bb61d12c7a2484837871d0dde44f6e1d6f1f64d500a2abbdfc39ef8a13b8"
+    },
+    {
+      "episode_id": "95812eb4-28b8-481a-a3de-a6f92a194b8d",
+      "original_private_truth_sha256": "e31972561127373e3bc7312c960f85316daa0cd7afacd64f605abec339df3056",
+      "published_truth_sha256": "3acebbe2d07e958204d99dbea396bbabbbd202a92172b81d05e10b7879ebe082",
+      "source_sha256": "2d73ebda6bf49566c0136ec764dfbaf23922cce0d1e55de14a21d4772cf5835a"
+    },
+    {
+      "episode_id": "d299b8b4-888b-473f-9bfd-b7b93b13910f",
+      "original_private_truth_sha256": "bdda3f29296c7123afd4cb0cb002739aa1655528a8526a2996e18b6506ba9810",
+      "published_truth_sha256": "467aa5e706b3a8c02deb9204172243fbc7fd9f6001ebe886643df4926e439055",
+      "source_sha256": "d3b6726e98665ef70f8b89ec3cb4d222d7f5252cb844cf7a1d032f228d85d481"
+    },
+    {
+      "episode_id": "b1a5371e-d1f0-400f-9fe6-0c15b8ce70fd",
+      "original_private_truth_sha256": "7d9f1b530790580e2940d584c76c75aeb7a92664db25e2fc6d5e6e89323c3213",
+      "published_truth_sha256": "934582a2722ae3e96e3eb7d382dce15c7285ca8c44e758e023f9aaa6af274c6f",
+      "source_sha256": "7ddd83d96d559ed933e756374b211845039fea27c63ef191c6e8fa9a00cee6e2"
+    },
+    {
+      "episode_id": "1e2dba64-0597-4058-93d8-b638b3f79f2f",
+      "original_private_truth_sha256": "1c4831ca9e0595e645760cf7e9e1f34bfbb43bd8dbae9311156e200257c394fb",
+      "published_truth_sha256": "a616b12c43009e96475b69f2db828b0bf181bf1403510a543f383f593e5bbf94",
+      "source_sha256": "69bd3d93d6ef3e702adca0ff8ce1664801329be0e1e527e1e4ad2eedaf72d1d3"
+    },
+    {
+      "episode_id": "94fc555d-b189-40ae-8a4b-8458691f0ad8",
+      "original_private_truth_sha256": "c50ddd389f660c5a94ec3bc8e38f9dd17590dca866eb8ba1be5baf440c13f4a5",
+      "published_truth_sha256": "1419b1b02e1ca937224271bb016e2a9b697c95a0652fe256bef1448e7552a6cb",
+      "source_sha256": "23d29e7242280e7d042e1bb044ade2b8a6e6f6ab4664165bedee085873a69c6c"
+    }
+  ],
+  "origin": "sanitized_offline_evaluation_labels",
+  "original_evaluation_uses_private_receipt_hashes": true,
+  "published_label_hashes_differ_by_design": true,
+  "schema_version": "1.0"
+}

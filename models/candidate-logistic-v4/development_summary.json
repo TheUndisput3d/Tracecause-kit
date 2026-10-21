@@ -1,0 +1,99 @@
+{
+  "comparisons": {
+    "captured_demo": {
+      "heuristic": {
+        "candidate_recall": 1.0,
+        "candidate_recalled": 5,
+        "conditional_hit_at_1": 0.2,
+        "conditional_hit_at_3": 1.0,
+        "conditional_mrr": 0.5,
+        "healthy_or_unidentifiable_episodes": 1,
+        "hit_at_1": 0.2,
+        "hit_at_3": 1.0,
+        "identifiable_episodes": 5,
+        "mrr": 0.5
+      },
+      "new_v4": {
+        "candidate_recall": 1.0,
+        "candidate_recalled": 5,
+        "conditional_hit_at_1": 1.0,
+        "conditional_hit_at_3": 1.0,
+        "conditional_mrr": 1.0,
+        "healthy_or_unidentifiable_episodes": 1,
+        "hit_at_1": 1.0,
+        "hit_at_3": 1.0,
+        "identifiable_episodes": 5,
+        "mrr": 1.0,
+        "threshold_answered": 5,
+        "threshold_correct": 5,
+        "threshold_false_alarm": 0
+      },
+      "old_v3": {
+        "candidate_recall": 1.0,
+        "candidate_recalled": 5,
+        "conditional_hit_at_1": 0.0,
+        "conditional_hit_at_3": 1.0,
+        "conditional_mrr": 0.5,
+        "healthy_or_unidentifiable_episodes": 1,
+        "hit_at_1": 0.0,
+        "hit_at_3": 1.0,
+        "identifiable_episodes": 5,
+        "mrr": 0.5,
+        "threshold_answered": 0,
+        "threshold_correct": 0,
+        "threshold_false_alarm": 0
+      }
+    },
+    "synthetic": {
+      "heuristic": {
+        "candidate_recall": 1.0,
+        "candidate_recalled": 10,
+        "conditional_hit_at_1": 0.4,
+        "conditional_hit_at_3": 0.6,
+        "conditional_mrr": 0.6,
+        "healthy_or_unidentifiable_episodes": 15,
+        "hit_at_1": 0.4,
+        "hit_at_3": 0.6,
+        "identifiable_episodes": 10,
+        "mrr": 0.6
+      },
+      "new_v4": {
+        "candidate_recall": 1.0,
+        "candidate_recalled": 10,
+        "conditional_hit_at_1": 0.8,
+        "conditional_hit_at_3": 1.0,
+        "conditional_mrr": 0.9,
+        "healthy_or_unidentifiable_episodes": 15,
+        "hit_at_1": 0.8,
+        "hit_at_3": 1.0,
+        "identifiable_episodes": 10,
+        "mrr": 0.9,
+        "threshold_answered": 5,
+        "threshold_correct": 5,
+        "threshold_false_alarm": 0
+      },
+      "old_v3": {
+        "candidate_recall": 1.0,
+        "candidate_recalled": 10,
+        "conditional_hit_at_1": 1.0,
+        "conditional_hit_at_3": 1.0,
+        "conditional_mrr": 1.0,
+        "healthy_or_unidentifiable_episodes": 15,
+        "hit_at_1": 1.0,
+        "hit_at_3": 1.0,
+        "identifiable_episodes": 10,
+        "mrr": 1.0,
+        "threshold_answered": 5,
+        "threshold_correct": 5,
+        "threshold_false_alarm": 0
+      }
+    }
+  },
+  "independent_human_review": false,
+  "model_sha256": "76b66e66d9c5686eecced3cd82751977f91b961740a3f5521ffe3448cda26811",
+  "review_origin": "ai",
+  "status": "development_experiment_not_held_out_test",
+  "test_used_for_fit_or_selection": false,
+  "training_episodes": 50,
+  "training_rows": 270
+}

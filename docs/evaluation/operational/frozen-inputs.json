@@ -1,0 +1,58 @@
+{
+  "candidate_budget": 24,
+  "declared_at": "2026-10-21T03:25:41.217115+00:00",
+  "index_sha256": "d5edd360eb9a0f4835fe40fef3d83de88c3103761798e6df161ec823aa928719",
+  "protocol_sha256": "0794ccd8b6ff3f352b35c99ad2db036362b5cbce75c3dbf90bc8e7aaa3b9e80e",
+  "queries": [
+    {
+      "analysis_cutoff": "2026-10-19T05:07:40.010635Z",
+      "episode_id": "5ff7a513-f40a-4275-b3d0-dae846cbbd99",
+      "healthy_cutoff": "2026-10-19T05:06:38.063968+00:00",
+      "symptom": "checkout",
+      "truth_sha256": "e6da59df9cf29d9cb1545cf755b21441607299835667ef386cddbbbf05c95020"
+    },
+    {
+      "analysis_cutoff": "2026-10-19T05:10:20.011021Z",
+      "episode_id": "95812eb4-28b8-481a-a3de-a6f92a194b8d",
+      "healthy_cutoff": "2026-10-19T05:09:18.001864+00:00",
+      "symptom": "checkout",
+      "truth_sha256": "3acebbe2d07e958204d99dbea396bbabbbd202a92172b81d05e10b7879ebe082"
+    },
+    {
+      "analysis_cutoff": "2026-10-19T05:07:40.010379Z",
+      "episode_id": "d299b8b4-888b-473f-9bfd-b7b93b13910f",
+      "healthy_cutoff": "2026-10-19T05:06:38.063811+00:00",
+      "symptom": "portal",
+      "truth_sha256": "467aa5e706b3a8c02deb9204172243fbc7fd9f6001ebe886643df4926e439055"
+    },
+    {
+      "analysis_cutoff": "2026-10-19T05:10:20.012005Z",
+      "episode_id": "b1a5371e-d1f0-400f-9fe6-0c15b8ce70fd",
+      "healthy_cutoff": "2026-10-19T05:09:18.001621+00:00",
+      "symptom": "portal",
+      "truth_sha256": "934582a2722ae3e96e3eb7d382dce15c7285ca8c44e758e023f9aaa6af274c6f"
+    },
+    {
+      "analysis_cutoff": "2026-10-19T05:07:40.010190Z",
+      "episode_id": "1e2dba64-0597-4058-93d8-b638b3f79f2f",
+      "healthy_cutoff": "2026-10-19T05:06:38.064131+00:00",
+      "symptom": "uploader",
+      "truth_sha256": "a616b12c43009e96475b69f2db828b0bf181bf1403510a543f383f593e5bbf94"
+    },
+    {
+      "analysis_cutoff": "2026-10-19T05:10:20.011289Z",
+      "episode_id": "94fc555d-b189-40ae-8a4b-8458691f0ad8",
+      "healthy_cutoff": "2026-10-19T05:09:18.001474+00:00",
+      "symptom": "uploader",
+      "truth_sha256": "1419b1b02e1ca937224271bb016e2a9b697c95a0652fe256bef1448e7552a6cb"
+    }
+  ],
+  "result_budget": 3,
+  "source_sha256": {
+    "scripts/evaluation/operational_capture.py": "8366f13fae104468f61e0d2bc0cb65624329c4833043ca423f06cee1847ec619",
+    "src/tracecause/operational/handoffs.py": "2312db8b171b1ca34385b0159f55d8794e5685ceae18d7d8617c23cffb1be979",
+    "src/tracecause/operational/reasoning.py": "6db208a4e90a2983b5021ecf782778abba23a9fc1b799a8789ab4228e31654db",
+    "src/tracecause/operational/reasoning_models.py": "bca762af48d8d2dc7fdf5dd141449a52daaecda57bd9923f5626c726126f54cc",
+    "src/tracecause/telemetry/signals.py": "4e976749cb3f09812df091a10bfc5eab7c9b763d8164ff8f5beff1ba58643f60"
+  }
+}

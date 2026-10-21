@@ -1,0 +1,443 @@
+{
+  "schema_version": 1,
+  "assembled_at": "2026-10-21T03:25:34.850Z",
+  "description": "Actual deployed browser recordings. No network interception, generated screen images or mocked product data. Videos show prior live runs; replaying media performs no new inference.",
+  "source_validation_note": "Browser inspection responses succeeded with HTTP200 and rendered source records. Artifact validation is performed by the application; this manifest does not claim an independent cryptographic source-content audit.",
+  "captures": {
+    "newsroom": {
+      "status": "PASS",
+      "base_url": "http://127.0.0.1:14000",
+      "captured_at": "2026-10-21T03:19:27.778Z",
+      "episode_id": "b1a5371e-d1f0-400f-9fe6-0c15b8ce70fd",
+      "scope": {
+        "episode_id": "b1a5371e-d1f0-400f-9fe6-0c15b8ce70fd",
+        "snapshot_id": "b7336185-1a7d-4bee-9a75-19cde49649fb",
+        "as_of": "2026-10-19T05:10:20.012000Z",
+        "temporal_mode": "event_time_replay"
+      },
+      "recording_script": "apps/web/scripts/operational-showcase.mjs",
+      "source_inspections": [
+        {
+          "path": "/api/v1/operations/evidence/operation%3A662b4601-e0f6-4fa6-9c71-1f5b0f0e92cc?episode_id=b1a5371e-d1f0-400f-9fe6-0c15b8ce70fd&snapshot_id=b7336185-1a7d-4bee-9a75-19cde49649fb&as_of=2026-10-19T05%3A10%3A20.012000Z&temporal_mode=event_time_replay",
+          "status": 200
+        },
+        {
+          "path": "/api/v1/operations/evidence/operation%3Ad7e2ba9d-2d2b-42c3-ac08-cb3e0ef5478b?episode_id=d299b8b4-888b-473f-9bfd-b7b93b13910f&snapshot_id=0ec00552-a4b5-46bd-982e-7c846cfc4f67&as_of=2026-10-19T05%3A08%3A00.347921Z&temporal_mode=event_time_replay",
+          "status": 200
+        },
+        {
+          "path": "/api/v1/evidence/observation%3A6a03f22c-639d-55fe-a4fb-f9d2e1f343da?snapshot_id=b7336185-1a7d-4bee-9a75-19cde49649fb&as_of=2026-10-19T05%3A10%3A20.012000Z&temporal_mode=event_time_replay",
+          "status": 200
+        }
+      ],
+      "accessibility": [
+        {
+          "width": 360,
+          "overflow": false,
+          "violations": []
+        },
+        {
+          "width": 768,
+          "overflow": false,
+          "violations": []
+        },
+        {
+          "width": 1440,
+          "overflow": false,
+          "violations": []
+        },
+        {
+          "view": "dark_operational_graph",
+          "violations": []
+        }
+      ],
+      "console_errors": [],
+      "operational_facts": 18,
+      "review_first": 6,
+      "signals": 10,
+      "relationship_rows": 65
+    },
+    "media": {
+      "status": "PASS",
+      "base_url": "http://127.0.0.1:14000",
+      "captured_at": "2026-10-21T03:24:08.941Z",
+      "episode_id": "94fc555d-b189-40ae-8a4b-8458691f0ad8",
+      "scope": {
+        "episode_id": "94fc555d-b189-40ae-8a4b-8458691f0ad8",
+        "snapshot_id": "f10e1e1c-337a-4c1b-99d0-18bf1742ca10",
+        "as_of": "2026-10-19T05:10:20.011000Z",
+        "temporal_mode": "event_time_replay"
+      },
+      "recording_script": "apps/web/scripts/operational-showcase.mjs",
+      "source_inspections": [
+        {
+          "path": "/api/v1/operations/evidence/operation%3A90830187-b1ca-4ead-a2aa-c790f2652c93?episode_id=94fc555d-b189-40ae-8a4b-8458691f0ad8&snapshot_id=f10e1e1c-337a-4c1b-99d0-18bf1742ca10&as_of=2026-10-19T05%3A10%3A20.011000Z&temporal_mode=event_time_replay",
+          "status": 200
+        },
+        {
+          "path": "/api/v1/operations/handoffs/handoff%3A2dbf0e8a-8e5c-53ed-8840-1b152c77ef28?episode_id=94fc555d-b189-40ae-8a4b-8458691f0ad8&snapshot_id=f10e1e1c-337a-4c1b-99d0-18bf1742ca10&as_of=2026-10-19T05%3A10%3A20.011000Z&temporal_mode=event_time_replay",
+          "status": 200
+        },
+        {
+          "path": "/api/v1/operations/evidence/operation%3A36f34830-7a94-4390-a993-fc3331d22336?episode_id=1e2dba64-0597-4058-93d8-b638b3f79f2f&snapshot_id=d62f0418-1278-4b05-874b-1b2995ec1c02&as_of=2026-10-19T05%3A08%3A00.327123Z&temporal_mode=event_time_replay",
+          "status": 200
+        },
+        {
+          "path": "/api/v1/evidence/observation%3A95f4b82e-76ff-571c-bbb1-3d193c2d2376?snapshot_id=f10e1e1c-337a-4c1b-99d0-18bf1742ca10&as_of=2026-10-19T05%3A10%3A20.011000Z&temporal_mode=event_time_replay",
+          "status": 200
+        }
+      ],
+      "accessibility": [
+        {
+          "view": "message_handoff_evidence",
+          "violations": []
+        },
+        {
+          "width": 360,
+          "overflow": false,
+          "violations": []
+        },
+        {
+          "width": 768,
+          "overflow": false,
+          "violations": []
+        },
+        {
+          "width": 1440,
+          "overflow": false,
+          "violations": []
+        },
+        {
+          "view": "dark_operational_graph",
+          "violations": []
+        }
+      ],
+      "console_errors": [],
+      "operational_facts": 22,
+      "review_first": 3,
+      "signals": 8,
+      "relationship_rows": 79
+    },
+    "ai": {
+      "status": "PASS",
+      "base_url": "http://127.0.0.1:14000",
+      "captured_at": "2026-10-21T03:20:45.760Z",
+      "episode_id": "95812eb4-28b8-481a-a3de-a6f92a194b8d",
+      "scope": {
+        "episode_id": "95812eb4-28b8-481a-a3de-a6f92a194b8d",
+        "snapshot_id": "e84e65fe-fdfa-4cc1-bf32-6adcea48f899",
+        "as_of": "2026-10-19T05:10:20.011000Z",
+        "temporal_mode": "event_time_replay"
+      },
+      "recording_script": "apps/web/scripts/ai-showcase.mjs",
+      "source_inspections": [
+        {
+          "path": "/api/v1/evidence/observation%3A009634ab-e9f7-568a-a5b4-411592b8efe0?snapshot_id=e84e65fe-fdfa-4cc1-bf32-6adcea48f899&as_of=2026-10-19T05%3A10%3A20.011000Z&temporal_mode=event_time_replay",
+          "status": 200
+        }
+      ],
+      "accessibility": [],
+      "console_errors": [],
+      "generation_origin": "ollama",
+      "fallback_reason": null,
+      "investigation_id": "4c683628-d680-4d3b-a838-038efccfdb6f",
+      "timings_ms": {
+        "generation": 36562.005,
+        "pipeline_before_publication": 50360.587,
+        "ranking_and_assembly": 2285.205,
+        "retrieval_and_corpus": 8754.176,
+        "signals": 311.43,
+        "total": 47936.064,
+        "validation": 2424.357
+      },
+      "evidence_count": 5,
+      "export_verified": true,
+      "job_states": [
+        {
+          "status": "QUEUED",
+          "phase": "queued"
+        },
+        {
+          "status": "RUNNING",
+          "phase": "investigating"
+        },
+        {
+          "status": "SUCCEEDED",
+          "phase": "published"
+        }
+      ]
+    }
+  },
+  "assets": [
+    {
+      "capture": "newsroom",
+      "file": "episode-library.png",
+      "bytes": 158774,
+      "sha256": "3b2ce23e995f48ce5bb0400f7b2e772666983fc2ed83136093d04e53bf410469",
+      "kind": "screenshot",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "theme": "light",
+      "original_filename": "episode-library.png"
+    },
+    {
+      "capture": "newsroom",
+      "file": "investigation-workspace.png",
+      "bytes": 134874,
+      "sha256": "8aa199d95db6e53bac13d7be885953a34e4fdf4a46195f917f4bc68b2d697f5c",
+      "kind": "screenshot",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "theme": "light",
+      "original_filename": "investigation-workspace.png"
+    },
+    {
+      "capture": "newsroom",
+      "file": "change-reasoning.png",
+      "bytes": 129814,
+      "sha256": "a343dabbfb5309213fd763cc79aaaebe5e997f41cd96bb8dbffb0887a25d3eb1",
+      "kind": "screenshot",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "theme": "light",
+      "original_filename": "change-reasoning.png"
+    },
+    {
+      "capture": "newsroom",
+      "file": "operational-knowledge-graph.png",
+      "bytes": 193675,
+      "sha256": "41cb58663d19d16ba374227533a1cc595d773574172f75126959950a56246fd1",
+      "kind": "screenshot",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "theme": "light",
+      "original_filename": "operational-knowledge-graph.png"
+    },
+    {
+      "capture": "newsroom",
+      "file": "service-deployment-footprint.png",
+      "bytes": 127429,
+      "sha256": "6fc32d79464d521815fca52467f437df8cc8bb3aeade0b470eb085c1e7ccbfca",
+      "kind": "screenshot",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "theme": "light",
+      "original_filename": "service-deployment-footprint.png"
+    },
+    {
+      "capture": "newsroom",
+      "file": "historical-comparison.png",
+      "bytes": 141374,
+      "sha256": "40ba9f0f7c4dc5c8bda9f82f2317f80a090c6117ee3863247a794eb179d00565",
+      "kind": "screenshot",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "theme": "light",
+      "original_filename": "historical-comparison.png"
+    },
+    {
+      "capture": "newsroom",
+      "file": "operational-source.png",
+      "bytes": 233680,
+      "sha256": "b9f4cc080c9280a07e0ef97b67558c71129c5525dd80053e1640329547923788",
+      "kind": "screenshot",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "theme": "light",
+      "original_filename": "operational-source.png"
+    },
+    {
+      "capture": "newsroom",
+      "file": "measured-signal-source.png",
+      "bytes": 237047,
+      "sha256": "2df5eda80199f2e183464a1c3082bbbee32ede31e3680285c764939185f479f2",
+      "kind": "screenshot",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "theme": "light",
+      "original_filename": "measured-signal-source.png"
+    },
+    {
+      "capture": "newsroom",
+      "file": "operational-relationships.png",
+      "bytes": 131965,
+      "sha256": "bdd9c492c176f76e1823dc2be4bb821bbda28e307056660b88adf44069fd540d",
+      "kind": "screenshot",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "theme": "light",
+      "original_filename": "operational-relationships.png"
+    },
+    {
+      "capture": "newsroom",
+      "file": "history-360.png",
+      "bytes": 63709,
+      "sha256": "8f26cca1aa664b28596e6bbf109725c16bf96209c725c0eed8326dd359041f7d",
+      "kind": "screenshot",
+      "viewport": {
+        "width": 360,
+        "height": 1000
+      },
+      "theme": "light",
+      "original_filename": "history-360.png"
+    },
+    {
+      "capture": "newsroom",
+      "file": "history-768.png",
+      "bytes": 97832,
+      "sha256": "81f6429aeb826bb96202e47c2f4dbf4b415d5ae3e31f3a17f7465c98d5f14ec6",
+      "kind": "screenshot",
+      "viewport": {
+        "width": 768,
+        "height": 1000
+      },
+      "theme": "light",
+      "original_filename": "history-768.png"
+    },
+    {
+      "capture": "newsroom",
+      "file": "operational-graph-dark.png",
+      "bytes": 193984,
+      "sha256": "45eba2441ccd86f71ac63977efb5dd82e1f6d4e78de95933d0d4d82b8b3077b0",
+      "kind": "screenshot",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "theme": "dark",
+      "original_filename": "operational-graph-dark.png"
+    },
+    {
+      "capture": "media",
+      "file": "message-handoff-evidence.png",
+      "bytes": 222094,
+      "sha256": "673dec9430fc0ecee1bba44bef1674a5ff0fe8bc289eeb97b129534d48d98734",
+      "kind": "screenshot",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "theme": "light",
+      "original_filename": "message-handoff-evidence.png"
+    },
+    {
+      "capture": "media",
+      "file": "asynchronous-knowledge-graph.png",
+      "bytes": 203421,
+      "sha256": "dd6cf3057778ff95c0f0e3f902ad7c8f517764faed5524fe360b81c93e29d570",
+      "kind": "screenshot",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "theme": "light",
+      "original_filename": "operational-knowledge-graph.png"
+    },
+    {
+      "capture": "ai",
+      "file": "ai-investigation-request.png",
+      "bytes": 134665,
+      "sha256": "3304dd1430b21120946d08ecdcc8a41bf2c92edd220ba152ec16243940355e49",
+      "kind": "screenshot",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "theme": "light",
+      "original_filename": "ai-investigation-request.png"
+    },
+    {
+      "capture": "ai",
+      "file": "ai-investigation-findings.png",
+      "bytes": 142088,
+      "sha256": "f6327d709a5e991660e20a56733a4f9114571eea1b0beff264d9481144a054c6",
+      "kind": "screenshot",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "theme": "light",
+      "original_filename": "ai-investigation-findings.png"
+    },
+    {
+      "capture": "ai",
+      "file": "ai-cited-evidence.png",
+      "bytes": 254952,
+      "sha256": "27bb8584ee1a12bd272e90dd2e34a5638cf05f1f377a9aa7936d036fdf918915",
+      "kind": "screenshot",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "theme": "light",
+      "original_filename": "ai-cited-evidence.png"
+    },
+    {
+      "capture": "ai",
+      "file": "ai-saved-result-export.png",
+      "bytes": 132249,
+      "sha256": "8196d0abfa799581af99b737b643fbc324383422e96349e6ad3828216baa4c45",
+      "kind": "screenshot",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "theme": "light",
+      "original_filename": "ai-saved-result-export.png"
+    },
+    {
+      "capture": "newsroom",
+      "file": "tracecause-operational-demo.webm",
+      "bytes": 9582917,
+      "sha256": "7a1f137a6d83025b0e82a332aac73664694e63b82cd880f649c317ece96ffc57",
+      "kind": "video",
+      "frame_size": {
+        "width": 1440,
+        "height": 1000
+      },
+      "original_filename": "tracecause-operational-demo.webm"
+    },
+    {
+      "capture": "media",
+      "file": "tracecause-message-flow-demo.webm",
+      "bytes": 11882805,
+      "sha256": "1f2e77add948d00b07e8ff3983c447318fd2ece791038d39e2593099ce7086cc",
+      "kind": "video",
+      "frame_size": {
+        "width": 1440,
+        "height": 1000
+      },
+      "original_filename": "tracecause-operational-demo.webm"
+    },
+    {
+      "capture": "ai",
+      "file": "tracecause-live-ai-demo.webm",
+      "bytes": 8115153,
+      "sha256": "8357e0597c8d14cf1547cbf1ef2187d81007564061b8ec88940407cf7cd82d5f",
+      "kind": "video",
+      "frame_size": {
+        "width": 1440,
+        "height": 1000
+      },
+      "original_filename": "tracecause-live-ai-demo.webm"
+    }
+  ]
+}

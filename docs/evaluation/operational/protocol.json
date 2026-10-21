@@ -1,0 +1,89 @@
+{
+  "applications": [
+    {
+      "entry": "checkout",
+      "id": "shop-chain",
+      "name": "Parcel Shop",
+      "roles": [
+        "checkout",
+        "orders",
+        "ledger"
+      ],
+      "target": "ledger",
+      "team": "commerce-platform",
+      "topology": "synchronous-chain"
+    },
+    {
+      "entry": "portal",
+      "id": "news-fanout",
+      "name": "Newsroom",
+      "roles": [
+        "portal",
+        "search",
+        "pricing",
+        "recommendations"
+      ],
+      "target": "search",
+      "team": "discovery-platform",
+      "topology": "parallel-fanout"
+    },
+    {
+      "entry": "uploader",
+      "id": "media-pipeline",
+      "name": "Media Works",
+      "roles": [
+        "uploader",
+        "broker",
+        "worker",
+        "transcoder",
+        "object-store"
+      ],
+      "target": "transcoder",
+      "team": "media-platform",
+      "topology": "asynchronous-queue"
+    }
+  ],
+  "baselines": [
+    "graph+temporal",
+    "chronological same-evidence",
+    "direct-service same-evidence"
+  ],
+  "caps": "all methods see same eligible source facts; candidate cap declared by reasoning evaluator",
+  "data_origin": "captured_demo",
+  "declared_at": "2026-10-19T05:05:56.951948+00:00",
+  "distractor": "newer benign entry service change in same onset boundary",
+  "episodes_per_application": 2,
+  "evaluation_queries": [
+    "business entry at analysis_end",
+    "business entry before change (healthy)",
+    "prior incident comparison in second episode"
+  ],
+  "expected_outcomes": "clean baseline and recovery; changed target is intended control, not proven general cause",
+  "limitations": [
+    "six repeated controlled local episodes",
+    "three manually implemented tiny applications",
+    "all infrastructure on one physical host",
+    "operator-assigned teams",
+    "no production accuracy claim"
+  ],
+  "metrics": [
+    "top1 event identity",
+    "top1 service identity",
+    "target event candidate recall",
+    "future-event exclusion",
+    "provenance resolution"
+  ],
+  "no_tuning_on_result": true,
+  "protocol_version": "operational-lab-v1",
+  "regimes": [
+    "actual different release artifact deployment",
+    "max_batch_items policy change"
+  ],
+  "requests_per_second": 3,
+  "stage_seconds": {
+    "baseline": 70,
+    "changed": 60,
+    "recovery": 20
+  },
+  "status": "declared during capture, before reasoning outputs"
+}

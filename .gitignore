@@ -32,3 +32,20 @@ apps/web/test-results/
 apps/web/.cache/
 tmp/
 *.log
+
+# Private assistant notes and generated planning material
+AGENT.md
+AGENTS.md
+CLAUDE.md
+CODEX.md
+COMMIT_PLAN.md
+PROGRESS.md
+tasks/
+prompts/
+docs/11-implementation-plan/
+docs/10-testing/
+docs/12-portfolio/presentation.md
+**/*_PLAN*.md
+**/*_plan*.md
+**/*_PROGRESS*.md
+**/*_progress*.md

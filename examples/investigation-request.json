@@ -1,0 +1,11 @@
+{
+  "episode_id": "10000000-0000-4000-8000-000000000001",
+  "snapshot_id": "20000000-0000-4000-8000-000000000001",
+  "as_of": "2026-01-01T10:02:00Z",
+  "temporal_mode": "event_time_replay",
+  "question": "Which observed dependency should be investigated first, and what evidence is missing?",
+  "symptom_service_id": null,
+  "retrieval_mode": "GRAPH",
+  "ranking_mode": "heuristic",
+  "generation_mode": "template"
+}

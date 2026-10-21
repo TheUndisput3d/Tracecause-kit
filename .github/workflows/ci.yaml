@@ -1,0 +1,61 @@
+name: CI
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  checks:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with: {persist-credentials: false, fetch-depth: 0}
+      - uses: astral-sh/setup-uv@bec219d24cd3e171d82865faccec33120bb574f4 # v10.1.0
+        with: {version: 0.11.19, enable-cache: true}
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6.0.0
+        with: {node-version: 24.21.0, cache: npm, cache-dependency-path: apps/web/package-lock.json}
+      - run: uv python install 3.12.13
+      - run: uv sync --locked --group ml --python 3.12.13
+      - run: npm ci --prefix apps/web
+      # Tiny pinned tokenizer assets only; no Qwen generation weights or provider.
+      - run: uv run --locked --group ml python -m scripts.ci.prefetch
+      - run: uv run --locked --group ml python -m scripts.fixtures --seed 20261010
+      - run: UV_NO_SYNC=1 make check
+        env: {HF_HUB_OFFLINE: '1', TRANSFORMERS_OFFLINE: '1', TOKENIZERS_PARALLELISM: 'false'}
+      - run: uv run --locked --group ml python -m scripts.ci.scans
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+        if: always()
+        with:
+          name: checks-and-scans
+          path: reports/phase17-scans/
+          retention-days: 7
+  real-integration:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+        with: {persist-credentials: false}
+      - uses: astral-sh/setup-uv@bec219d24cd3e171d82865faccec33120bb574f4
+        with: {version: 0.11.19, enable-cache: true}
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with: {node-version: 24.21.0, cache: npm, cache-dependency-path: apps/web/package-lock.json}
+      - run: uv python install 3.12.13
+      - run: uv sync --locked --group ml --python 3.12.13
+      - run: npm ci --prefix apps/web
+      - run: uv run --locked --group ml python -m scripts.ci.prefetch --embeddings
+      - run: uv run --locked --group ml python -m scripts.fixtures --seed 20261010
+      - run: cp .env.example .env
+      - run: uv run --locked --group ml python scripts/make_secrets.py
+      - run: docker compose up -d --wait postgres neo4j
+      - run: UV_NO_SYNC=1 make test-integration test-embedding-integration test-fixture-evaluation
+        env: {HF_HUB_OFFLINE: '1', TRANSFORMERS_OFFLINE: '1', OMP_NUM_THREADS: '1'}
+      - run: npx --prefix apps/web playwright install --with-deps chromium
+      - run: UV_NO_SYNC=1 make test-browser
+      - run: docker compose stop
+        if: always()

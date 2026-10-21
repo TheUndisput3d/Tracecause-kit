@@ -1,0 +1,24 @@
+{
+  "version": "operational-temporal-join-v1",
+  "declared_at": "2026-10-19T05:19:28.258522+00:00",
+  "status": "final implementation freeze before first API evaluation output",
+  "parent_protocol_sha256": "455ac73e234450c294b817ce0337e6a5cd8eb4d961fb7ee34291bd80c225f218",
+  "changes_since_design_freeze": [
+    "Complete async projection structure guards and future node membership guard.",
+    "Historical event and knowledge cutoffs are carried in source citations.",
+    "Latency/error onset lower bound respects both window start and episode analysis start.",
+    "Without-time ablation retains the graph frontier ordering, removing only temporal filtering.",
+    "Added exact scope and source time checks to offline citation audit."
+  ],
+  "source_sha256": {
+    "docs/evaluation/OPERATIONAL_REASONING.md": "fcf33b27b5401e9545c66577510045304f031d5ccaf8d9341a2b1a767f1cb1a0",
+    "src/tracecause/operational/reasoning.py": "6db208a4e90a2983b5021ecf782778abba23a9fc1b799a8789ab4228e31654db",
+    "src/tracecause/operational/reasoning_models.py": "bca762af48d8d2dc7fdf5dd141449a52daaecda57bd9923f5626c726126f54cc",
+    "src/tracecause/operational/handoffs.py": "d69315c6b83ac98a39d4f5355853398510a196040846077fbfa0dc30463b1718",
+    "src/tracecause/telemetry/signals.py": "4e976749cb3f09812df091a10bfc5eab7c9b763d8164ff8f5beff1ba58643f60",
+    "scripts/evaluation/operational_capture.py": "8366f13fae104468f61e0d2bc0cb65624329c4833043ca423f06cee1847ec619"
+  },
+  "first_evaluation_output_seen": false,
+  "no_tuning_after_outputs": true,
+  "data_status": "controlled diagnostic; known scenario design; not held-out"
+}

@@ -1,0 +1,14 @@
+{
+  "job_id": "30000000-0000-4000-8000-000000000001",
+  "kind": "import",
+  "status": "QUEUED",
+  "phase": null,
+  "completed_units": 0,
+  "total_units": null,
+  "attempt_count": 0,
+  "created_at": "2026-01-01T11:00:00Z",
+  "started_at": null,
+  "finished_at": null,
+  "cancel_requested": false,
+  "error": null
+}

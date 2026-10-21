@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "alias_version": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Alias Version",
+      "type": "string"
+    },
+    "environment": {
+      "title": "Environment",
+      "type": "string"
+    },
+    "name": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Name",
+      "type": "string"
+    },
+    "namespace": {
+      "title": "Namespace",
+      "type": "string"
+    },
+    "service_key": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Service Key",
+      "type": "string"
+    },
+    "workspace_id": {
+      "format": "uuid",
+      "title": "Workspace Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "workspace_id",
+    "namespace",
+    "environment",
+    "name",
+    "service_key",
+    "alias_version"
+  ],
+  "title": "ServiceIdentity",
+  "type": "object"
+}

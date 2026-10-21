@@ -1,0 +1,29 @@
+name: Explicit local model and performance verification
+on:
+  workflow_dispatch:
+    inputs:
+      suite:
+        description: Requires a trusted, operator-configured local runner with prefetched weights
+        required: true
+        type: choice
+        options: [performance, local-model]
+permissions:
+  contents: read
+# No pull_request trigger or automatic use of a self-hosted runner.
+jobs:
+  explicit:
+    if: github.ref == 'refs/heads/main'
+    runs-on: [self-hosted, tracecause-verified]
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+        with: {persist-credentials: false, clean: false}
+      - name: Operator-prepared local environment
+        run: test -d .venv && test -f .secrets/operator_token
+      - run: uv sync --locked --group ml --offline
+      - name: Performance
+        if: inputs.suite == 'performance'
+        run: UV_NO_SYNC=1 make performance-check
+      - name: Actual local model browser
+        if: inputs.suite == 'local-model'
+        run: npm --prefix apps/web run test:e2e:llm

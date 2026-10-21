@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0",
+  "episode_id": "10000000-0000-4000-8000-000000000001",
+  "workspace_id": "00000000-0000-4000-8000-000000000001",
+  "display_name": "Contract example episode",
+  "origin": "synthetic",
+  "event_interval": {
+    "start": "2026-01-01T10:01:00Z",
+    "end": "2026-01-01T10:02:00Z"
+  },
+  "baseline_interval": null,
+  "availability_recorded": false,
+  "sources": [
+    {
+      "logical_name": "traces.jsonl",
+      "kind": "otlp_jsonl",
+      "sha256": "1114200656a0a4742ef669bb2887d3b16388e9c2e87998060c1df4bb159bed67",
+      "bytes": 1421,
+      "published_at": null
+    },
+    {
+      "logical_name": "runbook.md",
+      "kind": "markdown",
+      "sha256": "f939cee5025f44620575a0f5f575ba259f2e85f7e705eba710f8fcd71a50b289",
+      "bytes": 606,
+      "published_at": "2025-12-01T00:00:00Z"
+    }
+  ],
+  "public_notes": "Three spans illustrate OTLP parentage and source hashing. This is not a full anomaly dataset or captured telemetry."
+}

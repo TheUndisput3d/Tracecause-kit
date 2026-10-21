@@ -1,0 +1,20 @@
+{
+  "status": "FAILED_INCOMPLETE",
+  "recorded_at": "2026-10-19T05:49:04.096055+00:00",
+  "exit_code": 1,
+  "error_type": "httpx.HTTPStatusError",
+  "http_status": 503,
+  "endpoint": "/api/v1/operations",
+  "failed_scope": {
+    "episode_id": "1e2dba64-0597-4058-93d8-b638b3f79f2f",
+    "snapshot_id": "d62f0418-1278-4b05-874b-1b2995ec1c02",
+    "as_of": "2026-10-19T05:07:40.010190Z",
+    "temporal_mode": "event_time_replay",
+    "symptom_service_id": "47c8b8141478723eb256c4301c2b52fcd6bd6d56063d077a7b1c0e0aa29ea701"
+  },
+  "completed_queries": 8,
+  "resolved_citations_before_failure": 593,
+  "future_event_violations_before_failure": 0,
+  "aggregate_report_written": false,
+  "interpretation": "Incomplete first frozen run; completed case files retained. No complete six-case claim or retuning."
+}

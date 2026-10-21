@@ -1,0 +1,242 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "alias_source_reference": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Alias Source Reference"
+    },
+    "alias_version": {
+      "default": "1.0",
+      "title": "Alias Version",
+      "type": "string"
+    },
+    "available_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Available At"
+    },
+    "end_ns": {
+      "pattern": "^[0-9]{1,20}$",
+      "title": "End Ns",
+      "type": "string"
+    },
+    "episode_id": {
+      "format": "uuid",
+      "title": "Episode Id",
+      "type": "string"
+    },
+    "kind": {
+      "enum": [
+        "INTERNAL",
+        "SERVER",
+        "CLIENT",
+        "PRODUCER",
+        "CONSUMER",
+        "UNSPECIFIED"
+      ],
+      "title": "Kind",
+      "type": "string"
+    },
+    "parent_span_id": {
+      "anyOf": [
+        {
+          "pattern": "^[a-f0-9]{16}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Parent Span Id"
+    },
+    "quality_flags": {
+      "items": {
+        "maxLength": 200,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 30,
+      "title": "Quality Flags",
+      "type": "array"
+    },
+    "safe_attributes": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "integer"
+          },
+          {
+            "type": "number"
+          },
+          {
+            "type": "boolean"
+          }
+        ]
+      },
+      "title": "Safe Attributes",
+      "type": "object"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "service_environment": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Service Environment"
+    },
+    "service_key": {
+      "anyOf": [
+        {
+          "maxLength": 200,
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Service Key"
+    },
+    "service_name": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Service Name"
+    },
+    "service_namespace": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Service Namespace"
+    },
+    "source_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Source Hash",
+      "type": "string"
+    },
+    "source_line_number": {
+      "default": 1,
+      "minimum": 1,
+      "title": "Source Line Number",
+      "type": "integer"
+    },
+    "source_record_offset": {
+      "minimum": 0,
+      "title": "Source Record Offset",
+      "type": "integer"
+    },
+    "source_resource_index": {
+      "default": 0,
+      "minimum": 0,
+      "title": "Source Resource Index",
+      "type": "integer"
+    },
+    "source_scope_index": {
+      "default": 0,
+      "minimum": 0,
+      "title": "Source Scope Index",
+      "type": "integer"
+    },
+    "source_span_index": {
+      "default": 0,
+      "minimum": 0,
+      "title": "Source Span Index",
+      "type": "integer"
+    },
+    "span_id": {
+      "pattern": "^[a-f0-9]{16}$",
+      "title": "Span Id",
+      "type": "string"
+    },
+    "span_name": {
+      "maxLength": 500,
+      "title": "Span Name",
+      "type": "string"
+    },
+    "start_ns": {
+      "pattern": "^[0-9]{1,20}$",
+      "title": "Start Ns",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "UNSET",
+        "OK",
+        "ERROR"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "trace_id": {
+      "pattern": "^[a-f0-9]{32}$",
+      "title": "Trace Id",
+      "type": "string"
+    },
+    "workspace_id": {
+      "format": "uuid",
+      "title": "Workspace Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "workspace_id",
+    "episode_id",
+    "trace_id",
+    "span_id",
+    "parent_span_id",
+    "service_key",
+    "span_name",
+    "kind",
+    "status",
+    "start_ns",
+    "end_ns",
+    "available_at",
+    "safe_attributes",
+    "source_hash",
+    "source_record_offset",
+    "quality_flags"
+  ],
+  "title": "NormalizedSpan",
+  "type": "object"
+}

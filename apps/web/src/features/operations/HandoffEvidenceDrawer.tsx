@@ -1,0 +1,16 @@
+import * as Dialog from '@radix-ui/react-dialog'
+import { useQuery } from '@tanstack/react-query'
+import { ArrowRight, Workflow, X } from 'lucide-react'
+import { api, query, type Models } from '../../lib/api/client'
+import { ErrorPanel, Loading, utc } from '../../components/ui/common'
+import type { OperationalCitation } from './OperationalEvidenceDrawer'
+
+export function HandoffEvidenceDrawer({ citation, close }: { citation: OperationalCitation | null; close: () => void }) {
+  const response = useQuery({ queryKey: ['handoff-evidence', citation], enabled: !!citation, queryFn: ({ signal }) => api('HandoffEvidence', '/operations/handoffs/' + encodeURIComponent(citation!.id) + query({ episode_id: citation!.episode, snapshot_id: citation!.snapshot, as_of: citation!.cutoff, temporal_mode: citation!.temporal }), { signal }) })
+  const data = response.data
+  const span = (value: Models['NormalizedSpan'], kind: string, hash: string, offset: number) => <section className="handoff-span"><p className="section-kicker">{kind}</p><h3>{value.service_name}</h3><dl><dt>Span kind</dt><dd>{value.kind}</dd><dt>Trace ID</dt><dd className="mono">{value.trace_id}</dd><dt>Span ID</dt><dd className="mono">{value.span_id}</dd><dt>Parent span ID</dt><dd className="mono">{value.parent_span_id ?? 'None recorded'}</dd><dt>Span interval · UTC</dt><dd>{utc(new Date(Number(BigInt(value.start_ns) / 1000000n)).toISOString())}<br />{utc(new Date(Number(BigInt(value.end_ns) / 1000000n)).toISOString())}</dd><dt>Source SHA-256</dt><dd className="mono">{hash}</dd><dt>Normalized record byte offset</dt><dd>{offset}</dd></dl><details><summary>Normalized span record</summary><pre className="source-code">{JSON.stringify(value, null, 2)}</pre></details></section>
+  return <Dialog.Root open={!!citation} onOpenChange={value => { if (!value) close() }}><Dialog.Portal><Dialog.Overlay className="overlay" /><Dialog.Content className="drawer handoff-drawer"><div className="panel-heading"><p className="eyebrow">Source inspector</p><Dialog.Close asChild><button className="icon-button" aria-label="Close handoff evidence"><X size={18} /></button></Dialog.Close></div><Dialog.Title>Message handoff evidence</Dialog.Title><Dialog.Description>{citation?.from}. A recorded producer-to-consumer relationship, scoped to the displayed snapshot and cutoff.</Dialog.Description>
+    {response.isPending && <Loading />}{response.error && <ErrorPanel error={response.error} retry={() => void response.refetch()} />}
+    {data && <><div className="source-record-heading"><Workflow size={23} aria-hidden="true" /><div><strong>{data.producer.service_name} <ArrowRight size={14} style={{ display: 'inline' }} aria-hidden="true" /> {data.consumer.service_name}</strong><span>{data.relationship} · {data.rule_version}</span></div></div><p className="source-quote">{data.explanation}</p><dl className="source-metadata"><dt>Snapshot</dt><dd className="mono">{data.snapshot_id}</dd><dt>Cutoff</dt><dd>{utc(data.as_of)}</dd><dt>Evidence ID</dt><dd className="mono">{data.evidence_id}</dd></dl><div className="handoff-spans">{span(data.producer, 'Producer', data.producer_artifact_hash, data.producer_record_offset)}{span(data.consumer, 'Consumer', data.consumer_artifact_hash, data.consumer_record_offset)}</div></>}
+  </Dialog.Content></Dialog.Portal></Dialog.Root>
+}

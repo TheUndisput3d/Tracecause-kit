@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "bytes": {
+      "minimum": 0,
+      "title": "Bytes",
+      "type": "integer"
+    },
+    "kind": {
+      "enum": [
+        "otlp_json",
+        "otlp_jsonl",
+        "markdown",
+        "operational_json"
+      ],
+      "title": "Kind",
+      "type": "string"
+    },
+    "logical_name": {
+      "pattern": "^[A-Za-z0-9_.-]+$",
+      "title": "Logical Name",
+      "type": "string"
+    },
+    "published_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Published At"
+    },
+    "sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Sha256",
+      "type": "string"
+    }
+  },
+  "required": [
+    "logical_name",
+    "kind",
+    "sha256",
+    "bytes",
+    "published_at"
+  ],
+  "title": "SourceMetadata",
+  "type": "object"
+}

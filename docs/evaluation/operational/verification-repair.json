@@ -1,0 +1,42 @@
+{
+  "interpretation": "Engineering hardening after a service failure. Not a new learned model, policy retune, causal attribution, or isolated performance benchmark.",
+  "next_evaluation": "New output directory after repaired deployment source audit; first failed output remains unchanged.",
+  "observed_failure": "First evaluator returned HTTP 503 on Media Works episode 1 /operations after eight completed queries and 593 resolved citations. A later unchanged direct request succeeded; the exact transient cause was not conclusively established.",
+  "reasoning_version": "operational-temporal-join-v1",
+  "recorded_at": "2026-10-19T05:51:13.265268+00:00",
+  "regression": {
+    "command": ".venv/bin/pytest tests/unit/test_operational_handoffs.py tests/integration/test_async_projection.py -q",
+    "elapsed_seconds": 11.34,
+    "extra_guards": "tampered service key and removed Service label fail verification",
+    "full_capture": "Media Works first public episode; every producer/consumer proof projected and checked at final and earlier cutoffs",
+    "passed": 11,
+    "real_database": "Neo4j"
+  },
+  "repair": "Remove redundant per-observation OPTIONAL MATCH across parallel MESSAGE_FLOW edges. The complete bounded relationship Counter audit now also verifies endpoint service keys and labels; eligible nodes are then compared with exact source rows without another graph join.",
+  "source_sha256": {
+    "scripts/evaluation/operational_capture.py": {
+      "frozen": "8366f13fae104468f61e0d2bc0cb65624329c4833043ca423f06cee1847ec619",
+      "repaired": "8366f13fae104468f61e0d2bc0cb65624329c4833043ca423f06cee1847ec619"
+    },
+    "src/tracecause/operational/handoffs.py": {
+      "frozen": "d69315c6b83ac98a39d4f5355853398510a196040846077fbfa0dc30463b1718",
+      "repaired": "2312db8b171b1ca34385b0159f55d8794e5685ceae18d7d8617c23cffb1be979"
+    },
+    "src/tracecause/operational/reasoning.py": {
+      "frozen": "6db208a4e90a2983b5021ecf782778abba23a9fc1b799a8789ab4228e31654db",
+      "repaired": "6db208a4e90a2983b5021ecf782778abba23a9fc1b799a8789ab4228e31654db"
+    },
+    "src/tracecause/operational/reasoning_models.py": {
+      "frozen": "bca762af48d8d2dc7fdf5dd141449a52daaecda57bd9923f5626c726126f54cc",
+      "repaired": "bca762af48d8d2dc7fdf5dd141449a52daaecda57bd9923f5626c726126f54cc"
+    }
+  },
+  "status": "source-verification implementation repair after incomplete first evaluation",
+  "unchanged": [
+    "reasoning policy and ranking order",
+    "input captures and reference identities",
+    "evaluator methods and metric definitions",
+    "five-second Neo4j verification query bounds",
+    "scope, orphan-edge and exact source verification requirements"
+  ]
+}

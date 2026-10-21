@@ -1,0 +1,104 @@
+name,version,license_metadata,source
+alembic,1.20.0,MIT,installed package metadata
+annotated-doc,0.0.5,MIT,installed package metadata
+annotated-types,0.8.0,MIT,installed package metadata
+anyio,4.15.1,MIT,installed package metadata
+asgiref,3.12.1,BSD-3-Clause,installed package metadata
+attrs,26.1.0,MIT,installed package metadata
+certifi,2026.7.22,MPL-2.0,installed package metadata
+charset-normalizer,3.5.2,MIT,installed package metadata
+click,8.5.0,BSD-3-Clause,installed package metadata
+cloudpickle,3.1.2,BSD-3-Clause,installed package metadata
+colorama,0.4.6,OSI Approved :: BSD License,https://pypi.org/pypi/colorama/0.4.6/json
+coverage,7.16.2,Apache-2.0,installed package metadata
+fastapi,0.143.0,MIT,installed package metadata
+filelock,4.1.0,MIT,installed package metadata
+fsspec,2026.9.0,BSD-3-Clause,installed package metadata
+googleapis-common-protos,1.75.5,Apache-2.0,installed package metadata
+h11,0.16.0,MIT,installed package metadata
+hf-xet,1.7.0,Apache-2.0,installed package metadata
+httpcore,1.0.9,BSD-3-Clause,installed package metadata
+httpx,0.28.1,BSD-3-Clause,installed package metadata
+huggingface-hub,1.33.0,Apache-2.0,installed package metadata
+hypothesis,6.168.5,MPL-2.0,installed package metadata
+idna,3.20,BSD-3-Clause,installed package metadata
+iniconfig,2.3.1,MIT,installed package metadata
+jinja2,3.1.6,OSI Approved :: BSD License,https://pypi.org/pypi/jinja2/3.1.6/json
+joblib,1.6.0,BSD-3-Clause,installed package metadata
+jsonschema,4.26.0,MIT,installed package metadata
+jsonschema-specifications,2025.9.1,MIT,installed package metadata
+librt,0.16.0,MIT,installed package metadata
+mako,1.4.3,MIT,installed package metadata
+markdown-it-py,4.2.0,OSI Approved :: MIT License,https://pypi.org/pypi/markdown-it-py/4.2.0/json
+markupsafe,3.0.4,BSD-3-Clause,installed package metadata
+mdurl,0.1.2,OSI Approved :: MIT License,https://pypi.org/pypi/mdurl/0.1.2/json
+mpmath,1.3.0,BSD,installed package metadata
+mypy,1.20.2,MIT,installed package metadata
+mypy-extensions,1.1.0,MIT,https://github.com/python/mypy_extensions/blob/1.1.0/LICENSE
+narwhals,2.27.1,MIT,installed package metadata
+neo4j,6.4.0,Apache-2.0 AND Python-2.0,installed package metadata
+networkx,3.7,BSD-3-Clause,installed package metadata
+numpy,2.5.3,BSD-3-Clause AND 0BSD AND MIT AND Zlib AND CC0-1.0,installed package metadata
+opentelemetry-api,1.45.1,Apache-2.0,installed package metadata
+opentelemetry-exporter-http-transport,0.66b1,Apache-2.0,installed package metadata
+opentelemetry-exporter-otlp-common,0.66b1,Apache-2.0,installed package metadata
+opentelemetry-exporter-otlp-proto-common,1.45.1,Apache-2.0,installed package metadata
+opentelemetry-exporter-otlp-proto-http,1.45.1,Apache-2.0,installed package metadata
+opentelemetry-instrumentation,0.66b1,Apache-2.0,installed package metadata
+opentelemetry-instrumentation-asgi,0.66b1,Apache-2.0,installed package metadata
+opentelemetry-instrumentation-fastapi,0.66b1,Apache-2.0,installed package metadata
+opentelemetry-instrumentation-httpx,0.66b1,Apache-2.0,installed package metadata
+opentelemetry-proto,1.45.1,Apache-2.0,installed package metadata
+opentelemetry-sdk,1.45.1,Apache-2.0,installed package metadata
+opentelemetry-semantic-conventions,0.66b1,Apache-2.0,installed package metadata
+opentelemetry-util-http,0.66b1,Apache-2.0,installed package metadata
+packaging,26.3,Apache-2.0 OR BSD-2-Clause,installed package metadata
+pathspec,1.1.1,OSI Approved :: Mozilla Public License 2.0 (MPL 2.0),https://pypi.org/pypi/pathspec/1.1.1/json
+pluggy,1.6.0,MIT,installed package metadata
+prometheus-client,0.26.0,Apache-2.0 AND BSD-2-Clause,installed package metadata
+protobuf,7.36.2,3-Clause BSD License,installed package metadata
+psycopg,3.3.6,LGPL-3.0-only,installed package metadata
+psycopg-binary,3.3.6,LGPL-3.0-only,installed package metadata
+pydantic,2.14.0,MIT,installed package metadata
+pydantic-core,2.50.0,MIT,installed package metadata
+pydantic-settings,2.15.0,MIT,installed package metadata
+pygments,2.21.0,BSD-2-Clause,installed package metadata
+pytest,9.1.1,MIT,installed package metadata
+pytest-cov,7.1.0,MIT,installed package metadata
+python-dotenv,1.2.4,BSD-3-Clause,installed package metadata
+python-multipart,0.0.32,Apache-2.0,installed package metadata
+pytz,2026.5,MIT,installed package metadata
+pyyaml,6.0.3,MIT,installed package metadata
+referencing,0.37.0,MIT,installed package metadata
+regex,2026.9.29,Apache-2.0 AND CNRI-Python,installed package metadata
+requests,2.34.2,Apache-2.0,installed package metadata
+respx,0.23.1,BSD-3-Clause,installed package metadata
+rich,15.0.0,MIT,installed package metadata
+rpds-py,2026.9.1,MIT,installed package metadata
+ruff,0.17.0,MIT,installed package metadata
+safetensors,0.8.0,OSI Approved :: Apache Software License,https://pypi.org/pypi/safetensors/0.8.0/json
+scikit-learn,1.9.1,BSD-3-Clause,installed package metadata
+scipy,1.18.1,"Copyright (c) 2001-2002 Enthought, Inc. 2003, SciPy Developers.",installed package metadata
+sentence-transformers,5.7.0,Apache-2.0,installed package metadata
+setuptools,84.0.0,MIT,installed package metadata
+shellingham,1.5.4,ISC License,installed package metadata
+sortedcontainers,2.4.0,Apache 2.0,installed package metadata
+sqlalchemy,2.1.4,MIT,installed package metadata
+starlette,1.7.0,BSD-3-Clause,installed package metadata
+structlog,26.1.0,MIT OR Apache-2.0,installed package metadata
+sympy,1.14.0,BSD,installed package metadata
+threadpoolctl,3.7.0,BSD-3-Clause,installed package metadata
+tokenizers,0.23.3,OSI Approved :: Apache Software License,https://pypi.org/pypi/tokenizers/0.23.3/json
+torch,2.14.1,Apache-2.0 AND Apache-2.0 WITH LLVM-exception AND BSD-2-Clause AND BSD-3-Clause AND BSL-1.0 AND MIT,https://pypi.org/pypi/torch/2.14.1/json
+torch,2.14.1+cpu,Apache-2.0 AND Apache-2.0 WITH LLVM-exception AND BSD-2-Clause AND BSD-3-Clause AND BSL-1.0 AND MIT,installed package metadata
+tqdm,4.70.1,MPL-2.0 AND MIT,installed package metadata
+tracecause,0.1.0,Apache-2.0,pyproject.toml
+transformers,5.19.0,Apache 2.0 License,installed package metadata
+typer,0.27.3,MIT,installed package metadata
+types-pyyaml,6.0.12.20260906,Apache-2.0,installed package metadata
+typing-extensions,4.16.0,PSF-2.0,installed package metadata
+typing-inspection,0.4.4,MIT,installed package metadata
+tzdata,2026.5,Apache-2.0,https://pypi.org/pypi/tzdata/2026.5/json
+urllib3,2.8.0,MIT,installed package metadata
+uvicorn,0.54.0,BSD-3-Clause,installed package metadata
+wrapt,2.5.0,BSD-2-Clause,installed package metadata

@@ -1,0 +1,112 @@
+{
+  "$defs": {
+    "ImportDiagnostic": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Code",
+          "type": "string"
+        },
+        "record_offset": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Record Offset"
+        },
+        "safe_message": {
+          "maxLength": 500,
+          "title": "Safe Message",
+          "type": "string"
+        },
+        "source_name": {
+          "anyOf": [
+            {
+              "maxLength": 200,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Source Name"
+        }
+      },
+      "required": [
+        "code",
+        "source_name",
+        "record_offset",
+        "safe_message"
+      ],
+      "title": "ImportDiagnostic",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "accepted_count": {
+      "minimum": 0,
+      "title": "Accepted Count",
+      "type": "integer"
+    },
+    "conflict_count": {
+      "minimum": 0,
+      "title": "Conflict Count",
+      "type": "integer"
+    },
+    "diagnostics": {
+      "items": {
+        "$ref": "#/$defs/ImportDiagnostic"
+      },
+      "maxItems": 20,
+      "title": "Diagnostics",
+      "type": "array"
+    },
+    "duplicate_count": {
+      "minimum": 0,
+      "title": "Duplicate Count",
+      "type": "integer"
+    },
+    "episode_id": {
+      "format": "uuid",
+      "title": "Episode Id",
+      "type": "string"
+    },
+    "rejected_count": {
+      "minimum": 0,
+      "title": "Rejected Count",
+      "type": "integer"
+    },
+    "source_manifest_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Source Manifest Hash",
+      "type": "string"
+    },
+    "workspace_id": {
+      "format": "uuid",
+      "title": "Workspace Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "workspace_id",
+    "episode_id",
+    "source_manifest_hash",
+    "accepted_count",
+    "rejected_count",
+    "duplicate_count",
+    "conflict_count",
+    "diagnostics"
+  ],
+  "title": "ImportReport",
+  "type": "object"
+}

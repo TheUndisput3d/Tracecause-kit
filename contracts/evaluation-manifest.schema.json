@@ -1,0 +1,82 @@
+{
+  "$defs": {
+    "DataOrigin": {
+      "enum": [
+        "synthetic",
+        "captured_demo",
+        "external"
+      ],
+      "title": "DataOrigin",
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "created_at": {
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+    },
+    "dataset_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Dataset Hash",
+      "type": "string"
+    },
+    "evaluator_version": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Evaluator Version",
+      "type": "string"
+    },
+    "origin": {
+      "$ref": "#/$defs/DataOrigin"
+    },
+    "query_judgments_hash": {
+      "anyOf": [
+        {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Query Judgments Hash"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "split_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Split Hash",
+      "type": "string"
+    },
+    "target_labels_hash": {
+      "anyOf": [
+        {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Target Labels Hash"
+    }
+  },
+  "required": [
+    "schema_version",
+    "dataset_hash",
+    "split_hash",
+    "origin",
+    "evaluator_version",
+    "query_judgments_hash",
+    "target_labels_hash",
+    "created_at"
+  ],
+  "title": "EvaluationManifest",
+  "type": "object"
+}

@@ -1,0 +1,664 @@
+{
+  "protocol": "directed-runbook-competency-v1",
+  "origin": "synthetic_controlled",
+  "scope": "Eight declared topologies; pure reasoning and real document extraction. Synthetic call IDs are not database evidence. Database/API citation and tamper gates are separate integration tests. No diagnosis accuracy claim.",
+  "cases": [
+    {
+      "name": "isolated",
+      "expected": [
+        "storefront"
+      ],
+      "graph": [
+        "storefront"
+      ],
+      "direct_service_lookup": [
+        "storefront"
+      ],
+      "exact_match": true,
+      "graph_tp": 1,
+      "graph_fp": 0,
+      "baseline_tp": 1,
+      "targets": 1,
+      "proof_paths": [
+        {
+          "assertion_id": "c725dcd8-fd36-5886-8555-fc03579a5e97",
+          "service_id": "storefront",
+          "quote": "Inspect storefront request duration.",
+          "document_title": "storefront checks",
+          "evidence_id": "chunk:fae0a198-e300-53d5-8f12-6362c851756b",
+          "start_char": 256,
+          "end_char": 292,
+          "service_ids": [
+            "storefront"
+          ],
+          "call_edges": []
+        }
+      ]
+    },
+    {
+      "name": "one-hop",
+      "expected": [
+        "checkout",
+        "storefront"
+      ],
+      "graph": [
+        "checkout",
+        "storefront"
+      ],
+      "direct_service_lookup": [
+        "storefront"
+      ],
+      "exact_match": true,
+      "graph_tp": 2,
+      "graph_fp": 0,
+      "baseline_tp": 1,
+      "targets": 2,
+      "proof_paths": [
+        {
+          "assertion_id": "c725dcd8-fd36-5886-8555-fc03579a5e97",
+          "service_id": "storefront",
+          "quote": "Inspect storefront request duration.",
+          "document_title": "storefront checks",
+          "evidence_id": "chunk:fae0a198-e300-53d5-8f12-6362c851756b",
+          "start_char": 256,
+          "end_char": 292,
+          "service_ids": [
+            "storefront"
+          ],
+          "call_edges": []
+        },
+        {
+          "assertion_id": "85732cc9-a246-5eb2-8c8b-82f420547fae",
+          "service_id": "checkout",
+          "quote": "Inspect checkout request duration.",
+          "document_title": "checkout checks",
+          "evidence_id": "chunk:8aad2870-0bef-54ea-82e0-47c6b8dd7413",
+          "start_char": 254,
+          "end_char": 288,
+          "service_ids": [
+            "storefront",
+            "checkout"
+          ],
+          "call_edges": [
+            {
+              "edge_id": "ab",
+              "source_service_id": "storefront",
+              "target_service_id": "checkout",
+              "relationship": "CALLS",
+              "supporting_evidence_ids": [
+                "synthetic-call:ab"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "reverse-only",
+      "expected": [
+        "storefront"
+      ],
+      "graph": [
+        "storefront"
+      ],
+      "direct_service_lookup": [
+        "storefront"
+      ],
+      "exact_match": true,
+      "graph_tp": 1,
+      "graph_fp": 0,
+      "baseline_tp": 1,
+      "targets": 1,
+      "proof_paths": [
+        {
+          "assertion_id": "c725dcd8-fd36-5886-8555-fc03579a5e97",
+          "service_id": "storefront",
+          "quote": "Inspect storefront request duration.",
+          "document_title": "storefront checks",
+          "evidence_id": "chunk:fae0a198-e300-53d5-8f12-6362c851756b",
+          "start_char": 256,
+          "end_char": 292,
+          "service_ids": [
+            "storefront"
+          ],
+          "call_edges": []
+        }
+      ]
+    },
+    {
+      "name": "chain-hop-cap",
+      "expected": [
+        "checkout",
+        "inventory",
+        "payment",
+        "storefront"
+      ],
+      "graph": [
+        "checkout",
+        "inventory",
+        "payment",
+        "storefront"
+      ],
+      "direct_service_lookup": [
+        "storefront"
+      ],
+      "exact_match": true,
+      "graph_tp": 4,
+      "graph_fp": 0,
+      "baseline_tp": 1,
+      "targets": 4,
+      "proof_paths": [
+        {
+          "assertion_id": "c725dcd8-fd36-5886-8555-fc03579a5e97",
+          "service_id": "storefront",
+          "quote": "Inspect storefront request duration.",
+          "document_title": "storefront checks",
+          "evidence_id": "chunk:fae0a198-e300-53d5-8f12-6362c851756b",
+          "start_char": 256,
+          "end_char": 292,
+          "service_ids": [
+            "storefront"
+          ],
+          "call_edges": []
+        },
+        {
+          "assertion_id": "85732cc9-a246-5eb2-8c8b-82f420547fae",
+          "service_id": "checkout",
+          "quote": "Inspect checkout request duration.",
+          "document_title": "checkout checks",
+          "evidence_id": "chunk:8aad2870-0bef-54ea-82e0-47c6b8dd7413",
+          "start_char": 254,
+          "end_char": 288,
+          "service_ids": [
+            "storefront",
+            "checkout"
+          ],
+          "call_edges": [
+            {
+              "edge_id": "ab",
+              "source_service_id": "storefront",
+              "target_service_id": "checkout",
+              "relationship": "CALLS",
+              "supporting_evidence_ids": [
+                "synthetic-call:ab"
+              ]
+            }
+          ]
+        },
+        {
+          "assertion_id": "cf4f0584-0e0c-5495-98cf-bf804e0ab1a3",
+          "service_id": "payment",
+          "quote": "Inspect payment request duration.",
+          "document_title": "payment checks",
+          "evidence_id": "chunk:77862cdf-a1f1-54d8-ad6a-6896aeb6904a",
+          "start_char": 253,
+          "end_char": 286,
+          "service_ids": [
+            "storefront",
+            "checkout",
+            "payment"
+          ],
+          "call_edges": [
+            {
+              "edge_id": "ab",
+              "source_service_id": "storefront",
+              "target_service_id": "checkout",
+              "relationship": "CALLS",
+              "supporting_evidence_ids": [
+                "synthetic-call:ab"
+              ]
+            },
+            {
+              "edge_id": "bc",
+              "source_service_id": "checkout",
+              "target_service_id": "payment",
+              "relationship": "CALLS",
+              "supporting_evidence_ids": [
+                "synthetic-call:bc"
+              ]
+            }
+          ]
+        },
+        {
+          "assertion_id": "b1be279c-2221-53dd-82f2-b6185669a845",
+          "service_id": "inventory",
+          "quote": "Inspect inventory request duration.",
+          "document_title": "inventory checks",
+          "evidence_id": "chunk:02862e65-402d-5492-8c29-858d4a3ae8f3",
+          "start_char": 255,
+          "end_char": 290,
+          "service_ids": [
+            "storefront",
+            "checkout",
+            "payment",
+            "inventory"
+          ],
+          "call_edges": [
+            {
+              "edge_id": "ab",
+              "source_service_id": "storefront",
+              "target_service_id": "checkout",
+              "relationship": "CALLS",
+              "supporting_evidence_ids": [
+                "synthetic-call:ab"
+              ]
+            },
+            {
+              "edge_id": "bc",
+              "source_service_id": "checkout",
+              "target_service_id": "payment",
+              "relationship": "CALLS",
+              "supporting_evidence_ids": [
+                "synthetic-call:bc"
+              ]
+            },
+            {
+              "edge_id": "cd",
+              "source_service_id": "payment",
+              "target_service_id": "inventory",
+              "relationship": "CALLS",
+              "supporting_evidence_ids": [
+                "synthetic-call:cd"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "star",
+      "expected": [
+        "checkout",
+        "inventory",
+        "payment",
+        "storefront"
+      ],
+      "graph": [
+        "checkout",
+        "inventory",
+        "payment",
+        "storefront"
+      ],
+      "direct_service_lookup": [
+        "storefront"
+      ],
+      "exact_match": true,
+      "graph_tp": 4,
+      "graph_fp": 0,
+      "baseline_tp": 1,
+      "targets": 4,
+      "proof_paths": [
+        {
+          "assertion_id": "c725dcd8-fd36-5886-8555-fc03579a5e97",
+          "service_id": "storefront",
+          "quote": "Inspect storefront request duration.",
+          "document_title": "storefront checks",
+          "evidence_id": "chunk:fae0a198-e300-53d5-8f12-6362c851756b",
+          "start_char": 256,
+          "end_char": 292,
+          "service_ids": [
+            "storefront"
+          ],
+          "call_edges": []
+        },
+        {
+          "assertion_id": "85732cc9-a246-5eb2-8c8b-82f420547fae",
+          "service_id": "checkout",
+          "quote": "Inspect checkout request duration.",
+          "document_title": "checkout checks",
+          "evidence_id": "chunk:8aad2870-0bef-54ea-82e0-47c6b8dd7413",
+          "start_char": 254,
+          "end_char": 288,
+          "service_ids": [
+            "storefront",
+            "checkout"
+          ],
+          "call_edges": [
+            {
+              "edge_id": "ab",
+              "source_service_id": "storefront",
+              "target_service_id": "checkout",
+              "relationship": "CALLS",
+              "supporting_evidence_ids": [
+                "synthetic-call:ab"
+              ]
+            }
+          ]
+        },
+        {
+          "assertion_id": "b1be279c-2221-53dd-82f2-b6185669a845",
+          "service_id": "inventory",
+          "quote": "Inspect inventory request duration.",
+          "document_title": "inventory checks",
+          "evidence_id": "chunk:02862e65-402d-5492-8c29-858d4a3ae8f3",
+          "start_char": 255,
+          "end_char": 290,
+          "service_ids": [
+            "storefront",
+            "inventory"
+          ],
+          "call_edges": [
+            {
+              "edge_id": "ad",
+              "source_service_id": "storefront",
+              "target_service_id": "inventory",
+              "relationship": "CALLS",
+              "supporting_evidence_ids": [
+                "synthetic-call:ad"
+              ]
+            }
+          ]
+        },
+        {
+          "assertion_id": "cf4f0584-0e0c-5495-98cf-bf804e0ab1a3",
+          "service_id": "payment",
+          "quote": "Inspect payment request duration.",
+          "document_title": "payment checks",
+          "evidence_id": "chunk:77862cdf-a1f1-54d8-ad6a-6896aeb6904a",
+          "start_char": 253,
+          "end_char": 286,
+          "service_ids": [
+            "storefront",
+            "payment"
+          ],
+          "call_edges": [
+            {
+              "edge_id": "ac",
+              "source_service_id": "storefront",
+              "target_service_id": "payment",
+              "relationship": "CALLS",
+              "supporting_evidence_ids": [
+                "synthetic-call:ac"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "cycle",
+      "expected": [
+        "checkout",
+        "payment",
+        "storefront"
+      ],
+      "graph": [
+        "checkout",
+        "payment",
+        "storefront"
+      ],
+      "direct_service_lookup": [
+        "storefront"
+      ],
+      "exact_match": true,
+      "graph_tp": 3,
+      "graph_fp": 0,
+      "baseline_tp": 1,
+      "targets": 3,
+      "proof_paths": [
+        {
+          "assertion_id": "c725dcd8-fd36-5886-8555-fc03579a5e97",
+          "service_id": "storefront",
+          "quote": "Inspect storefront request duration.",
+          "document_title": "storefront checks",
+          "evidence_id": "chunk:fae0a198-e300-53d5-8f12-6362c851756b",
+          "start_char": 256,
+          "end_char": 292,
+          "service_ids": [
+            "storefront"
+          ],
+          "call_edges": []
+        },
+        {
+          "assertion_id": "85732cc9-a246-5eb2-8c8b-82f420547fae",
+          "service_id": "checkout",
+          "quote": "Inspect checkout request duration.",
+          "document_title": "checkout checks",
+          "evidence_id": "chunk:8aad2870-0bef-54ea-82e0-47c6b8dd7413",
+          "start_char": 254,
+          "end_char": 288,
+          "service_ids": [
+            "storefront",
+            "checkout"
+          ],
+          "call_edges": [
+            {
+              "edge_id": "ab",
+              "source_service_id": "storefront",
+              "target_service_id": "checkout",
+              "relationship": "CALLS",
+              "supporting_evidence_ids": [
+                "synthetic-call:ab"
+              ]
+            }
+          ]
+        },
+        {
+          "assertion_id": "cf4f0584-0e0c-5495-98cf-bf804e0ab1a3",
+          "service_id": "payment",
+          "quote": "Inspect payment request duration.",
+          "document_title": "payment checks",
+          "evidence_id": "chunk:77862cdf-a1f1-54d8-ad6a-6896aeb6904a",
+          "start_char": 253,
+          "end_char": 286,
+          "service_ids": [
+            "storefront",
+            "checkout",
+            "payment"
+          ],
+          "call_edges": [
+            {
+              "edge_id": "ab",
+              "source_service_id": "storefront",
+              "target_service_id": "checkout",
+              "relationship": "CALLS",
+              "supporting_evidence_ids": [
+                "synthetic-call:ab"
+              ]
+            },
+            {
+              "edge_id": "bc",
+              "source_service_id": "checkout",
+              "target_service_id": "payment",
+              "relationship": "CALLS",
+              "supporting_evidence_ids": [
+                "synthetic-call:bc"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "disconnected",
+      "expected": [
+        "checkout",
+        "storefront"
+      ],
+      "graph": [
+        "checkout",
+        "storefront"
+      ],
+      "direct_service_lookup": [
+        "storefront"
+      ],
+      "exact_match": true,
+      "graph_tp": 2,
+      "graph_fp": 0,
+      "baseline_tp": 1,
+      "targets": 2,
+      "proof_paths": [
+        {
+          "assertion_id": "c725dcd8-fd36-5886-8555-fc03579a5e97",
+          "service_id": "storefront",
+          "quote": "Inspect storefront request duration.",
+          "document_title": "storefront checks",
+          "evidence_id": "chunk:fae0a198-e300-53d5-8f12-6362c851756b",
+          "start_char": 256,
+          "end_char": 292,
+          "service_ids": [
+            "storefront"
+          ],
+          "call_edges": []
+        },
+        {
+          "assertion_id": "85732cc9-a246-5eb2-8c8b-82f420547fae",
+          "service_id": "checkout",
+          "quote": "Inspect checkout request duration.",
+          "document_title": "checkout checks",
+          "evidence_id": "chunk:8aad2870-0bef-54ea-82e0-47c6b8dd7413",
+          "start_char": 254,
+          "end_char": 288,
+          "service_ids": [
+            "storefront",
+            "checkout"
+          ],
+          "call_edges": [
+            {
+              "edge_id": "ab",
+              "source_service_id": "storefront",
+              "target_service_id": "checkout",
+              "relationship": "CALLS",
+              "supporting_evidence_ids": [
+                "synthetic-call:ab"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "diamond",
+      "expected": [
+        "checkout",
+        "inventory",
+        "payment",
+        "storefront"
+      ],
+      "graph": [
+        "checkout",
+        "inventory",
+        "payment",
+        "storefront"
+      ],
+      "direct_service_lookup": [
+        "storefront"
+      ],
+      "exact_match": true,
+      "graph_tp": 4,
+      "graph_fp": 0,
+      "baseline_tp": 1,
+      "targets": 4,
+      "proof_paths": [
+        {
+          "assertion_id": "c725dcd8-fd36-5886-8555-fc03579a5e97",
+          "service_id": "storefront",
+          "quote": "Inspect storefront request duration.",
+          "document_title": "storefront checks",
+          "evidence_id": "chunk:fae0a198-e300-53d5-8f12-6362c851756b",
+          "start_char": 256,
+          "end_char": 292,
+          "service_ids": [
+            "storefront"
+          ],
+          "call_edges": []
+        },
+        {
+          "assertion_id": "85732cc9-a246-5eb2-8c8b-82f420547fae",
+          "service_id": "checkout",
+          "quote": "Inspect checkout request duration.",
+          "document_title": "checkout checks",
+          "evidence_id": "chunk:8aad2870-0bef-54ea-82e0-47c6b8dd7413",
+          "start_char": 254,
+          "end_char": 288,
+          "service_ids": [
+            "storefront",
+            "checkout"
+          ],
+          "call_edges": [
+            {
+              "edge_id": "ab",
+              "source_service_id": "storefront",
+              "target_service_id": "checkout",
+              "relationship": "CALLS",
+              "supporting_evidence_ids": [
+                "synthetic-call:ab"
+              ]
+            }
+          ]
+        },
+        {
+          "assertion_id": "cf4f0584-0e0c-5495-98cf-bf804e0ab1a3",
+          "service_id": "payment",
+          "quote": "Inspect payment request duration.",
+          "document_title": "payment checks",
+          "evidence_id": "chunk:77862cdf-a1f1-54d8-ad6a-6896aeb6904a",
+          "start_char": 253,
+          "end_char": 286,
+          "service_ids": [
+            "storefront",
+            "payment"
+          ],
+          "call_edges": [
+            {
+              "edge_id": "ac",
+              "source_service_id": "storefront",
+              "target_service_id": "payment",
+              "relationship": "CALLS",
+              "supporting_evidence_ids": [
+                "synthetic-call:ac"
+              ]
+            }
+          ]
+        },
+        {
+          "assertion_id": "b1be279c-2221-53dd-82f2-b6185669a845",
+          "service_id": "inventory",
+          "quote": "Inspect inventory request duration.",
+          "document_title": "inventory checks",
+          "evidence_id": "chunk:02862e65-402d-5492-8c29-858d4a3ae8f3",
+          "start_char": 255,
+          "end_char": 290,
+          "service_ids": [
+            "storefront",
+            "checkout",
+            "inventory"
+          ],
+          "call_edges": [
+            {
+              "edge_id": "ab",
+              "source_service_id": "storefront",
+              "target_service_id": "checkout",
+              "relationship": "CALLS",
+              "supporting_evidence_ids": [
+                "synthetic-call:ab"
+              ]
+            },
+            {
+              "edge_id": "bd",
+              "source_service_id": "checkout",
+              "target_service_id": "inventory",
+              "relationship": "CALLS",
+              "supporting_evidence_ids": [
+                "synthetic-call:bd"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "totals": {
+    "cases": 8,
+    "expected_checks": 21,
+    "graph_recalled": 21,
+    "graph_false_positives": 0,
+    "direct_lookup_recalled": 8,
+    "exact_match_cases": 8
+  },
+  "source_sha256": {
+    "/home/aayush/Documents/proj/kg/TraceCause_Implementation_Kit/tracecause-kit/scripts/evaluation/knowledge_competency.py": "034a5dc82b043a6d38607354af58d1dbbbbaae7c3af08f79447c808f72298fbf",
+    "src/tracecause/graph/knowledge.py": "3a1addc0bf1c95ee913199b4aff2165138ff952e6b30bb2d0ac49b1885295b6e",
+    "src/tracecause/documents/verification.py": "ccd1ae9ac025fa55959e011bc9106a1e31a118ea6379efcbac4d3970075f1827"
+  }
+}

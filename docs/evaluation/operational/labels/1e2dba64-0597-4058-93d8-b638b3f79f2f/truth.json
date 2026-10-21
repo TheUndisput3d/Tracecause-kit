@@ -1,0 +1,17 @@
+{
+  "episode_id": "1e2dba64-0597-4058-93d8-b638b3f79f2f",
+  "intervals": {
+    "analysis_end": "2026-10-19T05:07:40.010190Z"
+  },
+  "intervention": "release",
+  "provenance": {
+    "interpretation": "Reference intervention identity for a controlled diagnostic, not proof of general causal attribution.",
+    "label_origin": "controlled local intervention receipt",
+    "original_private_truth_sha256": "1c4831ca9e0595e645760cf7e9e1f34bfbb43bd8dbae9311156e200257c394fb",
+    "runtime_input": false,
+    "sanitized": true
+  },
+  "schema_version": "1.0",
+  "source_sha256": "69bd3d93d6ef3e702adca0ff8ce1664801329be0e1e527e1e4ad2eedaf72d1d3",
+  "target_event_id": "99082cdb-4611-4321-b53b-1b544e3e48c0"
+}

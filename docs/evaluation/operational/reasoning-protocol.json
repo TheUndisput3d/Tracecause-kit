@@ -1,0 +1,32 @@
+{
+  "version": "operational-temporal-join-v1",
+  "declared_at": "2026-10-19T05:17:06.320144+00:00",
+  "status": "declared before first API evaluation output",
+  "data_status": "controlled diagnostic; known scenario design; not held-out",
+  "capture_protocol_sha256": "0794ccd8b6ff3f352b35c99ad2db036362b5cbce75c3dbf90bc8e7aaa3b9e80e",
+  "source_sha256": {
+    "docs/evaluation/OPERATIONAL_REASONING.md": "44ad280c6634d5a6c385deb0cbfb8b1e54e9a546d63eb92533a75b4aab771155",
+    "src/tracecause/operational/reasoning.py": "696e13ab10554f292dfba28c5e8b8596db52e7f36805e41b26ac860065993856",
+    "src/tracecause/operational/reasoning_models.py": "bca762af48d8d2dc7fdf5dd141449a52daaecda57bd9923f5626c726126f54cc",
+    "src/tracecause/operational/handoffs.py": "37e6083f21d38b235ca96151cd99236405573942af58ff6fe0f89bebadd87ec2",
+    "src/tracecause/telemetry/signals.py": "4e976749cb3f09812df091a10bfc5eab7c9b763d8164ff8f5beff1ba58643f60",
+    "scripts/evaluation/operational_capture.py": "d866d61a55e3da4af304c8f5ba5ce82a58c45a6c92f7e7fef276a9eb78e5c133"
+  },
+  "no_tuning_after_outputs": true,
+  "ordering": [
+    "precedes degradation",
+    "no further observed degraded dependencies",
+    "change recency",
+    "path length",
+    "event UUID"
+  ],
+  "degradation": "latency or error deviation >=3, >=6 populated baseline buckets and >=10 samples; volume alone not a failure",
+  "caps": {
+    "changes": 24,
+    "output": 3,
+    "dependency_hops": 3,
+    "descendant_proofs": 8,
+    "historical_episodes": 32,
+    "historical_matches": 6
+  }
+}

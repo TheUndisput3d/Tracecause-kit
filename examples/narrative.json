@@ -1,0 +1,21 @@
+{
+  "status": "insufficient_evidence",
+  "summary": {
+    "text": "The example does not contain enough baseline evidence to rank a fault location.",
+    "evidence_ids": []
+  },
+  "hypotheses": [],
+  "claims": [
+    {
+      "claim_id": "claim_missing_baseline",
+      "claim_type": "limitation",
+      "text": "Import a complete episode with an eligible baseline before interpreting anomaly scores.",
+      "evidence_ids": [],
+      "metric": null,
+      "path_id": null
+    }
+  ],
+  "limitations": [
+    "Synthetic contract example only; no model generation or benchmark has been run."
+  ]
+}

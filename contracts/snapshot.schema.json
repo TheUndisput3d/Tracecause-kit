@@ -1,0 +1,97 @@
+{
+  "$defs": {
+    "SnapshotStatus": {
+      "enum": [
+        "BUILDING",
+        "READY",
+        "FAILED",
+        "TOMBSTONED"
+      ],
+      "title": "SnapshotStatus",
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "created_at": {
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+    },
+    "embedding_revision": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Embedding Revision",
+      "type": "string"
+    },
+    "episode_id": {
+      "format": "uuid",
+      "title": "Episode Id",
+      "type": "string"
+    },
+    "error_code": {
+      "anyOf": [
+        {
+          "maxLength": 200,
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Error Code"
+    },
+    "graph_schema_version": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Graph Schema Version",
+      "type": "string"
+    },
+    "input_manifest_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Input Manifest Hash",
+      "type": "string"
+    },
+    "published_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Published At"
+    },
+    "snapshot_id": {
+      "format": "uuid",
+      "title": "Snapshot Id",
+      "type": "string"
+    },
+    "status": {
+      "$ref": "#/$defs/SnapshotStatus"
+    },
+    "workspace_id": {
+      "format": "uuid",
+      "title": "Workspace Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "snapshot_id",
+    "workspace_id",
+    "episode_id",
+    "graph_schema_version",
+    "input_manifest_hash",
+    "embedding_revision",
+    "status",
+    "created_at",
+    "published_at",
+    "error_code"
+  ],
+  "title": "Snapshot",
+  "type": "object"
+}

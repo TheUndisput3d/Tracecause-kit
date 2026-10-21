@@ -1,0 +1,24 @@
+# Trace-derived observations and signals
+
+Phase 05 materializes measurements from already imported, redacted PostgreSQL spans. It does not read evaluator gold or control-plane injection times. The operator supplies `--investigation-start-ns` as an observable/user-selected closed 10-second boundary and `--as-of-ns` as the replay cutoff. For example:
+
+```bash
+tracecause signals materialize \
+  --episode-id <uuid> --investigation-start-ns <epoch-ns> --as-of-ns <epoch-ns> \
+  --artifact-root /absolute/runtime-artifacts --password-file .secrets/postgres_password
+tracecause signals inspect \
+  --episode-id <uuid> --report-hash <sha256> \
+  --artifact-root /absolute/runtime-artifacts --password-file .secrets/postgres_password
+```
+
+The latest complete boundary is `floor(as_of_ns / 10s) * 10s`. Buckets are half-open `[start,end)` by span completion time; the latest 60-second analysis window ends at that closed boundary. The baseline is the 30 ten-second buckets in `[investigation_start_ns - 300s, investigation_start_ns)`. A span that finishes inside the current open bucket, or after the cutoff, is excluded. Event replay uses the completion timestamp. Available-time replay additionally requires a known `available_at <= as_of`; unknown availability is excluded and flagged. The current synthetic fixtures do not record availability, so their signals use event replay. The 80-second smoke fixture has an insufficient baseline by design; the generated full episodes have five minutes of baseline.
+
+For each service, only SERVER spans contribute to request count, error count, error fraction, latency p50/p95 and completeness. A span is an explicit error when its status is `ERROR`, an HTTP status is 500–599, or supported gRPC status is 1–16. `UNSET` remains a separate status count, and HTTP 4xx alone is not an error. Unknown status reduces completeness. Quantiles use linear interpolation over eligible raw durations in milliseconds; an analysis p95 is never an average of bucket p95 values. Empty buckets have count zero and null latency/error fraction. The current version is `trace-signals-v1-http5xx-grpc-nonzero`.
+
+A dependency observation requires a SERVER span with a valid cross-service trace parent, possibly reached through at most three same-service ancestors. The parent/child intervals must overlap. A CLIENT/SERVER pair is counted once using the SERVER duration, while a separately labeled `client_observed_p50_ms`/`client_observed_p95_ms` is attached when the caller ancestor is CLIENT. Unsupported async producer/consumer parentage, missing parents, parent cycles, clock non-overlap and hop limits are flagged. An unpaired CLIENT span has unknown callee and is flagged; it does not create a fabricated dependency edge. A shared trace ID alone never proves a call. These are observed relationships, not proof of causality.
+
+A baseline is eligible for anomaly scores when it has at least six populated buckets and ten SERVER samples for that service. The analysis p95 is compared with the median of populated baseline bucket p95 values. Error fraction uses populated baseline buckets. Volume compares analysis count divided by six with all 30 baseline bucket counts, including zero buckets. Each robust score is `(x - baseline_median) / max(1.4826 * MAD, floor)` clipped to `[-10,10]`; floors are 5 ms, 0.01 error fraction and one request per bucket. The first anomalous analysis bucket has latency or error score at least 3, or absolute volume score at least 3, and begins at or after the selected investigation start. These are heuristic deviations, not calibrated probabilities or root-cause claims. Insufficient baselines yield null scores and explicit flags.
+
+The immutable report artifact contains the aggregation version, scoped input hash, exact boundaries, every observation ID, formulas, counts, quality flags, deterministic text summaries and source locator catalog. PostgreSQL `observations` and `observation_spans` store measurements and exact `(episode_id,trace_id,span_id,role)` support; each support resolves to the redacted normalized artifact by the span key. Original raw source offsets are informational because raw source bytes are not kept in the runtime artifact root. A repeated materialization with identical scope, version, input set and cutoff produces the same report hash and observation IDs. A later cutoff is a separate immutable report. Artifact/SQL publication is not one transaction; an unregistered file after SQL failure is surfaced by reconciliation.
+
+Sampling can bias counts and quantiles. Client and server clocks can differ, so a non-overlapping pair is withheld rather than forced into a dependency. Low traffic and partial traces can hide a true anomaly or dependency. A latency or error deviation identifies a symptom on a service; it cannot alone identify the originating fault.
